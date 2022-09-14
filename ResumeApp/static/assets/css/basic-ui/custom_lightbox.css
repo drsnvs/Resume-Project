@@ -1,0 +1,31 @@
+.demo-gallery > ul {
+    margin-bottom: 0;
+}
+.demo-gallery > ul > li a {
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    padding: 0.4rem;
+    display: block;
+    position: relative;
+}
+.demo-gallery > ul > li a > img {
+    transition: all ease 0.3s;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    height: 100%;
+    width: 100%;
+}
+.demo-gallery > ul > li a:hover > img {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+    transition: all ease 0.3s;
+}
+.demo-gallery.dark > ul > li a {
+    border: 3px solid #04070a;
+}
+.home .demo-gallery {
+    padding-bottom: 80px;
+}
+.demo-gallery .list-unstyled li {
+    margin-bottom: 1.5rem;
+}

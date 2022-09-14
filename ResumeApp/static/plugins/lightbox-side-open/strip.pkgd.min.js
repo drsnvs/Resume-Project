@@ -1,0 +1,2069 @@
+/*!
+ * Strip - An Unobtrusive Responsive Lightbox - v1.7.0
+ * (c) 2014-2019 Nick Stakenburg
+ *
+ * http://www.stripjs.com
+ *
+ * @license: https://creativecommons.org/licenses/by/4.0
+ */
+!(function(t, i) {
+  "function" == typeof define && define.amd
+    ? define(["jquery"], i)
+    : "object" == typeof module && module.exports
+    ? (module.exports = i(require("jquery")))
+    : (t.Strip = i(jQuery));
+})(this, function($) {
+  var Strip = { version: "1.7.0", Skins: { strip: {} } },
+    Browser =
+      ((c = navigator.userAgent),
+      {
+        IE: !(!window.attachEvent || -1 !== c.indexOf("Opera")) && d("MSIE "),
+        Opera:
+          -1 < c.indexOf("Opera") &&
+          ((!!window.opera && opera.version && parseFloat(opera.version())) ||
+            7.55),
+        WebKit: -1 < c.indexOf("AppleWebKit/") && d("AppleWebKit/"),
+        Gecko: -1 < c.indexOf("Gecko") && -1 === c.indexOf("KHTML") && d("rv:"),
+        MobileSafari: !!c.match(/Apple.*Mobile.*Safari/),
+        Chrome: -1 < c.indexOf("Chrome") && d("Chrome/"),
+        ChromeMobile: -1 < c.indexOf("CrMo") && d("CrMo/"),
+        Android: -1 < c.indexOf("Android") && d("Android "),
+        IEMobile: -1 < c.indexOf("IEMobile") && d("IEMobile/")
+      }),
+    c;
+  function d(t) {
+    var i = new RegExp(t + "([\\d.]+)").exec(c);
+    return !i || parseFloat(i[1]);
+  }
+  var _slice = Array.prototype.slice,
+    Fit = {
+      within: function(t, i) {
+        for (
+          var e = $.extend({ height: !0, width: !0 }, arguments[2] || {}),
+            s = $.extend({}, i),
+            n = 1,
+            o = 5,
+            r = e.width,
+            a = e.height;
+          0 < o && ((r && s.width > t.width) || (a && s.height > t.height));
+        ) {
+          var h = 1,
+            d = 1;
+          r && s.width > t.width && (h = t.width / s.width),
+            a && s.height > t.height && (d = t.height / s.height);
+          n = Math.min(h, d);
+          (s = {
+            width: Math.round(i.width * n),
+            height: Math.round(i.height * n)
+          }),
+            o--;
+        }
+        return (
+          (s.width = Math.max(s.width, 0)),
+          (s.height = Math.max(s.height, 0)),
+          s
+        );
+      }
+    };
+  $.extend($.easing, {
+    stripEaseInCubic: function(t, i, e, s, n) {
+      return s * (i /= n) * i * i + e;
+    },
+    stripEaseInSine: function(t, i, e, s, n) {
+      return -s * Math.cos((i / n) * (Math.PI / 2)) + s + e;
+    },
+    stripEaseOutSine: function(t, i, e, s, n) {
+      return s * Math.sin((i / n) * (Math.PI / 2)) + e;
+    }
+  });
+  var Support =
+      ((F = document.createElement("div")),
+      (G = "Webkit Moz O ms Khtml".split(" ")),
+      {
+        css: {
+          animation: J("animation"),
+          transform: J("transform"),
+          prefixed: function(t) {
+            return J(t, "prefix");
+          }
+        },
+        svg:
+          !!document.createElementNS &&
+          !!document.createElementNS("http://www.w3.org/2000/svg", "svg")
+            .createSVGRect,
+        touch: (function() {
+          try {
+            return !!(
+              "ontouchstart" in window ||
+              (window.DocumentTouch && document instanceof DocumentTouch)
+            );
+          } catch (t) {
+            return !1;
+          }
+        })()
+      }),
+    F,
+    G;
+  function J(t, i) {
+    var e = t.charAt(0).toUpperCase() + t.substr(1);
+    return (function(t, i) {
+      for (var e in t)
+        if (void 0 !== F.style[t[e]]) return "prefix" != i || t[e];
+      return !1;
+    })((t + " " + G.join(e + " ") + e).split(" "), i);
+  }
+  Support.mobileTouch =
+    Support.touch &&
+    (Browser.MobileSafari ||
+      Browser.Android ||
+      Browser.IEMobile ||
+      Browser.ChromeMobile ||
+      !/^(Win|Mac|Linux)/.test(navigator.platform));
+  var Bounds = {
+      viewport: function() {
+        var t = { width: $(window).width() };
+        if (Browser.MobileSafari || (Browser.Android && Browser.Gecko)) {
+          var i = document.documentElement.clientWidth / window.innerWidth;
+          t.height = window.innerHeight * i;
+        } else t.height = $(window).height();
+        return t;
+      }
+    },
+    ImageReady = (function(o) {
+      function t() {
+        return this.initialize.apply(
+          this,
+          Array.prototype.slice.call(arguments)
+        );
+      }
+      o.extend(t.prototype, {
+        initialize: function() {
+          (this.options = o.extend(
+            {
+              test: function() {},
+              success: function() {},
+              timeout: function() {},
+              callAt: !1,
+              intervals: [[0, 0], [1e3, 10], [2e3, 50], [4e3, 100], [2e4, 500]]
+            },
+            arguments[0] || {}
+          )),
+            (this._test = this.options.test),
+            (this._success = this.options.success),
+            (this._timeout = this.options.timeout),
+            (this._ipos = 0),
+            (this._time = 0),
+            (this._delay = this.options.intervals[this._ipos][1]),
+            (this._callTimeouts = []),
+            this.poll(),
+            this._createCallsAt();
+        },
+        poll: function() {
+          this._polling = setTimeout(
+            o.proxy(function() {
+              if (this._test()) this.success();
+              else {
+                if (
+                  ((this._time += this._delay),
+                  this._time >= this.options.intervals[this._ipos][0])
+                ) {
+                  if (!this.options.intervals[this._ipos + 1])
+                    return void (
+                      "function" == o.type(this._timeout) && this._timeout()
+                    );
+                  this._ipos++,
+                    (this._delay = this.options.intervals[this._ipos][1]);
+                }
+                this.poll();
+              }
+            }, this),
+            this._delay
+          );
+        },
+        success: function() {
+          this.abort(), this._success();
+        },
+        _createCallsAt: function() {
+          this.options.callAt &&
+            o.each(
+              this.options.callAt,
+              o.proxy(function(t, i) {
+                var e = i[0],
+                  s = i[1],
+                  n = setTimeout(
+                    o.proxy(function() {
+                      s();
+                    }, this),
+                    e
+                  );
+                this._callTimeouts.push(n);
+              }, this)
+            );
+        },
+        _stopCallTimeouts: function() {
+          o.each(this._callTimeouts, function(t, i) {
+            clearTimeout(i);
+          }),
+            (this._callTimeouts = []);
+        },
+        abort: function() {
+          this._stopCallTimeouts(),
+            this._polling &&
+              (clearTimeout(this._polling), (this._polling = null));
+        }
+      });
+      function i() {
+        return this.initialize.apply(
+          this,
+          Array.prototype.slice.call(arguments)
+        );
+      }
+      return (
+        o.extend(i.prototype, {
+          supports: { naturalWidth: "naturalWidth" in new Image() },
+          initialize: function(t, i, e) {
+            (this.img = o(t)[0]),
+              (this.successCallback = i),
+              (this.errorCallback = e),
+              (this.isLoaded = !1),
+              (this.options = o.extend(
+                { method: "onload", pollFallbackAfter: 1e3 },
+                arguments[3] || {}
+              )),
+              "onload" != this.options.method && this.supports.naturalWidth
+                ? this.poll()
+                : this.load();
+          },
+          poll: function() {
+            this._poll = new t({
+              test: o.proxy(function() {
+                return 0 < this.img.naturalWidth;
+              }, this),
+              success: o.proxy(function() {
+                this.success();
+              }, this),
+              timeout: o.proxy(function() {
+                this.error();
+              }, this),
+              callAt: [
+                [
+                  this.options.pollFallbackAfter,
+                  o.proxy(function() {
+                    this.load();
+                  }, this)
+                ]
+              ]
+            });
+          },
+          load: function() {
+            this._loading = setTimeout(
+              o.proxy(function() {
+                var t = new Image();
+                ((this._onloadImage = t).onload = o.proxy(function() {
+                  (t.onload = function() {}),
+                    this.supports.naturalWidth ||
+                      ((this.img.naturalWidth = t.width),
+                      (this.img.naturalHeight = t.height),
+                      (t.naturalWidth = t.width),
+                      (t.naturalHeight = t.height)),
+                    this.success();
+                }, this)),
+                  (t.onerror = o.proxy(this.error, this)),
+                  (t.src = this.img.src);
+              }, this)
+            );
+          },
+          success: function() {
+            this._calledSuccess ||
+              ((this._calledSuccess = !0),
+              this.abort(),
+              this.waitForRender(
+                o.proxy(function() {
+                  (this.isLoaded = !0), this.successCallback(this);
+                }, this)
+              ));
+          },
+          error: function() {
+            this._calledError ||
+              ((this._calledError = !0),
+              this.abort(),
+              (this._errorRenderTimeout = setTimeout(
+                o.proxy(function() {
+                  this.errorCallback && this.errorCallback(this);
+                }, this)
+              )));
+          },
+          abort: function() {
+            this.stopLoading(), this.stopPolling(), this.stopWaitingForRender();
+          },
+          stopPolling: function() {
+            this._poll && (this._poll.abort(), (this._poll = null));
+          },
+          stopLoading: function() {
+            this._loading &&
+              (clearTimeout(this._loading), (this._loading = null)),
+              this._onloadImage &&
+                ((this._onloadImage.onload = function() {}),
+                (this._onloadImage.onerror = function() {}));
+          },
+          waitForRender: function(t) {
+            this._renderTimeout = setTimeout(t);
+          },
+          stopWaitingForRender: function() {
+            this._renderTimeout &&
+              (clearTimeout(this._renderTimeout), (this._renderTimeout = null)),
+              this._errorRenderTimeout &&
+                (clearTimeout(this._errorRenderTimeout),
+                (this._errorRenderTimeout = null));
+          }
+        }),
+        i
+      );
+    })(jQuery);
+  function Spinner() {
+    return this.initialize.apply(this, _slice.call(arguments));
+  }
+  function Timers() {
+    return this.initialize.apply(this, _slice.call(arguments));
+  }
+  function getURIData(s) {
+    var n = { type: "image" };
+    return (
+      $.each(Types, function(t, i) {
+        var e = i.data(s);
+        e && (((n = e).type = t), (n.url = s));
+      }),
+      n
+    );
+  }
+  function detectExtension(t) {
+    var i = (t || "").replace(/\?.*/g, "").match(/\.([^.]{3,4})$/);
+    return i ? i[1].toLowerCase() : null;
+  }
+  (Spinner.supported = Support.css.transform && Support.css.animation),
+    $.extend(Spinner.prototype, {
+      initialize: function(t) {
+        (this.element = $(t)),
+          this.element[0] &&
+            ((this.classPrefix = "strp-"),
+            this.setOptions(arguments[1] || {}),
+            this.element.addClass(this.classPrefix + "spinner"),
+            this.element.append(
+              (this._rotate = $("<div>").addClass(
+                this.classPrefix + "spinner-rotate"
+              ))
+            ),
+            this.build(),
+            this.start());
+      },
+      setOptions: function(t) {
+        this.options = $.extend({ show: 200, hide: 200 }, t || {});
+      },
+      build: function() {
+        if (!this._build) {
+          this._rotate.html("");
+          this.options.length, this.options.radius;
+          var t = this.element.is(":visible");
+          t || this.element.show(),
+            this._rotate.append(
+              (n = $("<div>")
+                .addClass(this.classPrefix + "spinner-frame")
+                .append(
+                  (o = $("<div>").addClass(this.classPrefix + "spinner-line"))
+                ))
+            );
+          var i,
+            e = parseInt($(o).css("z-index"));
+          (this.lines = e),
+            o.css({ "z-index": "inherit" }),
+            n.remove(),
+            t || this.element.hide();
+          for (var s = 0; s < e; s++) {
+            var n, o;
+            this._rotate.append(
+              (n = $("<div>")
+                .addClass(this.classPrefix + "spinner-frame")
+                .append(
+                  (o = $("<div>").addClass(this.classPrefix + "spinner-line"))
+                ))
+            ),
+              (i = i || o.css("color")),
+              o.css({ background: i }),
+              n.css({ opacity: ((1 / e) * (s + 1)).toFixed(2) });
+            var r = {};
+            (r[Support.css.prefixed("transform")] =
+              "rotate(" + (360 / e) * (s + 1) + "deg)"),
+              n.css(r);
+          }
+          this._build = !0;
+        }
+      },
+      start: function() {
+        var t = {};
+        (t[Support.css.prefixed("animation")] =
+          this.classPrefix +
+          "spinner-spin 1s infinite steps(" +
+          this.lines +
+          ")"),
+          this._rotate.css(t);
+      },
+      stop: function() {
+        var t = {};
+        (t[Support.css.prefixed("animation")] = "none"), this._rotate.css(t);
+      },
+      show: function(t) {
+        this.build(),
+          this.start(),
+          this.element.stop(!0).fadeTo(this.options.show, 1, t);
+      },
+      hide: function(t) {
+        this.element.stop(!0).fadeOut(
+          this.options.hide,
+          $.proxy(function() {
+            this.stop(), t && t();
+          }, this)
+        );
+      },
+      refresh: function() {
+        (this._build = !1), this.build();
+      }
+    }),
+    $.extend(Timers.prototype, {
+      initialize: function() {
+        this._timers = {};
+      },
+      set: function(t, i, e) {
+        this._timers[t] = setTimeout(i, e);
+      },
+      get: function(t) {
+        return this._timers[t];
+      },
+      clear: function(t) {
+        t
+          ? this._timers[t] &&
+            (clearTimeout(this._timers[t]), delete this._timers[t])
+          : this.clearAll();
+      },
+      clearAll: function() {
+        $.each(this._timers, function(t, i) {
+          clearTimeout(i);
+        }),
+          (this._timers = {});
+      }
+    });
+  var Types = {
+      image: {
+        extensions: "bmp gif jpeg jpg png webp",
+        detect: function(t) {
+          return -1 < $.inArray(detectExtension(t), this.extensions.split(" "));
+        },
+        data: function(t) {
+          return !!this.detect() && { extension: detectExtension(t) };
+        }
+      },
+      youtube: {
+        detect: function(t) {
+          var i = /(youtube\.com|youtu\.be)\/watch\?(?=.*vi?=([a-zA-Z0-9-_]+))(?:\S+)?$/.exec(
+            t
+          );
+          return i && i[2]
+            ? i[2]
+            : !(
+                !(i = /(youtube\.com|youtu\.be)\/(vi?\/|u\/|embed\/)?([a-zA-Z0-9-_]+)(?:\S+)?$/i.exec(
+                  t
+                )) || !i[3]
+              ) && i[3];
+        },
+        data: function(t) {
+          var i = this.detect(t);
+          return !!i && { id: i };
+        }
+      },
+      vimeo: {
+        detect: function(t) {
+          var i = /(vimeo\.com)\/([a-zA-Z0-9-_]+)(?:\S+)?$/i.exec(t);
+          return !(!i || !i[2]) && i[2];
+        },
+        data: function(t) {
+          var i = this.detect(t);
+          return !!i && { id: i };
+        }
+      }
+    },
+    VimeoReady = (function() {
+      function t() {
+        return this.initialize.apply(this, _slice.call(arguments));
+      }
+      $.extend(t.prototype, {
+        initialize: function(t, i) {
+          (this.url = t), (this.callback = i), this.load();
+        },
+        load: function() {
+          var t = s.get(this.url);
+          if (t) return this.callback(t.data);
+          var i =
+              "http" +
+              (window.location && "https:" == window.location.protocol
+                ? "s"
+                : "") +
+              ":",
+            e = getURIData(this.url).id;
+          this._xhr = $.getJSON(
+            i +
+              "//vimeo.com/api/oembed.json?url=" +
+              i +
+              "//vimeo.com/" +
+              e +
+              "&maxwidth=9999999&maxheight=9999999&callback=?",
+            $.proxy(function(t) {
+              var i = { dimensions: { width: t.width, height: t.height } };
+              s.set(this.url, i), this.callback && this.callback(i);
+            }, this)
+          );
+        },
+        abort: function() {
+          this._xhr && (this._xhr.abort(), (this._xhr = null));
+        }
+      });
+      var s = {
+        cache: [],
+        get: function(t) {
+          for (var i = null, e = 0; e < this.cache.length; e++)
+            this.cache[e] && this.cache[e].url == t && (i = this.cache[e]);
+          return i;
+        },
+        set: function(t, i) {
+          this.remove(t), this.cache.push({ url: t, data: i });
+        },
+        remove: function(t) {
+          for (var i = 0; i < this.cache.length; i++)
+            this.cache[i] && this.cache[i].url == t && delete this.cache[i];
+        }
+      };
+      return t;
+    })(),
+    Options = {
+      defaults: {
+        effects: {
+          spinner: { show: 200, hide: 200 },
+          transition: { min: 175, max: 250 },
+          ui: { show: 0, hide: 200 },
+          window: { show: 300, hide: 300 }
+        },
+        hideOnClickOutside: !0,
+        keyboard: { left: !0, right: !0, esc: !0 },
+        loop: !0,
+        overlap: !0,
+        preload: [1, 2],
+        position: !0,
+        skin: "strip",
+        side: "right",
+        spinner: !0,
+        toggle: !0,
+        uiDelay: 3e3,
+        vimeo: {
+          autoplay: 1,
+          api: 1,
+          title: 1,
+          byline: 1,
+          portrait: 0,
+          loop: 0
+        },
+        youtube: {
+          autoplay: 1,
+          controls: 1,
+          enablejsapi: 1,
+          hd: 1,
+          iv_load_policy: 3,
+          loop: 0,
+          modestbranding: 1,
+          rel: 0,
+          vq: "hd1080"
+        },
+        initialTypeOptions: {
+          image: {},
+          vimeo: { width: 1280 },
+          youtube: { width: 1280, height: 720 }
+        }
+      },
+      create: function(t, i, e) {
+        (t = t || {}).skin = t.skin || this.defaults.skin;
+        var s = t.skin
+            ? $.extend(
+                {},
+                Strip.Skins[t.skin] || Strip.Skins[this.defaults.skin]
+              )
+            : {},
+          n = $.extend(!0, {}, this.defaults, s);
+        n.initialTypeOptions &&
+          (i &&
+            n.initialTypeOptions[i] &&
+            (n = $.extend(!0, {}, n.initialTypeOptions[i], n)),
+          delete n.initialTypeOptions);
+        var o = $.extend(!0, {}, n, t);
+        return (
+          (!o.effects || (Browser.IE && Browser.IE < 9)) &&
+            ((o.effects = {}),
+            $.each(this.defaults.effects, function(i, t) {
+              $.each((o.effects[i] = $.extend({}, t)), function(t) {
+                o.effects[i][t] = 0;
+              });
+            }),
+            (o.spinner = !1)),
+          o.keyboard &&
+            ("boolean" === $.type(o.keyboard) &&
+              ((o.keyboard = {}),
+              $.each(this.defaults.keyboard, function(t, i) {
+                o.keyboard[t] = !0;
+              })),
+            ("vimeo" !== i && "youtube" !== i) ||
+              $.extend(o.keyboard, { left: !1, right: !1 })),
+          ("vimeo" !== i && "youtube" !== i) || (o.overlap = !1),
+          o
+        );
+      }
+    };
+  function View() {
+    this.initialize.apply(this, _slice.call(arguments));
+  }
+  $.extend(View.prototype, {
+    initialize: function(object) {
+      var options = arguments[1] || {},
+        data = {};
+      if ("string" === $.type(object)) object = { url: object };
+      else if (object && 1 === object.nodeType) {
+        var element = $(object);
+        object = {
+          element: element[0],
+          url: element.attr("href"),
+          caption: element.attr("data-strip-caption"),
+          group: element.attr("data-strip-group"),
+          extension: element.attr("data-strip-extension"),
+          type: element.attr("data-strip-type"),
+          options:
+            (element.attr("data-strip-options") &&
+              eval("({" + element.attr("data-strip-options") + "})")) ||
+            {}
+        };
+      }
+      if (
+        object &&
+        (object.extension || (object.extension = detectExtension(object.url)),
+        !object.type)
+      ) {
+        var data = getURIData(object.url);
+        (object._data = data), (object.type = data.type);
+      }
+      return (
+        object._data || (object._data = getURIData(object.url)),
+        object && object.options
+          ? (object.options = $.extend(
+              !0,
+              $.extend({}, options),
+              $.extend({}, object.options)
+            ))
+          : (object.options = $.extend({}, options)),
+        (object.options = Options.create(
+          object.options,
+          object.type,
+          object._data
+        )),
+        $.extend(this, object),
+        this
+      );
+    }
+  });
+  var Pages = {
+      initialize: function(t) {
+        (this.element = t), (this.pages = {}), (this.uid = 1);
+      },
+      add: function(t) {
+        this.uid++,
+          (this.views = t),
+          (this.pages[this.uid] = []),
+          (Window._showUIOnResize = !0),
+          $.each(
+            t,
+            $.proxy(function(t, i) {
+              this.pages[this.uid].push(new Page(i, t + 1, this.views.length));
+            }, this)
+          );
+      },
+      show: function(t, i) {
+        var e = this.pages[this.uid][t - 1];
+        this.page && this.page.uid == e.uid
+          ? e.view.options.toggle && (Window.hide(), (this.page = null))
+          : (Pages.setActiveClass(e),
+            (this.page = e),
+            this.removeHiddenAndLoadingInactive(),
+            e.show(
+              $.proxy(function() {
+                (this._switched = !1), i && i();
+              }, this)
+            ));
+      },
+      getLoadingCount: function() {
+        var e = 0;
+        return (
+          $.each(this.pages, function(t, i) {
+            $.each(i, function(t, i) {
+              i.loading && e++;
+            });
+          }),
+          e
+        );
+      },
+      getPositionInActivePageGroup: function(e) {
+        var s = 0,
+          t = this.pages[this.uid];
+        return (
+          t &&
+            $.each(t, function(t, i) {
+              i.view.element && i.view.element == e && (s = t + 1);
+            }),
+          s
+        );
+      },
+      removeExpired: function(e) {
+        $.each(this.pages, function(t, i) {
+          t != this._id &&
+            $.each(i, function(t, i) {
+              i.remove(e);
+            });
+        });
+      },
+      removeAll: function() {
+        $.each(this.pages, function(t, i) {
+          $.each(i, function(t, i) {
+            i.remove();
+          });
+        }),
+          (this.pages = {});
+      },
+      hideVisibleInactive: function(e) {
+        $.each(
+          this.pages,
+          $.proxy(function(t, i) {
+            $.each(
+              i,
+              $.proxy(function(t, i) {
+                i.uid != this.page.uid && i.hide(null, e);
+              }, this)
+            );
+          }, this)
+        );
+      },
+      stopInactive: function() {
+        $.each(
+          this.pages,
+          $.proxy(function(t, i) {
+            $.each(
+              i,
+              $.proxy(function(t, i) {
+                i.uid == this.page.uid || i.preloading || i.stop();
+              }, this)
+            );
+          }, this)
+        );
+      },
+      removeHiddenAndLoadingInactive: function() {
+        var s = [];
+        $.each(
+          this.pages,
+          $.proxy(function(t, i) {
+            if (t != this.uid) {
+              var e = 0;
+              $.each(
+                i,
+                $.proxy(function(t, i) {
+                  (i.visible && !i.loading) || i.animatingWindow || i.remove(),
+                    i.removed && e++;
+                }, this)
+              ),
+                e == i.length && s.push(t);
+            }
+          }, this)
+        ),
+          $.each(
+            s,
+            $.proxy(function(t, i) {
+              delete this.pages[i];
+            }, this)
+          );
+      },
+      stop: function() {
+        $.each(this.pages, function(t, i) {
+          $.each(i, function(t, i) {
+            i.stop();
+          });
+        });
+      },
+      setActiveClass: function(t) {
+        this.removeActiveClasses();
+        var i = t.view.element;
+        if (i) {
+          $(i).addClass("strip-active-element strip-active-group");
+          var e = $(i).attr("data-strip-group");
+          e &&
+            $('.strip[data-strip-group="' + e + '"]').addClass(
+              "strip-active-group"
+            );
+        }
+      },
+      removeActiveClasses: function() {
+        $(".strip-active-group").removeClass(
+          "strip-active-group strip-active-element"
+        );
+      }
+    },
+    Page =
+      ((sc = 0),
+      (tc = {}),
+      $.extend(uc.prototype, {
+        initialize: function(t, i, e) {
+          (this.view = t),
+            (this.dimensions = { width: 0, height: 0 }),
+            (this.uid = sc++),
+            (this._position = i),
+            (this._total = e),
+            (this.animated = !1),
+            (this.visible = !1),
+            (this.queues = {}),
+            (this.queues.showhide = $({}));
+        },
+        create: function() {
+          if (!this._created) {
+            Pages.element.append(
+              (this.element = $("<div>")
+                .addClass("strp-page")
+                .append(
+                  (this.container = $("<div>").addClass("strp-container"))
+                )
+                .css({ opacity: 0 })
+                .hide())
+            );
+            var t = this.view.options.position && 1 < this._total;
+            switch (
+              ((this.view.caption || t) &&
+                (this.element.append(
+                  (this.info = $("<div>")
+                    .addClass("strp-info")
+                    .append(
+                      (this.info_padder = $("<div>").addClass(
+                        "strp-info-padder"
+                      ))
+                    ))
+                ),
+                t &&
+                  (this.element.addClass("strp-has-position"),
+                  this.info_padder.append(
+                    $("<div>")
+                      .addClass("strp-position")
+                      .html(this._position + " / " + this._total)
+                  )),
+                this.view.caption &&
+                  this.info_padder.append(
+                    (this.caption = $("<div>")
+                      .addClass("strp-caption")
+                      .html(this.view.caption))
+                  )),
+              this.view.type)
+            ) {
+              case "image":
+                this.container.append(
+                  (this.content = $("<img>").attr({ src: this.view.url }))
+                );
+                break;
+              case "vimeo":
+              case "youtube":
+                this.container.append((this.content = $("<div>")));
+            }
+            this.element.addClass(
+              "strp" + (this.view.options.overlap ? "" : "-no") + "-overlap"
+            ),
+              this._total < 2 && this.element.addClass("strp-no-sides"),
+              this.content.addClass("strp-content-element"),
+              (this._created = !0);
+          }
+        },
+        _getSurroundingPages: function() {
+          var t;
+          if (!(t = this.view.options.preload)) return [];
+          for (
+            var i = [],
+              e = Math.max(1, this._position - t[0]),
+              s = Math.min(this._position + t[1], this._total),
+              n = this._position,
+              o = n;
+            o <= s;
+            o++
+          )
+            (r = Pages.pages[Pages.uid][o - 1])._position != n && i.push(r);
+          for (o = n; e <= o; o--) {
+            var r;
+            (r = Pages.pages[Pages.uid][o - 1])._position != n && i.push(r);
+          }
+          return i;
+        },
+        preloadSurroundingImages: function() {
+          var t = this._getSurroundingPages();
+          $.each(
+            t,
+            $.proxy(function(t, i) {
+              i.preload();
+            }, this)
+          );
+        },
+        preload: function() {
+          this.preloading ||
+            this.preloaded ||
+            "image" !== this.view.type ||
+            !this.view.options.preload ||
+            this.loaded ||
+            (this.create(),
+            (this.preloading = !0),
+            new ImageReady(
+              this.content[0],
+              $.proxy(function(t) {
+                (this.loaded = !0),
+                  (this.preloading = !1),
+                  (this.preloaded = !0),
+                  (this.dimensions = {
+                    width: t.img.naturalWidth,
+                    height: t.img.naturalHeight
+                  });
+              }, this),
+              null,
+              { method: "naturalWidth" }
+            ));
+        },
+        load: function(i, t) {
+          if ((this.create(), this.loaded)) i && i();
+          else
+            switch (
+              (this.abort(),
+              (this.loading = !0),
+              this.view.options.spinner &&
+                !tc[this.view.url] &&
+                Window.startLoading(),
+              this.view.type)
+            ) {
+              case "image":
+                if (this.error) return void (i && i());
+                this.imageReady = new ImageReady(
+                  this.content[0],
+                  $.proxy(function(t) {
+                    this._markAsLoaded(),
+                      (this.dimensions = {
+                        width: t.img.naturalWidth,
+                        height: t.img.naturalHeight
+                      }),
+                      i && i();
+                  }, this),
+                  $.proxy(function() {
+                    this._markAsLoaded(),
+                      this.content.hide(),
+                      this.container.append(
+                        (this.error = $("<div>").addClass("strp-error"))
+                      ),
+                      this.element.addClass("strp-has-error"),
+                      (this.dimensions = {
+                        width: this.error.outerWidth(),
+                        height: this.error.outerHeight()
+                      }),
+                      i && i();
+                  }, this),
+                  { method: "naturalWidth" }
+                );
+                break;
+              case "vimeo":
+                this.vimeoReady = new VimeoReady(
+                  this.view.url,
+                  $.proxy(function(t) {
+                    this._markAsLoaded(),
+                      (this.dimensions = {
+                        width: t.dimensions.width,
+                        height: t.dimensions.height
+                      }),
+                      i && i();
+                  }, this)
+                );
+                break;
+              case "youtube":
+                this._markAsLoaded(),
+                  (this.dimensions = {
+                    width: this.view.options.width,
+                    height: this.view.options.height
+                  }),
+                  i && i();
+            }
+        },
+        _markAsLoaded: function() {
+          (this.loading = !1),
+            (this.loaded = !0),
+            (tc[this.view.url] = !0),
+            Window.stopLoading();
+        },
+        isVideo: function() {
+          return /^(youtube|vimeo)$/.test(this.view.type);
+        },
+        insertVideo: function(t) {
+          if (!this.playerIframe && this.isVideo()) {
+            var i =
+                "http" +
+                (window.location && "https:" === window.location.protocol
+                  ? "s"
+                  : "") +
+                ":",
+              e = $.extend({}, this.view.options[this.view.type] || {}),
+              s = $.param(e),
+              n = {
+                vimeo: i + "//player.vimeo.com/video/{id}?{queryString}",
+                youtube: i + "//www.youtube.com/embed/{id}?{queryString}"
+              }[this.view.type]
+                .replace("{id}", this.view._data.id)
+                .replace("{queryString}", s);
+            this.content.append(
+              (this.playerIframe = $(
+                "<iframe webkitAllowFullScreen mozallowfullscreen allowFullScreen>"
+              ).attr({
+                src: n,
+                height: this.contentDimensions.height,
+                width: this.contentDimensions.width,
+                frameborder: 0
+              }))
+            ),
+              t && t();
+          } else t && t();
+        },
+        raise: function() {
+          var t = Pages.element[0].lastChild;
+          (t && t === this.element[0]) || Pages.element.append(this.element);
+        },
+        show: function(i) {
+          var t = this.queues.showhide;
+          t.queue([]),
+            (this.animated = !0),
+            (this.animatingWindow = !1),
+            t.queue(function(t) {
+              Pages.stopInactive(), t();
+            }),
+            t.queue(
+              $.proxy(function(t) {
+                Window.setSide(this.view.options.side, t);
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                this.view.options.spinner &&
+                  Window._spinner &&
+                  (Window.setSpinnerSkin(this.view.options.skin),
+                  Window._spinner.setOptions(this.view.options.effects.spinner),
+                  Window._spinner.refresh()),
+                  this.load(
+                    $.proxy(function() {
+                      this.preloadSurroundingImages(), t();
+                    }, this)
+                  );
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                this.raise(),
+                  Window.setSkin(this.view.options.skin),
+                  Window.bindUI(),
+                  Keyboard.enable(this.view.options.keyboard),
+                  this.fitToWindow(),
+                  t();
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                Window.timers.set(
+                  "bind-hide-on-click-outside",
+                  $.proxy(function() {
+                    Window.bindHideOnClickOutside(), t();
+                  }, this),
+                  1
+                );
+              }, this)
+            ),
+            this.isVideo() &&
+              t.queue(
+                $.proxy(function(t) {
+                  this.insertVideo(
+                    $.proxy(function() {
+                      t();
+                    })
+                  );
+                }, this)
+              ),
+            t.queue(
+              $.proxy(function(t) {
+                this.animatingWindow = !0;
+                var i = 3,
+                  e =
+                    "horizontal" === this.getOrientation() ? "width" : "height",
+                  s = this.view && this.view.options.onShow;
+                "function" === $.type(s) && s.call(Strip);
+                var n = Window.resize(
+                  this[e],
+                  function() {
+                    --i < 1 && t();
+                  },
+                  n
+                );
+                this._show(function() {
+                  --i < 1 && t();
+                }, n),
+                  Window.adjustPrevNext(function() {
+                    --i < 1 && t();
+                  }, n),
+                  Window._showUIOnResize &&
+                    (Window.showUI(null, n), (Window._showUIOnResize = !1)),
+                  Pages.hideVisibleInactive(n);
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                (this.animatingWindow = !1),
+                  (this.animated = !1),
+                  (this.visible = !0),
+                  i && i(),
+                  t();
+              }, this)
+            );
+        },
+        _show: function(t, i) {
+          var e = Window.visible
+            ? "number" === $.type(i)
+              ? i
+              : this.view.options.effects.transition.min
+            : 0;
+          this.element
+            .stop(!0)
+            .show()
+            .fadeTo(e || 0, 1, t);
+        },
+        hide: function(t, i) {
+          if (this.element) {
+            this.removeVideo(), this.abort();
+            var e = this.view.options.effects.transition.min;
+            "number" === $.type(i) && (e = i),
+              this.isVideo() && (e = 0),
+              this.element.stop(!0).fadeTo(
+                e,
+                0,
+                "stripEaseInCubic",
+                $.proxy(function() {
+                  this.element.hide(), (this.visible = !1), t && t();
+                }, this)
+              );
+          }
+        },
+        stop: function() {
+          this.queues.showhide.queue([]),
+            this.element && this.element.stop(!0),
+            this.abort();
+        },
+        removeVideo: function() {
+          this.playerIframe &&
+            ((this.playerIframe[0].src = "//about:blank"),
+            this.playerIframe.remove(),
+            (this.playerIframe = null));
+        },
+        remove: function() {
+          this.stop(),
+            this.removeVideo(),
+            this.element && this.element.remove(),
+            (this.visible = !1),
+            (this.removed = !0);
+        },
+        abort: function() {
+          this.imageReady &&
+            !this.preloading &&
+            (this.imageReady.abort(), (this.imageReady = null)),
+            this.vimeoReady &&
+              (this.vimeoReady.abort(), (this.vimeoReady = null)),
+            (this.loading = !1),
+            Window.stopLoading();
+        },
+        _getDimensionsFitToView: function() {
+          var t = $.extend({}, this.dimensions),
+            i = $.extend({}, this.dimensions),
+            e = this.view.options;
+          return (
+            e.maxWidth && (t.width = e.maxWidth),
+            e.maxHeight && (t.heigth = e.maxHeight),
+            (i = Fit.within(t, i))
+          );
+        },
+        getOrientation: function(t) {
+          return "left" === this.view.options.side ||
+            "right" === this.view.options.side
+            ? "horizontal"
+            : "vertical";
+        },
+        fitToWindow: function() {
+          var t = this.element,
+            i = this._getDimensionsFitToView(),
+            e = Bounds.viewport(),
+            s = $.extend({}, e),
+            n = "horizontal" === this.getOrientation() ? "width" : "height",
+            o = t.find(".strp-container");
+          Window.element.removeClass("strp-measured");
+          var r = Window.element,
+            a =
+              "width" == n
+                ? 0 < parseInt(r.css("min-width"))
+                : 0 < parseInt(r.css("min-height")),
+            h = a
+              ? 0
+              : parseInt(r.css("margin-" + ("width" == n ? "left" : "bottom")));
+          Window.element.addClass("strp-measured"), (s[n] -= h);
+          var d =
+              parseInt(o.css("padding-left")) +
+              parseInt(o.css("padding-right")),
+            l =
+              parseInt(o.css("padding-top")) +
+              parseInt(o.css("padding-bottom"));
+          (s.width -= d), (s.height -= l);
+          var p = Fit.within(s, i),
+            u = $.extend({}, p),
+            c = this.content;
+          this.error && (c = this.error);
+          var f = this.info,
+            v = 0;
+          if (f) {
+            var m = Window.element.is(":visible");
+            m || Window.element.show();
+            var w = t.is(":visible");
+            if ((w || t.show(), "width" == n)) {
+              t.css({ width: a ? e.width : p.width + d });
+              var g = s.height;
+              c.hide(),
+                (v = f.outerHeight()),
+                c.show(),
+                (s.height = g - v),
+                (u = Fit.within(s, i));
+              for (
+                var _, y, b, x = $.extend({}, u), k = v, C = a ? 0 : 4;
+                0 < C && (b = p.width - u.width);
+              )
+                t.css({ width: p.width + d - b }),
+                  (y = v),
+                  c.hide(),
+                  (v = f.outerHeight()),
+                  (_ = Math.max(
+                    this.caption ? this.caption.outerWidth() + d : 0,
+                    this.position ? this.position.outerWidth() + d : 0
+                  )),
+                  c.show(),
+                  v === y && _ <= p.width + d - b
+                    ? (p.width -= b)
+                    : ((s.height = g - v),
+                      (u = Fit.within(s, i)),
+                      C - 1 <= 0 &&
+                        (t.css({ width: p.width + d }), (u = x), (v = k))),
+                  C--;
+            } else
+              Browser.IE && Browser.IE < 8 && t.css({ width: e.width }),
+                c.hide(),
+                (v = f.outerHeight()),
+                c.show(),
+                (s.height -= v),
+                (u = Fit.within(s, i)),
+                (p.height = u.height);
+            w || t.hide(), m || Window.element.hide();
+          }
+          var S = { width: p.width + d, height: p.height + l + v };
+          a && (S = e),
+            "width" == n
+              ? t.css({ width: S.width })
+              : t.css({ height: S.height }),
+            o.css({ bottom: v });
+          var I = -0.5 * u.width,
+            W = -0.5 * u.height;
+          Browser.IE &&
+            Browser.IE < 8 &&
+            ((I = Math.floor(I)), (W = Math.floor(W))),
+            c.css($.extend({}, u, { "margin-left": I, "margin-top": W })),
+            this.playerIframe && this.playerIframe.attr(u),
+            (this.contentDimensions = u),
+            (this.width = S.width),
+            (this.height = S.height),
+            (this.z = this[n]);
+        }
+      }),
+      uc),
+    sc,
+    tc;
+  function uc() {
+    return this.initialize.apply(this, _slice.call(arguments));
+  }
+  var Window = {
+      initialize: function() {
+        (this.queues = []),
+          (this.queues.hide = $({})),
+          (this.pages = []),
+          (this.timers = new Timers()),
+          this.build(),
+          this.setSkin(Options.defaults.skin);
+      },
+      build: function() {
+        Spinner.supported &&
+          ($(document.body).append(
+            (this.spinnerMove = $("<div>")
+              .addClass("strp-spinner-move")
+              .hide()
+              .append((this.spinner = $("<div>").addClass("strp-spinner"))))
+          ),
+          (this._spinner = new Spinner(this.spinner)),
+          (this._spinnerMoveSkinless = this.spinnerMove[0].className)),
+          $(document.body).append(
+            (this.element = $("<div>")
+              .addClass("strp-window strp-measured")
+              .append((this._pages = $("<div>").addClass("strp-pages")))
+              .append(
+                (this._previous = $("<div>")
+                  .addClass("strp-nav strp-nav-previous")
+                  .append(
+                    $("<div>")
+                      .addClass("strp-nav-button")
+                      .append($("<div>").addClass("strp-nav-button-background"))
+                      .append($("<div>").addClass("strp-nav-button-icon"))
+                  )
+                  .hide())
+              )
+              .append(
+                (this._next = $("<div>")
+                  .addClass("strp-nav strp-nav-next")
+                  .append(
+                    $("<div>")
+                      .addClass("strp-nav-button")
+                      .append($("<div>").addClass("strp-nav-button-background"))
+                      .append($("<div>").addClass("strp-nav-button-icon"))
+                  )
+                  .hide())
+              )
+              .append(
+                (this._close = $("<div>")
+                  .addClass("strp-close")
+                  .append($("<div>").addClass("strp-close-background"))
+                  .append($("<div>").addClass("strp-close-icon")))
+              ))
+          ),
+          Pages.initialize(this._pages),
+          Support.mobileTouch && this.element.addClass("strp-mobile-touch"),
+          Support.svg || this.element.addClass("strp-no-svg"),
+          this._close.on(
+            "click",
+            $.proxy(function(t) {
+              t.preventDefault(), this.hide();
+            }, this)
+          ),
+          this._previous.on(
+            "click",
+            $.proxy(function(t) {
+              this.previous(), this._onMouseMove(t);
+            }, this)
+          ),
+          this._next.on(
+            "click",
+            $.proxy(function(t) {
+              this.next(), this._onMouseMove(t);
+            }, this)
+          ),
+          this.hideUI(null, 0);
+      },
+      setSkin: function(t) {
+        this._skin &&
+          this.element.removeClass("strp-window-skin-" + this._skin),
+          this.element.addClass("strp-window-skin-" + t),
+          (this._skin = t);
+      },
+      setSpinnerSkin: function(t) {
+        this.spinnerMove &&
+          (this._spinnerSkin &&
+            this.spinnerMove.removeClass(
+              "strp-spinner-move-skin-" + this._spinnerSkin
+            ),
+          this.spinnerMove.addClass("strp-spinner-move-skin-" + t),
+          this._spinner.refresh(),
+          (this._spinnerSkin = t));
+      },
+      startObservingResize: function() {
+        this._isObservingResize ||
+          ((this._onWindowResizeHandler = $.proxy(this._onWindowResize, this)),
+          $(window).on("resize orientationchange", this._onWindowResizeHandler),
+          (this._isObservingResize = !0));
+      },
+      stopObservingResize: function() {
+        this._onWindowResizeHandler &&
+          ($(window).off(
+            "resize orientationchange",
+            this._onWindowResizeHandler
+          ),
+          (this._onWindowResizeHandler = null)),
+          (this._isObservingResize = !1);
+      },
+      _onWindowResize: function() {
+        var t;
+        (t = Pages.page) &&
+          (t.animated || t.animatingWindow
+            ? (t.fitToWindow(), t.show())
+            : (t.fitToWindow(),
+              this.resize(t.z, null, 0),
+              this.adjustPrevNext(null, !0)));
+      },
+      resize: function(t, i, e) {
+        var s = "vertical" === this.getOrientation() ? "Height" : "Width",
+          n = s.toLowerCase();
+        0 < t && ((this.visible = !0), this.startObservingResize());
+        var o,
+          r = Window.element["outer" + s]();
+        if (0 === r)
+          (o = this.view.options.effects.window.show),
+            this.element.addClass("strp-opening"),
+            (this.opening = !0);
+        else if ("number" === $.type(e)) o = e;
+        else {
+          var a = this.view.options.effects.transition,
+            h = a.min,
+            d = a.max - h,
+            l = Bounds.viewport(),
+            p = Math.abs(r - t),
+            u = Math.min(1, p / l[n]);
+          o = Math.round(h + u * d);
+        }
+        0 === t &&
+          ((this.closing = !0),
+          this.element.is(":animated") ||
+            this.element.addClass("strp-closing"));
+        var c = { overflow: "visible" };
+        c[n] = t;
+        var f = 1;
+        (this._outerWidth = null), (this._offsetLeft = null);
+        var v = this.view.options.onResize,
+          m = "function" === $.type(v);
+        return (
+          this.element.stop(!0).animate(
+            c,
+            $.extend(
+              {
+                duration: o,
+                complete: $.proxy(function() {
+                  --f < 1 && this._afterResize(i);
+                }, this)
+              },
+              m
+                ? {
+                    step: $.proxy(function(t, i) {
+                      i.prop === n && v.call(Strip, i.prop, t, this.side);
+                    }, this)
+                  }
+                : {}
+            )
+          ),
+          this.spinnerMove &&
+            (f++,
+            this.spinnerMove.stop(!0).animate(
+              c,
+              o,
+              $.proxy(function() {
+                --f < 1 && this._afterResize(i);
+              }, this)
+            )),
+          o
+        );
+      },
+      _afterResize: function(t) {
+        (this.opening = !1),
+          (this.closing = !1),
+          this.element.removeClass("strp-opening strp-closing"),
+          (this._outerWidth = this.element.outerWidth()),
+          (this._offsetLeft = this.element.offset().left),
+          t && t();
+      },
+      adjustPrevNext: function(t, i) {
+        if (this.view && Pages.page) {
+          var e = Pages.page,
+            s = this.element.is(":visible");
+          s || this.element.show();
+          var n = this._previous.attr("style");
+          this._previous.removeAttr("style");
+          var o = parseInt(this._previous.css("margin-top"));
+          this._previous.attr({ style: n }), s || this.element.hide();
+          var r = e.info ? e.info.outerHeight() : 0,
+            a = this._previous.add(this._next),
+            h = { "margin-top": o - 0.5 * r },
+            d = this.view.options.effects.transition.min;
+          "number" === $.type(i) && (d = i),
+            this.opening && (d = 0),
+            a.stop(!0).animate(h, d, t),
+            this._previous[this.mayPrevious() ? "show" : "hide"](),
+            this._next[this.mayNext() ? "show" : "hide"]();
+        }
+      },
+      resetPrevNext: function() {
+        this._previous
+          .add(this._next)
+          .stop(!0)
+          .removeAttr("style");
+      },
+      load: function(t, i) {
+        (this.views = t), Pages.add(t), i && this.setPosition(i);
+      },
+      setSide: function(t, i) {
+        if (this.side !== t)
+          if (this.visible) {
+            var e = this.view ? this.view.options.effects.window.hide : 0;
+            this.hideUI(null, e),
+              this.unbindUI(),
+              this.resize(
+                0,
+                $.proxy(function() {
+                  this._safeResetsAfterSwitchSide(),
+                    Pages.hideVisibleInactive(0),
+                    this._setSide(t, i);
+                }, this)
+              ),
+              (this._showUIOnResize = !0);
+          } else this._setSide(t, i);
+        else i && i();
+      },
+      _setSide: function(t, i) {
+        this.side = t;
+        var e = this.getOrientation(),
+          s = this.element;
+        this.spinnerMove && (s = s.add(this.spinnerMove)),
+          s.removeClass("strp-horizontal strp-vertical").addClass("strp-" + e);
+        var n = "strp-side-";
+        s
+          .removeClass(n + "top " + n + "right " + n + "bottom " + n + "left")
+          .addClass(n + t),
+          i && i();
+      },
+      getOrientation: function(t) {
+        return "left" === this.side || "right" === this.side
+          ? "horizontal"
+          : "vertical";
+      },
+      startLoading: function() {
+        this._spinner && (this.spinnerMove.show(), this._spinner.show());
+      },
+      stopLoading: function() {
+        this._spinner &&
+          Pages.getLoadingCount() < 1 &&
+          this._spinner.hide(
+            $.proxy(function() {
+              this.spinnerMove.hide();
+            }, this)
+          );
+      },
+      setPosition: function(i, e) {
+        (this._position = i),
+          (this.view = this.views[i - 1]),
+          this.stopHideQueue(),
+          (this.page = Pages.show(
+            i,
+            $.proxy(function() {
+              var t = this.view.options.afterPosition;
+              "function" === $.type(t) && t.call(Strip, i), e && e();
+            }, this)
+          ));
+      },
+      hide: function(i) {
+        if (this.view) {
+          var t = this.queues.hide;
+          t.queue([]),
+            t.queue(
+              $.proxy(function(t) {
+                Pages.stop(), t();
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                var i = this.view ? this.view.options.effects.window.hide : 0;
+                this.unbindUI(),
+                  this.hideUI(null, i),
+                  this.unbindHideOnClickOutside(),
+                  Keyboard.disable(),
+                  t();
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                Pages.removeActiveClasses(),
+                  this.resize(0, t, this.view.options.effects.window.hide),
+                  (this._showUIOnResize = !0);
+              }, this)
+            ),
+            t.queue(
+              $.proxy(function(t) {
+                this._safeResetsAfterSwitchSide(),
+                  this.stopObservingResize(),
+                  Pages.removeAll(),
+                  this.timers.clear(),
+                  (this._position = -1);
+                var i = this.view && this.view.options.afterHide;
+                "function" === $.type(i) && i.call(Strip),
+                  (this.view = null),
+                  t();
+              }, this)
+            ),
+            "function" === $.type(i) &&
+              t.queue(
+                $.proxy(function(t) {
+                  i(), t();
+                }, this)
+              );
+        }
+      },
+      stopHideQueue: function() {
+        this.queues.hide.queue([]);
+      },
+      _safeResetsAfterSwitchSide: function() {
+        this.element.removeAttr("style"),
+          this.spinnerMove && this.spinnerMove.removeAttr("style"),
+          (this.visible = !1),
+          this.hideUI(null, 0),
+          this.timers.clear("ui"),
+          this.resetPrevNext(),
+          (this._x = -1),
+          (this._y = -1);
+      },
+      mayPrevious: function() {
+        return (
+          (this.view &&
+            this.view.options.loop &&
+            this.views &&
+            1 < this.views.length) ||
+          1 !== this._position
+        );
+      },
+      previous: function(t) {
+        var i = this.mayPrevious();
+        (t || i) && this.setPosition(this.getSurroundingIndexes().previous);
+      },
+      mayNext: function() {
+        var t = this.views && 1 < this.views.length;
+        return (
+          (this.view && this.view.options.loop && t) ||
+          (t && 1 !== this.getSurroundingIndexes().next)
+        );
+      },
+      next: function(t) {
+        var i = this.mayNext();
+        (t || i) && this.setPosition(this.getSurroundingIndexes().next);
+      },
+      getSurroundingIndexes: function() {
+        if (!this.views) return {};
+        var t = this._position,
+          i = this.views.length;
+        return { previous: t <= 1 ? i : t - 1, next: i <= t ? 1 : t + 1 };
+      },
+      bindHideOnClickOutside: function() {
+        this.unbindHideOnClickOutside(),
+          $(document.documentElement).on(
+            "click",
+            (this._delegateHideOutsideHandler = $.proxy(
+              this._delegateHideOutside,
+              this
+            ))
+          );
+      },
+      unbindHideOnClickOutside: function() {
+        this._delegateHideOutsideHandler &&
+          ($(document.documentElement).off(
+            "click",
+            this._delegateHideOutsideHandler
+          ),
+          (this._delegateHideOutsideHandler = null));
+      },
+      _delegateHideOutside: function(t) {
+        var i = Pages.page;
+        if (this.visible && i && i.view.options.hideOnClickOutside) {
+          var e = t.target;
+          $(e).closest(".strip, .strp-window")[0] || this.hide();
+        }
+      },
+      bindUI: function() {
+        this.unbindUI(),
+          Support.mobileTouch ||
+            (this.element
+              .on(
+                "mouseenter",
+                (this._showUIHandler = $.proxy(this.showUI, this))
+              )
+              .on(
+                "mouseleave",
+                (this._hideUIHandler = $.proxy(this.hideUI, this))
+              ),
+            this.element.on(
+              "mousemove",
+              (this._mousemoveUIHandler = $.proxy(function(t) {
+                var i = t.pageX,
+                  e = t.pageY;
+                this._hoveringNav ||
+                  (e === this._y && i === this._x) ||
+                  ((this._x = i),
+                  (this._y = e),
+                  this.showUI(),
+                  this.startUITimer());
+              }, this))
+            ),
+            this._pages
+              .on(
+                "mousemove",
+                ".strp-container",
+                (this._onMouseMoveHandler = $.proxy(this._onMouseMove, this))
+              )
+              .on(
+                "mouseleave",
+                ".strp-container",
+                (this._onMouseLeaveHandler = $.proxy(this._onMouseLeave, this))
+              )
+              .on(
+                "mouseenter",
+                ".strp-container",
+                (this._onMouseEnterHandler = $.proxy(this._onMouseEnter, this))
+              ),
+            this.element
+              .on(
+                "mouseenter",
+                ".strp-nav",
+                (this._onNavMouseEnterHandler = $.proxy(
+                  this._onNavMouseEnter,
+                  this
+                ))
+              )
+              .on(
+                "mouseleave",
+                ".strp-nav",
+                (this._onNavMouseLeaveHandler = $.proxy(
+                  this._onNavMouseLeave,
+                  this
+                ))
+              ),
+            $(window).on(
+              "scroll",
+              (this._onScrollHandler = $.proxy(this._onScroll, this))
+            )),
+          this._pages.on(
+            "click",
+            ".strp-container",
+            (this._onClickHandler = $.proxy(this._onClick, this))
+          );
+      },
+      unbindUI: function() {
+        this._showUIHandler &&
+          (this.element
+            .off("mouseenter", this._showUIHandler)
+            .off("mouseleave", this._hideUIHandler)
+            .off("mousemove", this._mousemoveUIHandler),
+          this._pages
+            .off("mousemove", ".strp-container", this._onMouseMoveHandler)
+            .off("mouseleave", ".strp-container", this._onMouseLeaveHandler)
+            .off("mouseenter", ".strp-container", this._onMouseEnterHandler),
+          this.element
+            .off("mouseenter", ".strp-nav", this._onNavMouseEnterHandler)
+            .off("mouseleave", ".strp-nav", this._onNavMouseLeaveHandler),
+          $(window).off("scroll", this._onScrollHandler),
+          (this._showUIHandler = null)),
+          this._onClickHandler &&
+            (this._pages.off("click", ".strp-container", this._onClickHandler),
+            (this._onClickHandler = null));
+      },
+      _onScroll: function() {
+        this._offsetLeft = this._outerWidth = null;
+      },
+      _onMouseMove: function(t) {
+        var i = this._getEventSide(t),
+          e = i.toLowerCase();
+        this.element[(this["may" + i]() ? "add" : "remove") + "Class"](
+          "strp-hovering-clickable"
+        ),
+          this._previous[("next" !== e ? "add" : "remove") + "Class"](
+            "strp-nav-previous-hover strp-nav-hover"
+          ),
+          this._next[("next" === e ? "add" : "remove") + "Class"](
+            "strp-nav-next-hover strp-nav-hover"
+          );
+      },
+      _onMouseLeave: function(t) {
+        this.element.removeClass("strp-hovering-clickable"),
+          this._previous
+            .removeClass("strp-nav-previous-hover")
+            .add(this._next.removeClass("strp-nav-next-hover"))
+            .removeClass("strp-nav-hover");
+      },
+      _onClick: function(t) {
+        var i = this._getEventSide(t);
+        this[i.toLowerCase()](), this._onMouseMove(t);
+      },
+      _onMouseEnter: function(t) {
+        this._onMouseMove(t);
+      },
+      _getEventSide: function(t) {
+        var i = this._offsetLeft || this.element.offset().left;
+        return t.pageX - i <
+          0.5 * (this._outerWidth || this.element.outerWidth())
+          ? "Previous"
+          : "Next";
+      },
+      _onNavMouseEnter: function(t) {
+        (this._hoveringNav = !0), this.clearUITimer();
+      },
+      _onNavMouseLeave: function(t) {
+        (this._hoveringNav = !1), this.startUITimer();
+      },
+      showUI: function(t, i) {
+        this.clearUITimer();
+        var e = this.element.find(".strp-nav-button"),
+          s = this.view ? this.view.options.effects.ui.show : 0;
+        "number" === $.type(i) && (s = i),
+          e.stop(!0).fadeTo(
+            s,
+            1,
+            "stripEaseInSine",
+            $.proxy(function() {
+              this.startUITimer(), "function" === $.type(t) && t();
+            }, this)
+          );
+      },
+      hideUI: function(t, i) {
+        var e = this.element.find(".strp-nav-button"),
+          s = this.view ? this.view.options.effects.ui.hide : 0;
+        "number" === $.type(i) && (s = i),
+          e.stop(!0).fadeOut(s, "stripEaseOutSine", function() {
+            "function" === $.type(t) && t();
+          });
+      },
+      clearUITimer: function() {
+        Support.mobileTouch || this.timers.clear("ui");
+      },
+      startUITimer: function() {
+        Support.mobileTouch ||
+          (this.clearUITimer(),
+          this.timers.set(
+            "ui",
+            $.proxy(function() {
+              this.hideUI();
+            }, this),
+            this.view ? this.view.options.uiDelay : 0
+          ));
+      }
+    },
+    Keyboard = {
+      enabled: !1,
+      keyCode: { left: 37, right: 39, esc: 27 },
+      enable: function(t) {
+        this.disable(),
+          t &&
+            ($(document)
+              .on(
+                "keydown",
+                (this._onKeyDownHandler = $.proxy(this.onKeyDown, this))
+              )
+              .on(
+                "keyup",
+                (this._onKeyUpHandler = $.proxy(this.onKeyUp, this))
+              ),
+            (this.enabled = t));
+      },
+      disable: function() {
+        (this.enabled = !1),
+          this._onKeyUpHandler &&
+            ($(document)
+              .off("keyup", this._onKeyUpHandler)
+              .off("keydown", this._onKeyDownHandler),
+            (this._onKeyUpHandler = this._onKeyDownHandler = null));
+      },
+      onKeyDown: function(t) {
+        if (this.enabled && Window.visible) {
+          var i = this.getKeyByKeyCode(t.keyCode);
+          if (i && (!i || !this.enabled || this.enabled[i]))
+            switch ((t.preventDefault(), t.stopPropagation(), i)) {
+              case "left":
+                Window.previous();
+                break;
+              case "right":
+                Window.next();
+            }
+        }
+      },
+      onKeyUp: function(t) {
+        if (this.enabled && Window.visible) {
+          var i = this.getKeyByKeyCode(t.keyCode);
+          if (i && (!i || !this.enabled || this.enabled[i]))
+            switch (i) {
+              case "esc":
+                Window.hide();
+            }
+        }
+      },
+      getKeyByKeyCode: function(t) {
+        for (var i in this.keyCode) if (this.keyCode[i] === t) return i;
+        return null;
+      }
+    },
+    _Strip = {
+      _disabled: !1,
+      _fallback: !0,
+      initialize: function() {
+        Window.initialize(), this._disabled || this.startDelegating();
+      },
+      startDelegating: function() {
+        this.stopDelegating(),
+          $(document.documentElement).on(
+            "click",
+            ".strip[href]",
+            (this._delegateHandler = $.proxy(this.delegate, this))
+          );
+      },
+      stopDelegating: function() {
+        this._delegateHandler &&
+          ($(document.documentElement).off(
+            "click",
+            ".strip[href]",
+            this._delegateHandler
+          ),
+          (this._delegateHandler = null));
+      },
+      delegate: function(t) {
+        if (!this._disabled) {
+          t.stopPropagation(), t.preventDefault();
+          var i = t.currentTarget;
+          _Strip.show(i);
+        }
+      },
+      show: function(object) {
+        if (this._disabled)
+          this.showFallback.apply(_Strip, _slice.call(arguments));
+        else {
+          var options = arguments[1] || {},
+            position = arguments[2];
+          arguments[1] &&
+            "number" === $.type(arguments[1]) &&
+            ((position = arguments[1]), (options = {}));
+          var views = [],
+            object_type,
+            isElement = object && 1 === object.nodeType,
+            positionInAPG;
+          switch ((object_type = $.type(object))) {
+            case "string":
+            case "object":
+              var view = new View(object, options),
+                _dgo = "data-strip-group-options";
+              if (view.group) {
+                if (isElement) {
+                  var elements = $(
+                      '.strip[data-strip-group="' +
+                        $(object).attr("data-strip-group") +
+                        '"]'
+                    ),
+                    groupOptions = {};
+                  elements.filter("[" + _dgo + "]").each(function(i, element) {
+                    $.extend(
+                      groupOptions,
+                      eval("({" + ($(element).attr(_dgo) || "") + "})")
+                    );
+                  }),
+                    elements.each(function(t, i) {
+                      position || i !== object || (position = t + 1),
+                        views.push(
+                          new View(i, $.extend({}, groupOptions, options))
+                        );
+                    });
+                }
+              } else {
+                var groupOptions = {};
+                isElement &&
+                  $(object).is("[" + _dgo + "]") &&
+                  ($.extend(
+                    groupOptions,
+                    eval("({" + ($(object).attr(_dgo) || "") + "})")
+                  ),
+                  (view = new View(
+                    object,
+                    $.extend({}, groupOptions, options)
+                  ))),
+                  views.push(view);
+              }
+              break;
+            case "array":
+              $.each(object, function(t, i) {
+                var e = new View(i, options);
+                views.push(e);
+              });
+          }
+          (!position || position < 1) && (position = 1),
+            position > views.length && (position = views.length),
+            Window.unbindHideOnClickOutside(),
+            isElement &&
+            (positionInAPG = Pages.getPositionInActivePageGroup(object))
+              ? (positionInAPG === Window._position &&
+                  Window.bindHideOnClickOutside(),
+                Window.setPosition(positionInAPG))
+              : Window.load(views, position);
+        }
+      },
+      showFallback: function(t) {
+        if (_Strip._fallback) {
+          var i = (function t(i) {
+            var e = $.type(i);
+            return "string" === e
+              ? i
+              : "array" === e && i[0]
+              ? t(i[0])
+              : _.isElement(i) && $(i).attr("href")
+              ? $(i).attr("href")
+              : !!i.url && i.url;
+          })(t);
+          i && (window.location.href = i);
+        }
+      }
+    };
+  return (
+    $.extend(Strip, {
+      show: function(t) {
+        return _Strip.show.apply(_Strip, _slice.call(arguments)), this;
+      },
+      hide: function() {
+        return Window.hide(), this;
+      },
+      disable: function() {
+        return _Strip.stopDelegating(), (_Strip._disabled = !0), this;
+      },
+      enable: function() {
+        return (_Strip._disabled = !1), _Strip.startDelegating(), this;
+      },
+      fallback: function(t) {
+        return (_Strip._fallback = t), this;
+      },
+      setDefaultSkin: function(t) {
+        return (Options.defaults.skin = t), this;
+      }
+    }),
+    ((Browser.IE && Browser.IE < 7) ||
+      ("number" === $.type(Browser.Android) && Browser.Android < 3) ||
+      (Browser.MobileSafari &&
+        "number" === $.type(Browser.WebKit) &&
+        Browser.WebKit < 533.18)) &&
+      ((_Strip.show = _Strip.showFallback),
+      $.each("startDelegating stopDelegating initialize".split(" "), function(
+        t,
+        i
+      ) {
+        _Strip[i] = function() {};
+      }),
+      (Strip.hide = function() {
+        return this;
+      })),
+    $(document).ready(function(t) {
+      _Strip.initialize();
+    }),
+    Strip
+  );
+});

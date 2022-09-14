@@ -1,0 +1,76 @@
+* {
+    letter-spacing: 0px;
+}
+.scroll-spy .scrollspy-example {
+    position: relative;
+    height: 270px;
+    margin-top: .5rem;
+    overflow: auto;
+    padding: 1rem;
+}
+.scroll-spy #navbar-example-one {
+    padding: 0.6rem 1rem;
+}
+.scroll-spy .dropdown:not(.custom-dropdown-icon) .dropdown-menu a.dropdown-item {
+    font-size: 13px;
+    font-weight: 500;
+    color: #888ea8;
+    padding: 11px 8px;
+}
+.scroll-spy .dropdown:not(.custom-dropdown-icon) .dropdown-menu a.dropdown-item.active, .dropdown:not(.custom-dropdown-icon) .dropdown-menu a.dropdown-item:active {
+    background-color: transparent;
+    color: #666;
+    font-weight: 700;
+}
+.scroll-spy .dropdown-item:focus, .dropdown-item:hover {
+    text-decoration: none;
+    background-color: #edf2fd;
+    border-radius: 6px;
+}
+.scroll-spy .navbar {
+    padding: 0;
+    background: transparent;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    .scroll-spy #navbar-example-one .navbar-brand {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .scroll-spy #navbar-example-one .nav-pills .nav-link {
+        font-size: 10px;
+    }
+    .example-2 .col-2, .example-2 .col-10,
+    .example-3 .col-2, .example-3 .col-10 {
+        width: 50% !important;
+        flex: none;
+        max-width: none;
+        padding: 0px !important;
+    }
+    .example-2 .col-2  .navbar-brand,
+    .example-3 .col-2  .navbar-brand {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .example-2 .col-2 .nav-pills .nav-link,
+    .example-3 .col-2 .nav-pills .nav-link {
+        font-size: 10px;
+    }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+    .example-2 .col-2, 
+    .example-3 .col-2 {
+        width: 30% !important;
+        flex: none;
+        max-width: none;
+        padding: 0px !important;
+    }
+    .example-2 .col-10, 
+    .example-3 .col-10 {
+        width: 70% !important;
+        flex: none;
+        max-width: none;
+        padding: 0px !important;
+    }
+}

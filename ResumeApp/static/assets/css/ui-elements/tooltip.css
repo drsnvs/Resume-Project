@@ -1,0 +1,50 @@
+.tooltip-inner { 
+	border-radius: 4px; 
+}
+.tooltip .tooltip-item {
+    color: #fff;
+    padding: 0 9px;
+}
+.tooltip-section h6 {
+    color: #3b3f5c;
+    font-size: 0.875rem;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+/* Tooltip Backgrounds */
+.tooltip-blue .tooltip-inner {
+	color: #2262c6;
+	background-color: #b4ccff ;
+}
+.tooltip-green .tooltip-inner {
+	color: #7cb329;
+	background-color: #e1ffb0 ;
+}
+.tooltip-lblue .tooltip-inner {
+	color: #198dec;
+	background-color: #a6e0ff ;
+}
+.tooltip-red .tooltip-inner {
+	color: #d43d47;
+	background-color: #ffcbcc ;
+}
+.tooltip-yellow .tooltip-inner {
+	color: #d49029;
+	background-color: #ffdea4 ;
+}
+.tooltip-purple .tooltip-inner {
+	color: #5113b4;
+	background-color: #d4beff ;
+}
+.tooltip-black .tooltip-inner {
+	color: #36394e;
+	background-color: #9497a7 ;
+}
+/* Tooltip arrow */
+.tooltip-blue .arrow:before { border-top-color: #c2d5ff; }
+.tooltip-green .arrow:before { border-top-color: #e6ffbf; }
+.tooltip-lblue .arrow:before { border-top-color: #bae7ff; }
+.tooltip-red .arrow:before { border-top-color: #ffe1e2; }
+.tooltip-yellow .arrow:before { border-top-color: #ffeccb; }
+.tooltip-purple .arrow:before { border-top-color: #dccff7; }
+.tooltip-black .arrow:before { border-top-color: #acb0c3; }

@@ -1,0 +1,80 @@
+/* Tab Section */
+.faq .faq-container {
+    padding: 35px 50px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: -1px 0px 8px 0px rgb(85 85 85 / 22%);
+}
+.faq .faq-container h2 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+.faq .faq-container p.sub-heading {
+    font-size: 15px;
+    margin-bottom: 35px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+.faq .faq-container .accordion .card {
+    border: 1px solid #e4e4e4;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.faq .faq-container .accordion .card .card-header {
+    padding: 0;
+    border: none;
+    background: none;
+}
+.faq .faq-container .accordion .card .card-header > div {
+    padding: 19px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #4d3b86;
+    cursor: pointer;
+}
+.faq .faq-container .accordion .card .card-header div .faq-q-title {
+    overflow: hidden;
+    font-size: 14px;
+    color: #888ea8;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.faq .faq-container .accordion .card .card-header div[aria-expanded="true"] .faq-q-title {
+    color: #4d3b86;
+}
+.faq .faq-container .accordion .card .card-body {
+    padding: 0px 20px 20px;
+}
+.faq .faq-container .accordion .card .card-body p {
+    font-size: 13px;
+    line-height: 23px;
+    letter-spacing: 1px;
+}
+.faq .card-header div[aria-expanded="true"] i{
+    transform: rotate(180deg);
+    transition: all ease 0.3s;
+}
+.faq .card-header div[aria-expanded="false"] i{
+    transition: all ease 0.3s;
+}
+/* Media Query */
+@media (max-width: 575px) {
+    .faq-3-container > .col-md-12 {
+        padding: 0px;
+    }    
+    .faq .faq-container {
+        padding: 35px 15px;
+    }
+    .faq .faq-container .accordion .card .card-header div .faq-q-title {
+        font-size: 11px;
+        width: 82%;
+        display:inline-block;
+    }
+    .faq .faq-container .accordion .card .card-body p {
+        font-size: 11px;
+        line-height: 18px;
+    }
+}

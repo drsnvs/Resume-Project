@@ -1,0 +1,777 @@
+/* Custom Radio 1 */
+.custom-radio-1 .btn-radio {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.custom-radio-1 .btn-radio:not(:first-child) {
+    margin-left: 20px;
+}
+@media screen and (max-width: 480px) {
+    .custom-radio-1 .btn-radio {
+      display: block;
+      float: none;
+    }
+    .custom-radio-1 .btn-radio:not(:first-child) {
+      margin-left: 0;
+      margin-top: 15px;
+    }
+}
+.custom-radio-1 .btn-radio svg {
+    fill: none;
+    vertical-align: middle;
+}
+.custom-radio-1 .btn-radio svg circle {
+    stroke-width: 2;
+    stroke: #C8CCD4;
+}
+.custom-radio-1 .btn-radio svg path {
+    stroke: #2262c6;
+}
+.custom-radio-1 .btn-radio svg path.inner {
+    stroke-width: 6;
+    stroke-dasharray: 19;
+    stroke-dashoffset: 19;
+}
+.custom-radio-1 .btn-radio svg path.outer {
+    stroke-width: 2;
+    stroke-dasharray: 57;
+    stroke-dashoffset: 57;
+}
+.custom-radio-1 .btn-radio input {
+    display: none;
+}
+.custom-radio-1 .btn-radio input:checked + svg path {
+    transition: all 0.4s ease;
+}
+.custom-radio-1 .btn-radio input:checked + svg path.inner {
+    stroke-dashoffset: 38;
+    transition-delay: 0.3s;
+}
+.custom-radio-1 .btn-radio input:checked + svg path.outer {
+    stroke-dashoffset: 0;
+}
+.custom-radio-1 .btn-radio span {
+    display: inline-block;
+    vertical-align: middle;
+}
+/* Radio */
+.form-group label, label {
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 0px;
+}
+.radio {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+.radio > span {
+    border-radius: 50%;
+    background-color: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+.radio > span:after {
+    content: "";
+    display: none;
+    border-radius: 100% !important;
+}
+.radio > input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.radio:hover > input:not([disabled]) ~ span,
+.radio > input:focus ~ span {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.radio.radio-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.radio > input:checked ~ span {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background-color: none;
+}
+.radio > input:checked ~ span:after {
+    display: block;
+}
+.radio.radio-square > span {
+    border-radius: 0;
+}
+.radio.radio-rounded > span {
+    border-radius: 0.42rem;
+}
+.radio.radio-outline > span {
+    border-width: 1px;
+    border-style: solid;
+}
+.radio.radio-outline-2x > span {
+    border-width: 2px !important;
+}
+.radio.radio-accent > span {
+    border-width: 3px !important;
+    border-style: solid !important;
+    background-color: transparent !important;
+}
+.radio.radio-accent > span:after {
+    display: block;
+}
+.radio > span {
+    height: 18px;
+    width: 18px;
+}
+.radio > span:after {
+    width: 6px;
+    height: 6px;
+}
+.radio.radio-lg > span {
+    height: 24px;
+    width: 24px;
+}
+.radio.radio-lg > span:after {
+    width: 8px;
+    height: 8px;
+}
+.radio.radio-outline > span {
+    height: 18px;
+    width: 18px;
+}
+.radio.radio-outline > span:after {
+    width: 6px;
+    height: 6px;
+}
+.radio.radio-outline.radio-lg > span {
+    height: 24px;
+    width: 24px;
+}
+.radio.radio-outline.radio-lg > span:after {
+    width: 8px;
+    height: 8px;
+}
+.radio.radio-accent > span {
+    height: 24px;
+    width: 24px;
+}
+.radio.radio-accent > span:after {
+    width: 14px;
+    height: 14px;
+}
+.radio.radio-accent.radio-lg > span {
+    height: 30px;
+    width: 30px;
+}
+.radio.radio-accent.radio-lg > span:after {
+    width: 10px;
+    height: 10px;
+}
+.radio > span {
+    background-color: #ebedf3;
+    border: 1px solid transparent;
+}
+.radio > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio > input:checked ~ span {
+    background-color: #2262c6;
+}
+.radio > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.radio-outline > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline > input:checked ~ span {
+    background-color: transparent;
+    border-color: #2262c6;
+}
+.radio.radio-outline > input:checked ~ span:after {
+    background-color: #2262c6;
+    border-color: #2262c6;
+}
+.radio.radio-primary > span {
+    border: 1px solid transparent;
+}
+.radio.radio-primary > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-primary > input:checked ~ span {
+    background-color: #2262c6;
+}
+.radio.radio-primary > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-primary > span {
+    background-color: #e1f0ff;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-primary > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-primary > input:checked ~ span {
+    background-color: #2262c6;
+}
+.radio.checkbox-light-primary > input:checked ~ span:after {
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-primary > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-primary > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-primary > input:checked ~ span {
+    background-color: transparent;
+    border-color: #2262c6;
+}
+.radio.radio-outline.radio-primary > input:checked ~ span:after {
+    background-color: #2262c6;
+    border-color: #2262c6;
+}
+.radio.radio-accent.radio-primary > span:after {
+    background-color: #2262c6;
+}
+.radio.radio-accent.radio-primary > input:focus ~ span {
+    border-color: #e1f0ff;
+}
+.radio.radio-accent.radio-primary > input:focus ~ span:after {
+    background-color: #2262c6;
+}
+.radio.radio-accent.radio-primary > input:checked ~ span {
+    border-color: #e1f0ff;
+}
+.radio.radio-accent.radio-primary > input:checked ~ span:after {
+    background-color: #2262c6;
+}
+.radio.radio-secondary > span {
+    border: 1px solid transparent;
+}
+.radio.radio-secondary > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-secondary > input:checked ~ span {
+    background-color: #e4e6ef;
+}
+.radio.radio-secondary > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-secondary > span {
+    background-color: #ebedf3;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-secondary > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-secondary > input:checked ~ span {
+    background-color: #e4e6ef;
+}
+.radio.checkbox-light-secondary > input:checked ~ span:after {
+    border-color: #3f4254;
+}
+.radio.radio-outline.radio-secondary > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-secondary > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-secondary > input:checked ~ span {
+    background-color: transparent;
+    border-color: #e4e6ef;
+}
+.radio.radio-outline.radio-secondary > input:checked ~ span:after {
+    background-color: #e4e6ef;
+    border-color: #e4e6ef;
+}
+.radio.radio-accent.radio-secondary > span:after {
+    background-color: #e4e6ef;
+}
+.radio.radio-accent.radio-secondary > input:focus ~ span {
+    border-color: #ebedf3;
+}
+.radio.radio-accent.radio-secondary > input:focus ~ span:after {
+    background-color: #e4e6ef;
+}
+.radio.radio-accent.radio-secondary > input:checked ~ span {
+    border-color: #ebedf3;
+}
+.radio.radio-accent.radio-secondary > input:checked ~ span:after {
+    background-color: #e4e6ef;
+}
+.radio.radio-success > span {
+    border: 1px solid transparent;
+}
+.radio.radio-success > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-success > input:checked ~ span {
+    background-color: #1bc5bd;
+}
+.radio.radio-success > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-success > span {
+    background-color: #c9f7f5;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-success > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-success > input:checked ~ span {
+    background-color: #1bc5bd;
+}
+.radio.checkbox-light-success > input:checked ~ span:after {
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-success > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-success > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-success > input:checked ~ span {
+    background-color: transparent;
+    border-color: #1bc5bd;
+}
+.radio.radio-outline.radio-success > input:checked ~ span:after {
+    background-color: #1bc5bd;
+    border-color: #1bc5bd;
+}
+.radio.radio-accent.radio-success > span:after {
+    background-color: #1bc5bd;
+}
+.radio.radio-accent.radio-success > input:focus ~ span {
+    border-color: #c9f7f5;
+}
+.radio.radio-accent.radio-success > input:focus ~ span:after {
+    background-color: #1bc5bd;
+}
+.radio.radio-accent.radio-success > input:checked ~ span {
+    border-color: #c9f7f5;
+}
+.radio.radio-accent.radio-success > input:checked ~ span:after {
+    background-color: #1bc5bd;
+}
+.radio.radio-info > span {
+    border: 1px solid transparent;
+}
+.radio.radio-info > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-info > input:checked ~ span {
+    background-color: #8950fc;
+}
+.radio.radio-info > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-info > span {
+    background-color: #eee5ff;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-info > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-info > input:checked ~ span {
+    background-color: #8950fc;
+}
+.radio.checkbox-light-info > input:checked ~ span:after {
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-info > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-info > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-info > input:checked ~ span {
+    background-color: transparent;
+    border-color: #8950fc;
+}
+.radio.radio-outline.radio-info > input:checked ~ span:after {
+    background-color: #8950fc;
+    border-color: #8950fc;
+}
+.radio.radio-accent.radio-info > span:after {
+    background-color: #8950fc;
+}
+.radio.radio-accent.radio-info > input:focus ~ span {
+    border-color: #eee5ff;
+}
+.radio.radio-accent.radio-info > input:focus ~ span:after {
+    background-color: #8950fc;
+}
+.radio.radio-accent.radio-info > input:checked ~ span {
+    border-color: #eee5ff;
+}
+.radio.radio-accent.radio-info > input:checked ~ span:after {
+    background-color: #8950fc;
+}
+.radio.radio-warning > span {
+    border: 1px solid transparent;
+}
+.radio.radio-warning > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-warning > input:checked ~ span {
+    background-color: #ffa800;
+}
+.radio.radio-warning > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-warning > span {
+    background-color: #fff4de;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-warning > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-warning > input:checked ~ span {
+    background-color: #ffa800;
+}
+.radio.checkbox-light-warning > input:checked ~ span:after {
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-warning > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-warning > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-warning > input:checked ~ span {
+    background-color: transparent;
+    border-color: #ffa800;
+}
+.radio.radio-outline.radio-warning > input:checked ~ span:after {
+    background-color: #ffa800;
+    border-color: #ffa800;
+}
+.radio.radio-accent.radio-warning > span:after {
+    background-color: #ffa800;
+}
+.radio.radio-accent.radio-warning > input:focus ~ span {
+    border-color: #fff4de;
+}
+.radio.radio-accent.radio-warning > input:focus ~ span:after {
+    background-color: #ffa800;
+}
+.radio.radio-accent.radio-warning > input:checked ~ span {
+    border-color: #fff4de;
+}
+.radio.radio-accent.radio-warning > input:checked ~ span:after {
+    background-color: #ffa800;
+}
+.radio.radio-danger > span {
+    border: 1px solid transparent;
+}
+.radio.radio-danger > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-danger > input:checked ~ span {
+    background-color: #f64e60;
+}
+.radio.radio-danger > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-danger > span {
+    background-color: #ffe2e5;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-danger > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-danger > input:checked ~ span {
+    background-color: #f64e60;
+}
+.radio.checkbox-light-danger > input:checked ~ span:after {
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-danger > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-danger > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-danger > input:checked ~ span {
+    background-color: transparent;
+    border-color: #f64e60;
+}
+.radio.radio-outline.radio-danger > input:checked ~ span:after {
+    background-color: #f64e60;
+    border-color: #f64e60;
+}
+.radio.radio-accent.radio-danger > span:after {
+    background-color: #f64e60;
+}
+.radio.radio-accent.radio-danger > input:focus ~ span {
+    border-color: #ffe2e5;
+}
+.radio.radio-accent.radio-danger > input:focus ~ span:after {
+    background-color: #f64e60;
+}
+.radio.radio-accent.radio-danger > input:checked ~ span {
+    border-color: #ffe2e5;
+}
+.radio.radio-accent.radio-danger > input:checked ~ span:after {
+    background-color: #f64e60;
+}
+.radio.radio-light > span {
+    border: 1px solid transparent;
+}
+.radio.radio-light > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-light > input:checked ~ span {
+    background-color: #f3f6f9;
+}
+.radio.radio-light > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-light > span {
+    background-color: #f3f6f9;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-light > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-light > input:checked ~ span {
+    background-color: #f3f6f9;
+}
+.radio.checkbox-light-light > input:checked ~ span:after {
+    border-color: #7e8299;
+}
+.radio.radio-outline.radio-light > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-light > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-light > input:checked ~ span {
+    background-color: transparent;
+    border-color: #f3f6f9;
+}
+.radio.radio-outline.radio-light > input:checked ~ span:after {
+    background-color: #f3f6f9;
+    border-color: #f3f6f9;
+}
+.radio.radio-accent.radio-light > span:after {
+    background-color: #f3f6f9;
+}
+.radio.radio-accent.radio-light > input:focus ~ span {
+    border-color: #f3f6f9;
+}
+.radio.radio-accent.radio-light > input:focus ~ span:after {
+    background-color: #f3f6f9;
+}
+.radio.radio-accent.radio-light > input:checked ~ span {
+    border-color: #f3f6f9;
+}
+.radio.radio-accent.radio-light > input:checked ~ span:after {
+    background-color: #f3f6f9;
+}
+.radio.radio-dark > span {
+    border: 1px solid transparent;
+}
+.radio.radio-dark > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-dark > input:checked ~ span {
+    background-color: #181c32;
+}
+.radio.radio-dark > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-dark > span {
+    background-color: #d1d3e0;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-dark > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-dark > input:checked ~ span {
+    background-color: #181c32;
+}
+.radio.checkbox-light-dark > input:checked ~ span:after {
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-dark > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-dark > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-dark > input:checked ~ span {
+    background-color: transparent;
+    border-color: #181c32;
+}
+.radio.radio-outline.radio-dark > input:checked ~ span:after {
+    background-color: #181c32;
+    border-color: #181c32;
+}
+.radio.radio-accent.radio-dark > span:after {
+    background-color: #181c32;
+}
+.radio.radio-accent.radio-dark > input:focus ~ span {
+    border-color: #d1d3e0;
+}
+.radio.radio-accent.radio-dark > input:focus ~ span:after {
+    background-color: #181c32;
+}
+.radio.radio-accent.radio-dark > input:checked ~ span {
+    border-color: #d1d3e0;
+}
+.radio.radio-accent.radio-dark > input:checked ~ span:after {
+    background-color: #181c32;
+}
+.radio.radio-white > span {
+    border: 1px solid transparent;
+}
+.radio.radio-white > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.radio-white > input:checked ~ span {
+    background-color: #ffffff;
+}
+.radio.radio-white > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.checkbox-light-white > span {
+    background-color: #ffffff;
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-white > input:focus ~ span {
+    border: 1px solid transparent;
+}
+.radio.checkbox-light-white > input:checked ~ span {
+    background-color: #ffffff;
+}
+.radio.checkbox-light-white > input:checked ~ span:after {
+    border-color: #3f4254;
+}
+.radio.radio-outline.radio-white > span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-white > input:focus ~ span {
+    background-color: transparent;
+    border-color: #d1d3e0;
+}
+.radio.radio-outline.radio-white > input:checked ~ span {
+    background-color: transparent;
+    border-color: #ffffff;
+}
+.radio.radio-outline.radio-white > input:checked ~ span:after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.radio.radio-accent.radio-white > span:after {
+    background-color: #ffffff;
+}
+.radio.radio-accent.radio-white > input:focus ~ span {
+    border-color: #ffffff;
+}
+.radio.radio-accent.radio-white > input:focus ~ span:after {
+    background-color: #ffffff;
+}
+.radio.radio-accent.radio-white > input:checked ~ span {
+    border-color: #ffffff;
+}
+.radio.radio-accent.radio-white > input:checked ~ span:after {
+    background-color: #ffffff;
+}
+.radio-inline {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.radio-inline .radio {
+    margin-right: 1rem;
+    margin-bottom: 0.35rem;
+}
+.radio-inline .radio span {
+    margin-right: 0.75rem;
+}
+.radio-inline .radio:last-child {
+    margin-right: 0;
+}
+.radio-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.radio-list .radio {
+    margin-bottom: 1rem;
+}
+.radio-list .radio span {
+    margin-right: 0.75rem;
+}
+.radio-list .radio:last-child {
+    margin-bottom: 0;
+}
+.input-group .radio {
+    margin-bottom: 0 !important;
+    padding-left: 0;
+}
+.form-inline .radio {
+    margin-left: 15px;
+    margin-right: 15px;
+}

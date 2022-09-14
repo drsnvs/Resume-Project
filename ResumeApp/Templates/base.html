@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<!-- Mirrored from demo.neptuneapp.xyz/demo-14/ltr/auth_signup_1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Sep 2022 04:01:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>{{current_page}} Neptune Auth Signup 1 | Neptune - Multipurpose Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}"/>
+    <!-- Common Styles Starts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/structure.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'plugins/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'plugins/highlight/styles/monokai-sublime.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Common Styles Ends -->
+    <!-- Common Icon Starts -->
+    <link rel="stylesheet" href="{% static 'fonts/line-awesome/1.3.0/css/line-awesome.min.css' %}">
+    <!-- Common Icon Ends -->
+    <!-- Page Level Plugin/Style Starts -->
+    <link href="{% static 'assets/css/loader.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'plugins/owl-carousel/owl.carousel.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'plugins/owl-carousel/owl.theme.default.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/authentication/auth_1.css' %}" rel="stylesheet" type="text/css">
+    {% block css %}
+    {% endblock %}
+    <!-- Page Level Plugin/Style Ends -->
+</head>
+<body class={{current_page}} onload="Captcha();">
+    <!-- Loader Starts -->
+    <div id="load_screen"> 
+        <div class="boxes">
+            <div class="box">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <div class="box">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <div class="box">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <div class="box">
+                <div></div><div></div><div></div><div></div>
+            </div>
+        </div>
+        <!-- <p class="neptune-loader-heading">Neptune</p> -->
+    </div>
+    {% block main_content %}
+    {% endblock %}
+    <!--  Loader Ends -->
+    <!-- Main Body Starts -->
+    <!-- Page Level Plugin/Script Starts -->
+    <script src="{% static 'assets/js/loader.js' %}"></script>
+    <script src="{% static 'assets/js/libs/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/authentication/auth_1.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
+    <!-- Page Level Plugin/Script Ends -->
+</body>
+
+<!-- Mirrored from demo.neptuneapp.xyz/demo-14/ltr/auth_login_1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Sep 2022 03:59:20 GMT -->
+</html>

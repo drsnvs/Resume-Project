@@ -1,0 +1,107 @@
+.form-control.do-animation{
+    height: unset;
+    padding-left: 10px;
+}
+div.hopscotch-bubble.tour-Neptune {
+    border: 3px solid #dedede;
+    border-radius: 7px;
+    font-family: 'Poppins', sans-serif !important;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.left {
+    top: 10px;
+    left: -19px;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.left .hopscotch-bubble-arrow-border {
+    border-right: 17px solid #000;
+    border-right: 16px solid #dedede;
+    border-bottom: 16px solid transparent;
+    border-top: 16px solid transparent;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.left .hopscotch-bubble-arrow {
+    border-bottom: 16px solid transparent;
+    border-right: 16px solid #fff;
+    border-top: 16px solid transparent;
+    position: relative;
+    left: 4px;
+    top: -32px;
+}
+div.hopscotch-bubble.tour-Neptune h3 {
+    color: #3b3f5c;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 19px;
+    margin: -1px 15px 0 0;
+    padding: 0;
+    letter-spacing: 0px;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-content {
+    font-family: 'Poppins', sans-serif !important;
+    letter-spacing: 0px;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-nav-button.next {
+    border-color: #4d3b86;
+    color: #fff;
+    margin: 0 0 0 10px;
+    text-shadow: none;
+    background-color: #4d3b86;
+    background-image: none;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-nav-button.prev {
+    text-shadow: none;
+    background-color: #ffffff;
+    background-image: none;
+    box-shadow: none;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-nav-button.prev:hover {
+    text-shadow: none;
+    background-color: #ebebeb;
+    background-image: none;
+    box-shadow: none;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.up .hopscotch-bubble-arrow {
+    border-bottom: 16px solid #fff;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    position: relative;
+    top: -11px;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.up .hopscotch-bubble-arrow-border {
+    border-bottom: 17px solid #000;
+    border-bottom: 16px solid #dedede;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.up {
+    top: -19px;
+    left: 10px;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.down .hopscotch-bubble-arrow {
+    border-top: 16px solid #fff;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    position: relative;
+    top: -21px;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.down .hopscotch-bubble-arrow-border {
+    border-top: 17px solid #000;
+    border-top: 16px solid #dedede;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+}
+div.hopscotch-bubble.tour-Neptune .hopscotch-bubble-arrow-container.down {
+    bottom: -36px;
+    left: 10px;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    div.hopscotch-bubble .hopscotch-bubble-number {
+        color: #e7515a !important;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-container {
+        width: 170px !important;
+    }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+}
