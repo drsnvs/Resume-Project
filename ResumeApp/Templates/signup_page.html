@@ -10,15 +10,15 @@
         <div class="p-30 h-100">
             <div class="row main-login-one h-100">
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 p-0">
-                    <div class="login-one-start">
+                    <div class="login-one-start needs-validation" novalidate action="#">
                         <h6 class="mt-2 text-primary text-center font-20">Sign Up</h6>
                         <p class="text-center text-muted mt-3 mb-3 font-14">Fill up and create an account</p>
                         <div class="login-one-inputs mt-5">
-                            <input type="email" placeholder="Email"/>
+                            <input type="email" placeholder="Email" required/>
                             <i class="las la-envelope"></i>
                         </div>
                         <div class="login-one-inputs mt-3">
-                            <input type="password" placeholder="Password"/> 
+                            <input type="password" placeholder="Password" required/> 
                             <i class="las la-lock"></i>
                         </div>
                         <div class="capt mt-3"> 
@@ -35,7 +35,7 @@
                                     <input type="text" id="txtInputCaptcha" placeholder="Enter Captcha"/>  
                                     <i class="las la-robot"></i>
                                 </div>  
-                                <input class="btn btn-sm btn-primary" id="Button1" type="button" value="Check" onclick="ValidCaptcha();"/>
+                                <input class="btn btn-sm btn-primary" id="Button1" type="sumbit" value="Check" onclick="ValidCaptcha();"/>
                                 <i class="lar la-check-circle captcha-check text-success-teal font-25 " id="checkMark"></i>
                             </div>
                         </div>
