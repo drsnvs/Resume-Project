@@ -34,8 +34,7 @@ def load_profile_data(request):
 
 # Regiter View
 def register(request):
-    try:
-            
+    try: 
         master = Master.objects.create(
             Email = request.POST['email'],
             Password = request.POST['password'],
@@ -62,7 +61,7 @@ def login(request):
     except Master.DoesNotExist as err:
         print(err)
 
-    return redirect(login_page  )
+    return redirect(login_page)
 
 
 def logout(request):
