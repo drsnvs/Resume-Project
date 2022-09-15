@@ -63,6 +63,23 @@ def login(request):
 
     return redirect(login_page)
 
+def profile_update(request):
+    master = Master.objects.get(
+        Email = request.session['email'],
+    )
+
+    profile = Profile.objects.get(Master=master)
+    profile.FullName = request.POST['fullname']
+    profile.Mobile = request.POST['mobile']
+    profile.Gender = request.POST['gender']
+    profile.Country = request.POST['country']
+    profile.State = request.POST['state']
+    profile.City = request.POST['city']
+    profile.Address = request.POST['address']
+
+    profile.save()
+
+
 
 def logout(request):
     if 'email' in request.session:
