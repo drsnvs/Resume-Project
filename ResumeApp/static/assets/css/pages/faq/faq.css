@@ -1,0 +1,199 @@
+body { 
+    background-color: #f6faff;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ffffff 0%, #f7fff8 100%);
+}
+/*Navbar*/
+nav .navbar-brand {
+    font-size: 30px;
+    font-weight: 700;
+    color: #4d3b86;
+}
+.navbar-expand .navbar-nav .nav-link {
+    color: #4d3b86;
+    padding: 0 17px;
+}
+.fq-header-wrapper {
+    padding: 0 0;
+    background-attachment: fixed;
+    background-size: contain;
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .fq-header-wrapper {
+        background-image: none;
+    }
+}
+.fq-header-wrapper h1 {
+    font-size: 46px;
+    font-weight: 700;
+    color: #4d3b86;
+    margin-bottom: 8px;
+}
+.fq-header-wrapper p {
+    color: #4d3b86;
+    font-size: 14px;
+    margin-bottom: 27px;
+    line-height: 25px;
+}
+.fq-header-wrapper button:hover {
+    background-color: transparent;
+    color: #fff;
+    box-shadow: none;
+}
+.fq-header-wrapper .banner-img img {
+    width: 582px;
+    height: 582px;
+}
+.fq-header-wrapper .faq-input-group {
+    border: 1px solid rgba(34, 98, 198, 0.41);
+    border-radius: 4px;
+    padding: 5px 10px 5px 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+}
+.fq-header-wrapper input.faq-input {
+    border: 0px;
+    font-size: 16px;
+    min-width: calc(100% - 55px);
+}
+.fq-header-wrapper .faq-input-icon {
+    font-size: 20px;
+    padding-top: 2px;
+    margin-right: 6px;
+}
+.faq .nav-pills li.nav-item a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 20px;
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.08);
+    width: 219px;
+    border-radius: 7px;
+    border: 2px solid #ece1ff;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all ease 0.4s;
+}
+.faq .nav-pills li.nav-item a.active {
+    border: 2px solid #4d3b86;
+    transition: all ease 0.4s;
+    color: #4d3b86;
+}
+.faq .nav-pills li.nav-item a i {
+    font-size: 32px;
+    color: #b5b5b5;
+    transition: all ease 0.4s;
+}
+.faq .nav-pills li.nav-item a.active i {
+    font-size: 32px;
+    color: #4d3b86;
+    transition: all ease 0.4s;
+}
+.faq .tab-content .accordion .card {
+    border: 0px;
+    margin-bottom: 26px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.faq .tab-content .accordion .card .card-header {
+    padding: 0;
+    border: none;
+    background: none;
+}
+.faq .tab-content .accordion .card .card-header > div {
+    padding: 13px 21px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1b55e2;
+    display: flex;
+    align-items: center;
+}
+.faq .tab-content .accordion .card .card-header div .faq-q-title {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 13px;
+    color: #3b3f5c;
+    font-weight: 700;
+}
+.faq .tab-content .accordion .card .card-header .faq-arrow-container {
+    flex: 1;
+    text-align: right;
+}
+.faq .tab-content .accordion .card .card-header span.round-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #4d3b86;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.faq .tab-content .accordion .card .card-header div.collapsed .faq-arrow-container i {
+    transform: rotate(180deg);
+    transition: all ease 0.4s;
+}
+.faq .tab-content .accordion .card .card-header div .faq-arrow-container i {
+    transition: all ease 0.4s;
+}
+.faq-footer {
+    background: #4d3b86;
+    padding: 12px 40px;
+}
+.faq-footer p {
+    margin: 0px;
+    color: #fff;
+    letter-spacing: 0px;
+    font-size: 12px;
+}
+.faq-footer p a{
+    color: #fff;
+}
+.arrow {
+    cursor: pointer;
+    position: fixed;
+    bottom: 25px;
+    right: 10px;
+    background: #4d3b86;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 25px;
+    color: #fff;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    nav .navbar-brand {
+        font-size: 24px;
+    }
+    .navbar-expand .navbar-nav .nav-link {
+        font-size: 11px;
+    }
+    .fq-header-wrapper h1 {
+        font-size: 36px;
+    }
+    .fq-header-wrapper input.faq-input {
+        min-width: calc(100% - 85px);
+    }
+    .fq-header-wrapper .faq-input-group {
+        width: 250px;
+    }
+    .faq-footer {
+        padding: 12px 20px;
+    }
+    .faq-footer .d-flex{
+        flex-direction: column;
+    }
+    .faq-footer p {
+        text-align: center;
+    }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+}

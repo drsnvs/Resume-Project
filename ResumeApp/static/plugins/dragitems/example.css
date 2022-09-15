@@ -1,0 +1,253 @@
+.dragula > div,
+.gu-mirror {
+    margin: 10px 0px;
+    padding: 10px;
+    transition: opacity 0.4s ease-in-out;
+}
+.dragula > div, .dragula > p {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+.gu-mirror {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+.dragula .ex-moved {
+    background-color: #e74c3c;
+}
+.dragula.ex-over {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+#left-lovehandles > div,
+#right-lovehandles > div {
+    cursor: initial;
+}
+.image-thing {
+    margin: 20px 0;
+    display: block;
+    text-align: center;
+}
+.slack-join {
+    position: absolute;
+    font-weight: normal;
+    font-size: 14px;
+    right: 10px;
+    top: 50%;
+    margin-top: -8px;
+    line-height: 16px;
+}
+/* TYPE 1 */
+.type-1 .dragula {
+    padding: 5px 15px;
+    background: #f0f6ff;
+    border-radius: 8px;
+    min-height: 400px;
+}
+.type-1 .dragula .media,
+body.gu-unselectable .media.drag-type-1 {
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #e0e6ed;
+    padding: 14px 26px;
+}
+.type-1 .dragula .media img,
+body.gu-unselectable .media.drag-type-1 img {
+    width: 50px;
+    /* border-radius: 50%; */
+    margin-right: 18px;
+    height: 50px;
+}
+.type-1 .dragula .media .media-body,
+body.gu-unselectable .media.drag-type-1 .media-body {
+    align-self: center;
+}
+.type-1 .dragula .media .media-body h6,
+body.gu-unselectable .media.drag-type-1 .media-body h6 {
+    color: #3b3f5c;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.type-1 .dragula .media .media-body p,
+body.gu-unselectable .media.drag-type-1 .media-body p {
+    color: #888ea8;
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+/* DRAG ANYTHING */
+.drag-any .dragula {
+    padding: 5px 15px;
+    background: #f0f6ff;
+    border-radius: 8px;
+    min-height: 400px;
+    height: 100%;
+}
+.drag-any .dragula .media,
+body.gu-unselectable .media.drag-anything {
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #e0e6ed;
+    padding: 14px 26px;
+    flex-wrap: wrap;
+}
+.drag-any .dragula .media img,
+body.gu-unselectable .media.drag-anything img {
+    width: 50px;
+    /* border-radius: 50%; */
+    margin-right: 18px;
+    height: 50px;
+}
+.drag-any .dragula .media .media-body,
+body.gu-unselectable .media.drag-anything .media-body {
+    align-self: center;
+}
+.drag-any .dragula .media .media-body h6,
+body.gu-unselectable .media.drag-anything .media-body h6 {
+    color: #3b3f5c;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.drag-any .dragula .media .media-body p,
+body.gu-unselectable .media.drag-anything .media-body p {
+    color: #888ea8;
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+/* TYPE 2 */
+.type-2 .dragula {
+    padding: 15px 15px;
+    background: #f0f6ff;
+    border-radius: 8px;
+    min-height: 250px;
+    height: 90%;
+}
+.type-2 .dragula div.media {
+    background-color: #fff!important;
+    padding: 0;
+    margin: 0;
+}
+.type-2 .dragula div.media,
+body.gu-unselectable div.media.drag-type-2.gu-mirror {
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #e0e6ed;
+    padding: 14px 26px;
+    margin-bottom: 10px;
+}
+.type-2 #right-rm-spill div.media.ex-moved {
+    background-color: #e74c3c !important;
+}
+.type-2 .dragula div.media:hover {
+    border: 1px solid #f1f2f3;
+    border-radius: 4px;
+}
+.type-2 .dragula .media img,
+body.gu-unselectable .media.drag-type-2.gu-mirror img {
+    width: 45px;
+    border-radius: 10%;
+    margin-right: 17px;
+    height: 45px;
+}
+.type-2 .dragula .media .media-body,
+body.gu-unselectable .media.drag-type-2.gu-mirror .media-body {
+    align-self: center;
+}
+.type-2 .dragula .media .media-body h6,
+body.gu-unselectable .media.drag-type-2.gu-mirror .media-body h6 {
+    color: #3b3f5c;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.type-2 #right-rm-spill div.media.ex-moved .media-body h6,
+body.gu-unselectable .media.drag-type-2.gu-mirror.ex-moved .media-body h6 {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.type-2 .dragula .media .media-body p,
+body.gu-unselectable .media.drag-type-2.gu-mirror .media-body p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.type-2 #right-rm-spill div.media.ex-moved .media-body p,
+body.gu-unselectable .media.drag-type-2.gu-mirror.ex-moved .media-body p {
+    color: #ffffff;
+}
+/* TYPE 3 */
+.type-3 .dragula {
+    padding: 5px 15px;
+    background: #f0f6ff;
+    border-radius: 8px;
+    min-height: 250px;
+}
+.type-3 .dragula .media,
+body.gu-unselectable .media.drag-type-3 {
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #e0e6ed;
+    padding: 14px 26px;
+}
+.type-3 .dragula .media img,
+body.gu-unselectable .media.drag-type-3 img {
+    width: 50px;
+    /* border-radius: 50%; */
+    margin-right: 18px;
+    height: 50px;
+}
+.type-3 .dragula .media .media-body,
+body.gu-unselectable .media.drag-type-3 .media-body {
+    align-self: center;
+}
+.type-3 .dragula .media .media-body h6,
+body.gu-unselectable .media.drag-type-3 .media-body h6 {
+    color: #3b3f5c;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.type-3 .dragula .media .media-body p,
+body.gu-unselectable .media.drag-type-3 .media-body p {
+    color: #888ea8;
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+.type-3 .dragula .media .handle {
+    cursor: move;
+    font-size: 20px;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    .type-1 .dragula .media img, body.gu-unselectable .media.drag-type-1 img {
+        width: 40px;
+        margin-right: 0px;
+        height: 40px;
+        margin-bottom: 15px;
+    }
+    .type-1 .dragula .media .media-body h6, body.gu-unselectable .media.drag-type-1 .media-body h6 {
+        margin-bottom: 5px;
+    }
+    .type-1 .dragula .media .media-body p, body.gu-unselectable .media.drag-type-1 .media-body p {
+        margin-bottom: 5px;
+    }
+    .type-1 .col-sm-6, .drag-any .col-sm-6, .type-2 .col-md-6, .type-3 .col-md-6 {
+        width: 50%;
+        padding: 0px 5px;
+    }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+}

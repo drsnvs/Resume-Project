@@ -1,0 +1,49 @@
+.sitemap {
+    list-style: none;
+    padding-left: 0;
+}
+.sitemap ul li {
+    position: relative;
+}
+.sitemap li {
+    line-height: 1.5rem;
+    vertical-align: top;
+    list-style: none;
+    position: relative;
+}
+.sitemap li a {
+    text-decoration: none;
+    color: #6c757d;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all ease 0.2s;
+}
+.sitemap li a:hover {
+    color: #0056b3;
+    transition: all ease 0.2s;
+    font-weight: 700;
+}
+.sitemap>li>ul {
+    margin-top: 1rem;
+    padding-left: 0;
+}
+.sitemap ul {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 10px;
+}
+.sitemap ul li:before {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-bottom: 1px solid #e5e8eb;
+    border-left: 1px solid #e5e8eb;
+    position: absolute;
+    top: -1rem;
+}
+.sitemap ul li a {
+    margin-left: 2rem;
+}

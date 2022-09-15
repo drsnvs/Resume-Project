@@ -1,0 +1,176 @@
+/* BASIC COUNTER */
+.basic-counter {
+  display: -webkit-box;
+  display: flex;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+}
+.basic-counter-container {
+  height: 80px;
+  width: 80px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 20px 0px #a2a2a24d;
+  border-radius: 15px;
+}
+.advanced-custom-counters{
+  display: -webkit-box;
+  display: flex;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+}
+/* Advanced Custom Counter */
+.advanced-custom-counter{
+  line-height: 1;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 2rem;
+  font-size: 2rem;
+  margin: 0 1.25rem;
+  font-weight: 500;
+  justify-content: center;
+}
+.advanced-custom-counter > span {
+  z-index: 1;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  height: 100%;
+  -webkit-transition: -webkit-transform 2s ease;
+  transition: -webkit-transform 2s ease;
+  transition: transform 2s ease;
+  transition: transform 2s ease, -webkit-transform 2s ease;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  line-height: 1;
+}
+.advanced-custom-counter > span span {
+  -webkit-box-flex: 0;
+  flex: 0 0 100%;
+  height: 100%;
+}
+.advanced-custom-counter:nth-child(1) > span {
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.advanced-custom-counter:nth-child(2) > span {
+  -webkit-transition-delay: 0.375s;
+  transition-delay: 0.375s;
+}
+.advanced-custom-counter:nth-child(3) > span {
+  -webkit-transition-delay: 0.75s;
+  transition-delay: 0.75s;
+}
+.advanced-custom-counter:nth-child(4) > span {
+  -webkit-transition-delay: 1.125s;
+  transition-delay: 1.125s;
+}
+.advanced-custom-counter:nth-child(5) > span {
+  -webkit-transition-delay: 1.5s;
+  transition-delay: 1.5s;
+}
+.advanced-custom-counter:nth-child(6) > span {
+  -webkit-transition-delay: 1.875s;
+  transition-delay: 1.875s;
+}
+.advanced-custom-counter:nth-child(7) > span {
+  -webkit-transition-delay: 2.25s;
+  transition-delay: 2.25s;
+}
+.advanced-custom-counter:nth-child(8) > span {
+  -webkit-transition-delay: 2.625s;
+  transition-delay: 2.625s;
+}
+.advanced-custom-counter:nth-child(9) > span {
+  -webkit-transition-delay: 3s;
+  transition-delay: 3s;
+}
+.advanced-custom-counter:nth-child(10) > span {
+  -webkit-transition-delay: 3.375s;
+  transition-delay: 3.375s;
+}
+.advanced-custom-counter:nth-child(11) > span {
+  -webkit-transition-delay: 3.75s;
+  transition-delay: 3.75s;
+}
+.advanced-custom-counter:nth-child(12) > span {
+  -webkit-transition-delay: 4.125s;
+  transition-delay: 4.125s;
+}
+.advanced-custom-counter:nth-child(13) > span {
+  -webkit-transition-delay: 4.5s;
+  transition-delay: 4.5s;
+}
+.advanced-custom-counter:nth-child(14) > span {
+  -webkit-transition-delay: 4.875s;
+  transition-delay: 4.875s;
+}
+.advanced-custom-counter:nth-child(15) > span {
+  -webkit-transition-delay: 5.25s;
+  transition-delay: 5.25s;
+}
+.advanced-custom-counter:nth-child(16) > span {
+  -webkit-transition-delay: 5.625s;
+  transition-delay: 5.625s;
+}
+.advanced-custom-counter:nth-child(17) > span {
+  -webkit-transition-delay: 6s;
+  transition-delay: 6s;
+}
+.advanced-custom-counter:nth-child(18) > span {
+  -webkit-transition-delay: 6.375s;
+  transition-delay: 6.375s;
+}
+.advanced-custom-counter:nth-child(19) > span {
+  -webkit-transition-delay: 6.75s;
+  transition-delay: 6.75s;
+}
+.advanced-custom-counter:nth-child(20) > span {
+  -webkit-transition-delay: 7.125s;
+  transition-delay: 7.125s;
+}
+.advanced-custom-counter:nth-child(1) {
+  color: #EF8354;
+}
+.advanced-custom-counter:nth-child(2) {
+  color: #0EB1D2;
+}
+.advanced-custom-counter:nth-child(3) {
+  color: #E91E63;
+}
+.advanced-custom-counter:nth-child(4) {
+  color: #698F3F;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+  .advanced-custom-counters {
+    flex-direction: column;
+    padding-top: 0px;
+  }
+  .advanced-custom-counter {
+    margin-bottom: 20px;
+  }
+  .basic-counter .col-md-4 {
+    margin-bottom: 1rem;
+  }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+  .circle-countdown span.count, .square-countdown span.count {
+    font-size: 23px;
+    width: 66px;
+    height: 66px;
+  }
+}

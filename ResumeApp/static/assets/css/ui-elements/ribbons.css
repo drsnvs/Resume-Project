@@ -1,0 +1,226 @@
+/* RIBBON ONE */
+.ribbon-container {
+    position: relative;
+}
+.ribbon-container .ribbon.float-left {
+    margin-left: -30px;
+    border-radius: 0 3px 3px 0;
+}
+.ribbon-container .ribbon-primary {
+    background: #2262c6;
+}
+.ribbon-container .ribbon-secondary {
+    background: #5c1ac3;
+}
+.ribbon-container .ribbon {
+    position: relative;
+    clear: both;
+    padding: 5px 12px;
+    margin-bottom: 15px;
+    box-shadow: 2px 5px 10px rgba(50,58,70,.15);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+.ribbon-container .ribbon-primary:before {
+    border-color: #2d67be transparent transparent;
+}
+.ribbon-container .ribbon-secondary:before {
+    border-color: #5c1ac3 transparent transparent;
+}
+.ribbon-container .ribbon:before {
+    content: " ";
+    border-style: solid;
+    border-width: 10px;
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    margin-bottom: -10px;
+    z-index: -1;
+}
+.ribbon-container .ribbon-content {
+    clear: both;
+}
+.ribbon-container .ribbon.float-right {
+    margin-right: -30px;
+    border-radius: 3px 0 0 3px;
+}
+.ribbon-container .ribbon.float-right:before {
+    right: 0;
+}
+/* RIBBON TWO */
+.ribbon-two .ribbon {
+    width: 148px;
+    height: 104px;
+    overflow: hidden;
+    position: absolute;
+    box-shadow: none;
+}
+.ribbon-two .ribbon::before,
+.ribbon-two .ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #2980b9;
+}
+.ribbon-two .ribbon span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 7px 0;
+    background-color: #3498db;
+    /* box-shadow: 0 5px 10px rgba(0,0,0,.1); */
+    color: #fff;
+    font: 700 12px 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    text-transform: uppercase;
+    text-align: center;
+}
+/* TOP LEFT */
+.ribbon-two .ribbon-top-left {
+    top: -10px;
+    left: -10px;
+}
+.ribbon-two  .ribbon-top-left::before,
+.ribbon-two .ribbon-top-left::after {
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
+.ribbon-two .ribbon-top-left::before {
+    top: 0;
+    right: 43px;
+    border-width: 10px;
+}
+.ribbon-two .ribbon-top-left::after {
+    bottom: 0;
+    left: 0;
+}
+.ribbon-two .ribbon-top-left span {
+    right: -15px;
+    top: 20px;
+    transform: rotate(-45deg);
+    padding-right: 20px;
+}
+/* TOP RIGHT */
+.ribbon-container .ribbon-top-right {
+    top: -10px;
+    right: -10px;
+}
+.ribbon-container .ribbon-top-right::before,
+.ribbon-container .ribbon-top-right::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+}
+.ribbon-container .ribbon-top-right::before {
+    top: 0;
+    left: 43px;
+    border-width: 10px;
+}
+.ribbon-container .ribbon-top-right::after {
+    bottom: 0;
+    right: 0;
+}
+.ribbon-container .ribbon-top-right span {
+    left: -15px;
+    top: 20px;
+    transform: rotate(45deg);
+    padding-left: 20px;
+}
+/* RIBBON GLOW */
+@-webkit-keyframes flow {
+	0% { left:-20px;opacity: 0;}
+	50% {left:100px;opacity: 0.3;}
+    100%{ left:180px;opacity: 0;}
+}
+@keyframes flow {
+	0% { left:-20px;opacity: 0;}
+	50% {left:100px;opacity: 0.3;}
+    100%{ left:180px;opacity: 0;}
+}
+.glow{ 
+    background: rgb(255,255,255); 
+    width:20px; 
+    height:30px; 
+    z-index:999; 
+    position:absolute;
+    -webkit-animation: flow 1.5s linear infinite;
+    -moz-animation: flow 1.5s linear infinite;-webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(1%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 1%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 1%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 1%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 1%,rgba(255,255,255,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */ border-left:1px solid #fff;
+}
+/* RIBBON THREE */
+.ribbon-three {
+    width: 30px;
+    height: 30px;
+    background-color: #2d67be;
+    position: absolute;
+    right: 10px;
+    top: -8px;
+    -webkit-animation: drop forwards 0.8s 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: drop forwards 0.8s 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.ribbon-three:after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 30px;
+    background-color: #2d67be;
+    right: 0px;
+    top: -1px;
+    z-index: -1;
+}
+.ribbon-three:before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: -22px;
+    border-left: 15px solid #2d67be;
+    border-right: 15px solid #2d67be;
+    border-bottom: 22px solid transparent;
+}
+/* RIBBON FOUR */
+.ribbon-four{
+    position:relative;
+    padding: 0 0.5em;
+    font-size:18px;
+    margin: 0 0 0 -1.1em;
+    line-height: 1.875em;
+    color: #fff;
+    border-radius: 0 0.156em 0.156em 0;
+    background: #2262c6;
+    box-shadow: -1px 2px 3px rgba(0,0,0,0.5);
+    max-width: 45%;
+}
+.ribbon-four:before, .ribbon-four:after{
+    position:absolute;
+    content: '';
+    display: block;
+}
+.ribbon-four:before{
+    width: 0.469em;
+    height: 120%;
+    padding: 0 0 0.438em;
+    top:0;
+    left: -0.469em;
+    background:inherit;
+    border-radius: 0.313em 0 0 0.313em;
+}
+.ribbon-four:after{
+    width: 0.313em;
+    height: 0.313em;
+    background: rgba(0,0,0,0.35);
+    bottom: -0.313em;
+    left: -0.313em;
+    border-radius: 0.313em 0 0 0.313em;
+    box-shadow: inset -1px 2px 2px rgba(0,0,0,0.3);
+}

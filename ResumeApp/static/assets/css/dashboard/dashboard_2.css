@@ -1,0 +1,275 @@
+.layout-spacing {
+    padding-bottom: 25px;
+}
+.widget {
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+    border: none;
+    background: #fff;
+    -webkit-box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+}
+.widget .widget-heading {
+    margin-bottom: 15px;
+}
+.widget h5 {
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0px;
+    margin-bottom: 0;
+    color: #515365;
+}
+.widget .widget-content {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+.widget  .dropdown-toggle{
+    position: relative;
+    padding: 9px 15px 10px 15px;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    transform: none;
+    font-size: 13px;
+    line-height: 17px;
+    background-color: #fff;
+    letter-spacing: normal;
+    min-width: 115px;
+    text-align: inherit;
+    color: #1b2e4b;
+    box-shadow: none;
+    max-height: 35px;
+}
+.widget  .dropdown-menu a {
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3b3f5c;
+}
+/* Top Welcome */
+.top-welcome{
+    display: block;
+    width: 100%;
+    transition: all ease 0.5s;
+}
+.top-welcome:hover {
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+/* 4 COLUMNS  */
+.blink_me {
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+span.quick-category-icon {
+    font-size: 30px;
+    display: flex;
+    padding: 5px;
+}
+.qc-primary {
+    background: #e6f0ff;
+    color: #1b55e2;
+}
+/* WEATHER REPORT */
+.temp-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* RECENT ITEMS */
+.recent-items img {
+    height: 80px;
+    width: 90px;
+    object-fit: cover;
+    border: 1px solid #e8e8e8;
+    padding: 4px;
+    border-radius: 5px;
+}
+/* Widget Chart One */
+.widget-chart-one .widget-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.widget-chart-one .apexcharts-legend-marker {
+    left: -5px!important;
+}
+.widget-chart-one .apexcharts-yaxis-title {
+    font-weight: 600;
+    fill: #b7b7b7
+}
+.widget-chart-one .apexcharts-xaxis-title {
+    font-weight: 600;
+    fill: #b7b7b7
+}
+.widget-chart-one .widget-heading .tabs {
+    padding: 0;
+    margin: 0;
+}
+.widget-chart-one .widget-heading .tabs li {
+    display: inline-block;
+    list-style: none;
+    padding: 0 0;
+}
+/* Widget Chart two */
+.widget-chart-two {
+    padding: 0;
+}
+.widget.widget-chart-two .widget-heading {
+    padding: 20px 20px 0 20px;
+}
+.widget.widget-chart-two .widget-content {
+    padding: 0 0 20px 0;
+}
+.widget-chart-two .apexcharts-canvas {
+    margin: 0 auto;
+}
+.widget-chart-two .apexcharts-legend-marker {
+    left: -5px!important;
+}
+/* Nav Item Right Buttons */
+.nav-item .dash-btn {
+    padding: .40rem .45rem !important;
+}
+.nav-item .dash-btn i{
+    font-size: .875rem;
+}
+.nav-item.custom-dropdown-icon .dropdown-menu a {
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3b3f5c;
+} 
+.nav-item .dropdown-menu.dropdown-menu-right {
+    transform: translate3d(0px, 37px, 0px);
+}
+.nav-item.more-dropdown .flatpickr-input {
+    height: 31px;
+    font-size: 11px;
+    width: 181px;
+    padding-right: 0px;
+}
+.nav-item.more-dropdown .flatpickr-input::placeholder {
+    font-size: 11px;
+}
+/* TICKER */
+@-webkit-keyframes ticker {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  @keyframes ticker {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  .ticker-wrap {
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 4rem;
+    background-color: #f1f1f1;
+    padding-left: 100%;
+    box-sizing: content-box;
+    position: relative;
+    border-radius: 13px;
+    border-bottom-left-radius: 13px;
+  }
+  .ticker-wrap .ticker {
+    display: flex;
+    height: 4rem;
+    line-height: 4rem;
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    animation-name: ticker;
+    -webkit-animation-duration: 30s;
+    animation-duration: 30s;
+  }
+  .ticker-wrap .ticker__item {
+    display: inline-block;
+    padding: 0 2rem;
+    font-size: 2rem;
+    color: white;
+  }
+  .ticker-heading {
+    position: absolute;
+    background: #9C27B0;
+    left: 0px;
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    z-index: 9999;
+}
+.ticker-heading p{
+    color: #fff;
+    margin: 0px;
+}
+.ticker-item {
+    margin-right: 30px;
+    color: #6b6b6b;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    .whole-week-days .item {
+        width: 50%;
+    }
+    .tempareture-box-icon .font-135 {
+        font-size: 50px;
+    }
+    .temp-top .font-65 {
+        font-size: 35px;
+    }
+    .monthly-weather-report-inner .widget h5 {
+        font-size: 13px;
+    }
+    .recent-items img {
+        height: 60px;
+        width: 70px;
+    }
+    .recent-items  h5 {
+        font-size: 13px;
+    }
+    .recent-items  p {
+        font-size: 12px;
+    }
+    .recent-items .badge {
+        font-size: 10px;
+    }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 768px) {
+    .table-responsive {
+        overflow-x: hidden;
+    }
+}

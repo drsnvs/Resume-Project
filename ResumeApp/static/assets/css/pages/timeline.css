@@ -1,0 +1,194 @@
+.timeline {
+    margin-bottom: 50px;
+    position: relative;
+}
+.timeline:before {
+    background-color: #dee2e6;
+    bottom: 0;
+    content: "";
+    left: 50%;
+    position: absolute;
+    top: 30px;
+    width: 2px;
+    z-index: 0;
+}
+.timeline-item {
+    display: table-row;
+}
+.timeline-item:before {
+    content: "";
+    display: block;
+    width: 50%;
+}
+.timeline-item.timeline-item-left:before {
+    content: "";
+    display: none;
+    width: 50%;
+}
+.timeline .time-show {
+    margin-right: -69px;
+    text-align: right;
+}
+.timeline .time-show {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    position: relative;
+}
+.timeline .timeline-desk {
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+}
+.timeline-item.timeline-item-left:after {
+    content: "";
+    display: block;
+    width: 50%;
+}
+.timeline-item.timeline-item-left .timeline-box {
+    margin-right: 45px;
+    margin-left: 0;
+    text-align: right;
+    box-shadow: 4px 0px 20px 2px rgb(0 0 0 / 13%);
+}
+.timeline .timeline-box {
+    background: #fff;
+    display: block;
+    margin: 15px 0;
+    position: relative;
+    padding: 20px;
+    border-radius: .25rem;
+    box-shadow: -4px 0px 20px 2px rgb(0 0 0 / 13%);
+}
+.timeline-item.timeline-item-left .timeline-desk .arrow-alt {
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid #fff!important;
+    border-top: 12px solid transparent;
+    display: block;
+    height: 0;
+    left: auto;
+    margin-top: -12px;
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    width: 0;
+}
+.timeline-item .timeline-desk .arrow {
+    border-bottom: 12px solid transparent;
+    border-right: 12px solid #fff!important;
+    border-top: 12px solid transparent;
+    display: block;
+    height: 0;
+    left: -12px;
+    margin-top: -12px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+}
+.timeline .timeline-icon {
+    background: #4d3b86;
+    border-radius: 50%;
+    display: block;
+    height: 20px;
+    left: -54px;
+    margin-top: -10px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 20px;
+}
+.timeline-item.timeline-item-left .timeline-icon {
+    left: auto;
+    right: -56px;
+}
+.timeline .timeline-icon i {
+    color: #ffffff;
+    font-size: 13px;
+    position: absolute;
+    left: 3px;
+    margin-top: 4px;
+}
+.timeline .timeline-box {
+    margin-left: 45px;
+}
+.width-lg {
+    min-width: 140px;
+}
+.timeline-option {
+    margin: 15px 0;
+    position: relative;
+    padding: 0px 20px;
+}
+.timeline-img {
+    height: 65px;
+    width: 65px;
+    object-fit: cover;
+    border: 1px solid rgb(34 98 198 / 30%);
+    padding: 4px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.video-icon {
+    font-size: 50px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.timeline .timeline-album img {
+    height: 36px;
+    width: auto;
+    border-radius: 3px;
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    .timeline-item {
+        display: unset;
+    }
+    .timeline-item.timeline-item-left .timeline-box {
+        margin-right: 0px;
+        margin-left: 45px;
+        text-align: right;
+        box-shadow: 4px 0px 20px 2px rgb(0 0 0 / 13%);
+    }
+    .timeline-item.timeline-item-left .timeline-desk .arrow-alt {
+        border-bottom: 12px solid transparent;
+        border-right: 12px solid #fff!important;
+        border-top: 12px solid transparent;
+        border-left: 0px !important;
+        display: block;
+        height: 0;
+        left: auto;
+        margin-top: -12px;
+        position: absolute;
+        left: -12px;
+        top: 50%;
+        width: 0;
+    }
+    .timeline-item.timeline-item-left .timeline-icon {
+        left: -54px;
+        right: unset;
+    }
+    .timeline:before {
+        background-color: #dee2e6;
+        bottom: 0;
+        content: "";
+        left: 0px;
+        position: absolute;
+        top: 30px;
+        width: 2px;
+        z-index: 0;
+    }
+    .timeline .time-show {
+        margin-right: 0px;
+        text-align: left;
+    }
+    .timeline-img {
+        height: 55px;
+        width: 55px;
+    }
+} 
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+}

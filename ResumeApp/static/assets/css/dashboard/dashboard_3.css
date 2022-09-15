@@ -1,0 +1,233 @@
+.layout-spacing {
+    padding-bottom: 25px;
+}
+.widget {
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+    border: none;
+    background: #fff;
+    -webkit-box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+}
+.widget .widget-heading {
+    margin-bottom: 15px;
+}
+.widget h5 {
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0px;
+    margin-bottom: 0;
+    color: #515365;
+}
+.widget .widget-content {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+.widget  .dropdown-toggle{
+    position: relative;
+    padding: 9px 15px 10px 15px;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    transform: none;
+    font-size: 13px;
+    line-height: 17px;
+    background-color: #fff;
+    letter-spacing: normal;
+    min-width: 115px;
+    text-align: inherit;
+    color: #1b2e4b;
+    box-shadow: none;
+    max-height: 35px;
+}
+.widget  .dropdown-menu a {
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3b3f5c;
+}
+/* WALLET BALANCE  */
+.wallet-balance-container {
+    height: 270px;
+    overflow: hidden;
+}
+.wallet-balance select{
+    width: 130px;
+    font-size: 12px !important;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+}
+/* User Registration Types */
+#registration-types .apexcharts-canvas {
+    width: 100% !important;
+    text-align: center;
+}
+/* EARNINGS */
+.earnings-container {
+    margin-top: -60px;
+    max-height: 280px;
+    overflow: hidden;
+}
+/* PRODUCT CAROUSEL */
+.product-carousel-inner {
+    border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 20px;
+}
+a.add-product-plus {
+    background: #F44336;
+    color: #fff;
+    font-size: 33px;
+    position: absolute;
+    z-index: 3;
+    bottom: 10px;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all ease 0.4s;
+}
+a.add-product-plus:hover {
+    background: #d63125;
+    color: #fff;
+    transition: all ease 0.2s;
+}
+.product-carousel .widget{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.product-carousel .widget.card-body{
+    margin-top: -20px;
+}
+/* SMALL PROFILE */
+.small-profile .progress{
+    border-radius: 16px;
+    margin-top: 10px;
+}
+.small-profile .progress .progress-bar{
+    border-radius: 0px;
+}
+/* 3 PRODUCT STARTS */
+.widget .card-img.overlap {
+    margin-top: -60px;
+}
+/* Widget Chart One */
+.widget-chart-one .widget-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.widget-chart-one .apexcharts-legend-marker {
+    left: -5px!important;
+}
+.widget-chart-one .apexcharts-yaxis-title {
+    font-weight: 600;
+    fill: #b7b7b7
+}
+.widget-chart-one .apexcharts-xaxis-title {
+    font-weight: 600;
+    fill: #b7b7b7
+}
+.widget-chart-one .widget-heading .tabs {
+    padding: 0;
+    margin: 0;
+}
+.widget-chart-one .widget-heading .tabs li {
+    display: inline-block;
+    list-style: none;
+    padding: 0 0;
+}
+/* Widget Activity Four */
+.widget-activity-four {
+    padding-right: 0;
+    padding-left: 0;
+}
+.widget-activity-four .widget-heading {
+    padding: 0 20px;
+}
+.widget-activity-four .widget-content {
+    padding: 0 20px 0 20px;
+}
+/* Nav Item Right Buttons */
+.nav-item .dash-btn {
+    padding: .40rem .45rem !important;
+}
+.nav-item .dash-btn i{
+    font-size: .875rem;
+}
+.nav-item.custom-dropdown-icon .dropdown-menu a {
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3b3f5c;
+} 
+.nav-item .dropdown-menu.dropdown-menu-right {
+    transform: translate3d(0px, 37px, 0px);
+}
+.nav-item.more-dropdown .flatpickr-input {
+    height: 31px;
+    font-size: 11px;
+    width: 181px;
+    padding-right: 0px;
+}
+.nav-item.more-dropdown .flatpickr-input::placeholder {
+    font-size: 11px;
+}
+/* Dashboard Table */
+.dashboard-table {
+    position: relative;
+}
+.dashboard-table .table > thead > tr > th {
+    text-transform: initial;
+    font-weight: 500;
+    background-color: #f3f7f9;
+    color: #0e1726;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    padding: .75rem;
+}
+.dashboard-table .widget-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.widget.dashboard-table .dropdown-toggle {
+    position: relative;
+    padding: 6px 10px 6px 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    transform: none;
+    font-size: 12px;
+    line-height: 17px;
+    background-color: #fff;
+    letter-spacing: normal;
+    min-width: 115px;
+    text-align: inherit;
+    color: #1b2e4b;
+    box-shadow: none;
+    max-height: 35px;
+}
+/************************************** Media Query **************************************/
+@media(min-width: 1200px) {
+    .table-responsive {
+        overflow-x: hidden;
+    }
+}
+@media(max-width: 1430px) and (min-width: 1200px) {
+}
+@media(max-width: 767px) {
+    .dashboard-table .dropdown.custom-dropdown-icon {
+        width: 170px;
+        text-align: right;
+    }
+}
+@media(max-width: 575px) {
+}

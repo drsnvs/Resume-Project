@@ -1,0 +1,377 @@
+.login-three{
+    height: 100%;
+    min-height: 100vh;
+    letter-spacing: 0px;
+    background-image: linear-gradient(white, rgb(0 74 255 / 11%));
+}
+.login-three-container{
+    height: 100%;
+}
+.main-login-three {
+    height: 100%;
+    min-height: 100vh;
+}
+.login-bg{
+    background-image: url(../../img/auth_3_bg.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.login-three-container .center-area {
+    padding: 3rem 1.5rem 3rem 3rem !important;
+}
+.login-three-container .right-area {
+    padding: 3rem 3rem 3rem 3rem !important;
+}
+.login-three-social {
+    display: flex;
+    align-items: center;
+}
+.login-three-social .social-btn {
+    background: #2262c6;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 0px 15px 0px 0px;
+    width: 30px;
+    justify-content: center;
+    padding-top: 3px;
+    border-radius: 50px;
+}
+.login-three-social .social-btn i {
+    font-size: 18px;
+    color: #fff;
+}
+.login-three-inputs {
+    position: relative;
+    width: 100%;
+}
+.login-three-inputs input[type="text"] {
+    border: 1px solid #e2e1e1;
+    padding: 15px 40px;
+    width: 100%;
+    border-radius: .27rem;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="text"]:focus {
+    border: 1px solid #0057ff;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="text"]:focus + .las{
+    color: #0057ff !important;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="text"]::placeholder{
+    color: #bbbbbb;
+}
+.login-three-inputs input[type="password"] {
+    border: 1px solid #e2e1e1;
+    padding: 15px 40px;
+    width: 100%;
+    border-radius: .27rem;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="password"]:focus {
+    border: 1px solid #0057ff;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="password"]:focus + .las{
+    color: #0057ff !important;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="password"]::placeholder{
+    color: #bbbbbb;
+}
+.login-three-inputs input[type="email"] {
+    border: 1px solid #e2e1e1;
+    padding: 15px 40px;
+    width: 100%;
+    border-radius: .27rem;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="email"]:focus {
+    border: 1px solid #0057ff;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="email"]:focus + .las{
+    color: #0057ff !important;
+    transition: all ease 0.2s;
+}
+.login-three-inputs input[type="email"]::placeholder{
+    color: #bbbbbb;
+}
+.login-three-inputs i {
+    position: absolute;
+    font-size: 19px;
+    color: #c5c3c3;
+    top: 15px;
+    left: 10px;
+}
+.cbx {
+    margin: auto;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+.cbx span {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid #9098A9;
+    transition: all 0.2s ease;
+}
+.cbx span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #2262c6;
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+}
+.cbx span:last-child {
+    padding-left: 8px;
+}
+.cbx:hover span:first-child {
+    border-color: #2262c6;
+}
+.inp-cbx:checked + .cbx span:first-child {
+    background: #2262c6;
+    border-color: #2262c6;
+    animation: wave 0.4s ease;
+}
+.inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+}
+.inp-cbx:checked + .cbx span:first-child:before {
+    transform: scale(3.5);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+@keyframes wave {
+    50% {
+        transform: scale(0.9);
+    }
+}
+.captcha {
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px dashed #2262c6;
+    padding: 10px 0px;
+    width: 100%;
+    border-radius: 4px;
+}
+.captcha h2 {
+    font-size: 15px;
+    margin: 0px;
+}
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    -webkit-animation-duration: 0.6s;
+    animation-name: fadeInUp;
+    animation-duration: 0.6s;
+}
+.captcha-check {
+    display: none;
+}
+.login-three-inputs input.error {
+    border: 1px solid #ff8080;
+}
+/* Forget Password CSS Starts */
+form.digit-group {
+    text-align: center;
+}
+.digit-group input {
+    width: 30px;
+    height: 45px;
+    background-color: #ffffff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    color: #3c3c3c;
+    margin: 0 2px;
+    border: 1px solid #e2e1e1;
+    border-radius: .17rem;
+}
+  .digit-group .splitter {
+    padding: 0 5px;
+    color: #3c3c3c;
+    font-size: 24px;
+  }
+.prompt {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: white;
+}
+.form-2{
+    display: none;
+}
+.form-2.show {
+    display: block !important;
+}
+.form-1.show {
+    display: block !important;
+}
+.cp-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+@-webkit-keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(30%, 0, 0);
+        transform: translate3d(30%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(30%, 0, 0);
+        transform: translate3d(30%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeInRight {
+    -webkit-animation-name: fadeInRight;
+    -webkit-animation-duration: 0.8s;
+    animation-name: fadeInRight;
+    animation-duration: 0.8s;
+}
+@-webkit-keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-30%, 0, 0);
+        transform: translate3d(-30%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-30%, 0, 0);
+        transform: translate3d(-30%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+    -webkit-animation-duration: 0.8s;
+    animation-name: fadeInLeft;
+    animation-duration: 0.8s;
+}
+/* Forget Password CSS Ends */
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    .login-three-container .center-area {
+        padding: 2rem 0rem 0rem 0rem !important;
+    }
+    .login-three-container .right-area {
+        padding: 1.5rem 0rem 1.5rem 0rem !important;
+    }
+    .w-25 {
+        width: unset!important; 
+    }
+    .cp-container {
+        flex-direction: column;
+    }
+    .cp-container button {
+        margin-bottom: 20px;
+    }
+    .login-three-social {
+        justify-content: center;
+    }
+    .main-login-three {
+        min-height: 100vh;
+    } 
+    .login-three-container .center-area div {
+        margin-top: 20px;
+    }   
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+    .login-three-container .center-area {
+        padding: 1.5rem 1.5rem 1.5rem 1.5rem !important;
+    }
+    .login-three-container .right-area {
+        padding: 1.5rem 1.5rem 1.5rem 1.5rem !important;
+    }
+    .w-25 {
+        width: unset!important; 
+    }
+    .cp-container {
+        flex-direction: column;
+    }
+    .cp-container button {
+        margin-bottom: 20px;
+    }
+}

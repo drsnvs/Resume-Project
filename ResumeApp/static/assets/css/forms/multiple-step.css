@@ -1,0 +1,343 @@
+/* Step type 1 */
+.multiple-form-one #msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+.multiple-form-one #msform fieldset .form-card {
+    background: white;
+    border: 1px solid #00000014;
+    border-radius: 10px;
+    padding: 25px 30px 30px 30px;
+    box-sizing: border-box;
+    width: 94%;
+    margin: 0 3% 20px 3%;
+    position: relative;
+}
+.multiple-form-one #msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+.multiple-form-one #msform fieldset:not(:first-of-type) {
+    display: none
+}
+.multiple-form-one #msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E
+}
+.multiple-form-one select.list-dt {
+    outline: 0;
+    border: 1px solid #ccc;
+    padding: 5px 5px 7px 5px;
+    margin: 2px;
+    border-radius: 5px;
+}
+.multiple-form-one select.list-dt:focus {
+    border-bottom: 2px solid skyblue
+}
+.multiple-form-one  {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative
+}
+.multiple-form-one .fs-title {
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left
+}
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+    padding: 0px;
+}
+#progressbar .active {
+    color: #000000
+}
+.multiple-form-one #progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 25%;
+    float: left;
+    position: relative
+}
+.multiple-form-one #progressbar #account:before {
+    content: "\f2bd";
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    font-size: 25px;
+}
+.multiple-form-one #progressbar #personal:before {
+    content: "\f505";
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    font-size: 25px;
+}
+.multiple-form-one #progressbar #payment:before {
+    content: "\f555";
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    font-size: 25px;
+}
+.multiple-form-one #progressbar #confirm:before {
+    content: "\f560";
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    font-size: 25px;
+}
+.multiple-form-one #progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+.multiple-form-one #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+.multiple-form-one #progressbar li.active:before,
+.multiple-form-one #progressbar li.active:after {
+    background: #2262c6;
+}
+.multiple-form-one .radio-group {
+    position: relative;
+    margin-bottom: 25px
+}
+.multiple-form-one .radio {
+    display: inline-block;
+    border-radius: 0;
+    box-shadow: 0 0px 0px 1px rgb(0 0 0 / 8%);
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 8px 2px;
+    border: 1px solid transparent;
+    transition: all ease 0.3s;
+}
+.multiple-form-one .radio:hover {
+    box-shadow: 0px 0px 11px 0px rgb(0 0 0 / 17%);
+    transition: all ease 0.3s;
+    border: 1px solid transparent;
+}
+.multiple-form-one .radio.selected {
+    box-shadow: none;
+    transition: all ease 0.3s;
+    border: 1px solid #2262c6;
+}
+.multiple-form-one .fit-image {
+    width: 100%;
+    object-fit: cover
+}
+/* Step type 2 */
+.multiple-form-two #msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+.multiple-form-two #msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+.multiple-form-two .form-card {
+    text-align: left;
+    background: white;
+    border: 1px solid #00000014;
+    border-radius: 10px;
+    padding: 25px 30px 30px 30px;
+    box-sizing: border-box;
+    width: 94%;
+    margin: 0 3% 20px 3%;
+    position: relative;
+}
+.multiple-form-two #msform fieldset:not(:first-of-type) {
+    display: none
+}
+.multiple-form-two  {
+    z-index: 0;
+    border: none;
+    position: relative
+}
+.multiple-form-two .steps {
+    font-size: 15px;
+    color: #E91E63;
+    margin-bottom: 10px;
+    text-align: right;
+}
+.multiple-form-two .fieldlabels {
+    color: gray;
+    text-align: left
+}
+.multiple-form-two #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+.multiple-form-two #progressbar .active {
+    color: #2262c6;
+}
+.multiple-form-two #progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+.multiple-form-two #progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+.multiple-form-two #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+.multiple-form-two .progress {
+    height: 20px;
+    margin: 0 5% 20px 5%;
+    border-radius: 11px;
+}
+.multiple-form-two .progress-bar {
+    background-color: #2262c6
+}
+.multiple-form-two .fit-image {
+    width: 100%;
+    object-fit: cover
+}
+.attached-files {
+    text-align: center;
+    width: 140px;
+    position: relative;
+    border: 1px solid #e4e4e4;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+    margin-bottom: 20px;
+}
+.attached-files img{
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.attached-files label{
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+.attached-files span.delete-label {
+    position: absolute;
+    top: -6px;
+    background: #e91e7c;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    border-radius: 50%;
+    right: -5px;
+}
+/* Common */
+.checkmark {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #009688;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+} 
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #009688;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #009688;
+    }
+}
+/************************************** Media Query **************************************/
+@media(max-width: 575px) {
+    .multiple-form-one #msform fieldset .form-card {
+        padding: 25px 15px 15px 15px;
+    }
+    .multiple-form-two .form-card {
+        padding: 25px 15px 15px 15px;
+    }
+    .multiple-form-one .fs-title {
+        text-align: center;
+    }
+    .multiple-form-one .radio-group .radio img{
+        width: 100%;
+    }
+}
+/* Tablet Media Query */
+@media (min-width: 600px) and (max-width: 1068px) {
+}

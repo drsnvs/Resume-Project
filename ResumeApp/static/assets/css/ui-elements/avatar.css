@@ -1,0 +1,14 @@
+.avatar-group {
+    display: inline-flex;
+    margin: 0px 15px;
+    flex-wrap: wrap;
+}
+.avatar-group .avatar { 
+    margin-left: -.75rem; 
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}

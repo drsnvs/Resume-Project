@@ -1,0 +1,62 @@
+.carousel-caption h3, .carousel-caption h5 { color: #fff; }
+.custom-carousel .carousel-caption {
+	position: absolute;
+    right: auto;
+    left: 44px;
+    color: #fff;
+    text-align: left;
+    width: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
+.custom-carousel .carousel-caption h3 {
+	font-weight: 600;
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+.custom-carousel .carousel-caption .media img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.custom-carousel .carousel-caption .media .media-body .user-name {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.custom-carousel .carousel-indicators {
+    top: 50%;
+    bottom: auto;
+    display: block;
+    left: auto;
+    margin: auto;
+    right: 33px;
+    transform: translateY(-50%);
+}
+.custom-carousel .carousel-control-next,
+.custom-carousel .carousel-control-prev {
+    top: auto;
+    bottom: 32px;
+    background-color: transparent;
+}
+.custom-carousel .carousel-indicators li {
+    width: 9px;
+    height: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 0;
+    margin-bottom: 9px;
+}
+.custom-carousel .carousel-indicators li.active {
+    height: 20px;
+    border-radius: 10px;
+}
+.custom-carousel .carousel-control-prev {
+    display: none;
+}
+.custom-carousel .carousel-control-next {
+    display: none;
+}

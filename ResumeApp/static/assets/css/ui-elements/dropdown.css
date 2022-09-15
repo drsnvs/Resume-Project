@@ -1,0 +1,24 @@
+.dropdown-area .dropdown:not(.custom-dropdown-icon) .dropdown-menu a.dropdown-item,
+.dropdown-area .dropdown-menu a.dropdown-item {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 11px 8px;
+    color: #3b3f5c;
+}
+.dropdown-area .dropdown-item:focus, .dropdown-area .dropdown-item:hover, .dropdown-area .btn-group .dropdown-menu .dropdown-item:hover{
+    text-decoration: none;
+    background-color: #f8f9fa;
+    background: #edf2fd;
+    border-radius: 6px;
+}
+.dropdown-area .dropdown-item.active, .dropdown-area .dropdown-item:active {
+    color: #3b3f5c;
+    text-decoration: none;
+    background-color: #e8e8e8;
+}
+.dropdown-area .dropdown-item.disabled, .dropdown-area .dropdown-item:disabled {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: transparent;
+    opacity: 0.5;
+}
