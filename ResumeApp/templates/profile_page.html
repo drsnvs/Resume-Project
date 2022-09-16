@@ -1091,10 +1091,12 @@
                         <div class="profile-tabs">
                             <div class="nav flex-column nav-pills mb-sm-0 mb-3 mx-auto" id="v-border-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-border-pills-home-tab" data-toggle="pill" href="#v-border-pills-home" role="tab" aria-controls="v-border-pills-home" aria-selected="true">Home</a>
-                                <a class="nav-link" id="v-border-pills-team-tab" data-toggle="pill" href="#v-border-pills-team" role="tab" aria-controls="v-border-pills-team" aria-selected="false">Team</a>
-                                <a class="nav-link" id="v-border-pills-work-tab" data-toggle="pill" href="#v-border-pills-work" role="tab" aria-controls="v-border-pills-work" aria-selected="false">Work in progress</a>
-                                <a class="nav-link" id="v-border-pills-products-tab" data-toggle="pill" href="#v-border-pills-products" role="tab" aria-controls="v-border-pills-products" aria-selected="false">Products</a>
-                                <a class="nav-link" id="v-border-pills-orders-tab" data-toggle="pill" href="#v-border-pills-orders" role="tab" aria-controls="v-border-pills-orders" aria-selected="false">Orders</a>
+                                <a class="nav-link" id="v-border-pills-team-tab" data-toggle="pill" href="#v-border-pills-genral-information" role="tab" aria-controls="v-border-pills-genral-information" aria-selected="false">Genral Information</a>
+                                <a class="nav-link" id="v-border-pills-work-tab" data-toggle="pill" href="#v-border-pills-education" role="tab" aria-controls="v-border-pills-education" aria-selected="false">Education</a>
+                                <a class="nav-link" id="v-border-pills-work-tab" data-toggle="pill" href="#v-border-pills-experience" role="tab" aria-controls="v-border-pills-experience" aria-selected="false">Experience</a>
+                                <a class="nav-link" id="v-border-pills-work-tab" data-toggle="pill" href="#v-border-pills-skills" role="tab" aria-controls="v-border-pills-skills" aria-selected="false">Skills</a>
+                                <a class="nav-link" id="v-border-pills-products-tab" data-toggle="pill" href="#v-border-pills-projects" role="tab" aria-controls="v-border-pills-projects" aria-selected="false">Projects</a>
+                                <a class="nav-link" id="v-border-pills-orders-tab" data-toggle="pill" href="#v-border-pills-references" role="tab" aria-controls="v-border-pills-references" aria-selected="false">Refernces</a>
                                 <a class="nav-link" id="v-border-pills-settings-tab" data-toggle="pill" href="#v-border-pills-settings" role="tab" aria-controls="v-border-pills-settings" aria-selected="false">Settings</a>
                             </div>
                         </div>
@@ -1167,10 +1169,66 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="v-border-pills-team" role="tabpanel" aria-labelledby="v-border-pills-team-tab">
-                                  <div class="media">
+                                <div class="tab-pane fade" id="v-border-pills-projects" role="tabpanel" aria-labelledby="v-border-pills-projects-tab">
+                                    <div class="media">
                                         <div class="profile-shadow w-100">
-                                            <h6 class="font-15 mb-3">Team</h6>
+                                            <h6 class="font-15 mb-3">Projects</h6>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="country">Country</label>
+                                                                <select class="form-control">
+                                                                    <option>All Countries</option>
+                                                                    <option selected>United States</option>
+                                                                    <option>Uruguay</option>
+                                                                    <option>Argentina</option>
+                                                                    <option>France</option>
+                                                                    <option>Italy</option>
+                                                                    <option>India</option>
+                                                                    <option>Japan</option>
+                                                                    <option>Turkey</option>
+                                                                    <option>Russia</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address">Address</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">Location</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phone">Phone</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here"
+                                                                    value="+1 (000) 125-45854">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here"
+                                                                    value="sara@gmail.com">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="website1">Website</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here"
+                                                                    value="www.demowebsite.com">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="single-team">
                                                 <div class="d-flex">
                                                     <div class="team-left">
@@ -1223,12 +1281,68 @@
                                                 </div>
                                             </div>
                                         </div>
-                                  </div>
+                                    </div>
                                 </div>
-                                <div class="tab-pane fade" id="v-border-pills-work" role="tabpanel" aria-labelledby="v-border-pills-work-tab">
+                                <div class="tab-pane fade" id="v-border-pills-skills" role="tabpanel" aria-labelledby="v-border-pills-skills-tab">
                                     <div class="media">
                                         <div class="profile-shadow w-100">
-                                            <h6 class="font-15 mb-3">Work in progress</h6>
+                                            <h6 class="font-15 mb-3">Skills</h6>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="country">Country</label>
+                                                                <select class="form-control">
+                                                                    <option>All Countries</option>
+                                                                    <option selected>United States</option>
+                                                                    <option>Uruguay</option>
+                                                                    <option>Argentina</option>
+                                                                    <option>France</option>
+                                                                    <option>Italy</option>
+                                                                    <option>India</option>
+                                                                    <option>Japan</option>
+                                                                    <option>Turkey</option>
+                                                                    <option>Russia</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address">Address</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">Location</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phone">Phone</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here"
+                                                                    value="+1 (000) 125-45854">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here"
+                                                                    value="sara@gmail.com">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="website1">Website</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here"
+                                                                    value="www.demowebsite.com">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="progress-list">
                                                 <div class="single-progress">
                                                     <div class="progress-details">
@@ -1238,7 +1352,9 @@
                                                         </div>
                                                         <div class="progress-stats">
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-gradient-success position-relative" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"><span class="success-teal"></span></div>
+                                                                <div class="progress-bar bg-gradient-success position-relative" role="progressbar"
+                                                                    style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"><span
+                                                                        class="success-teal"></span></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1251,7 +1367,9 @@
                                                         </div>
                                                         <div class="progress-stats">
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-gradient-secondary  position-relative" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"><span class="secondary"></span></div>
+                                                                <div class="progress-bar bg-gradient-secondary  position-relative" role="progressbar"
+                                                                    style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"><span
+                                                                        class="secondary"></span></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1264,7 +1382,9 @@
                                                         </div>
                                                         <div class="progress-issues-stats">
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-gradient-warning position-relative" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"><span class="warning"></span></div>
+                                                                <div class="progress-bar bg-gradient-warning position-relative" role="progressbar"
+                                                                    style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"><span
+                                                                        class="warning"></span></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1277,7 +1397,9 @@
                                                         </div>
                                                         <div class="progress-issues-stats">
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-gradient-danger position-relative" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"><span class="danger"></span></div>
+                                                                <div class="progress-bar bg-gradient-danger position-relative" role="progressbar"
+                                                                    style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"><span
+                                                                        class="danger"></span></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1286,142 +1408,283 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="v-border-pills-products" role="tabpanel" aria-labelledby="v-border-pills-products-tab">
-                                    <div class="searchable-items card-box grid">
-                                        <div class="items">
-                                            <div class="item-content">
-                                                <div class="product-info">
-                                                    <img src="{% static 'assets/img/product-5.jpg' %}" alt="avatar">
-                                                    <div class="user-meta-info">
-                                                        <p class="product-name">Product 1</p>
-                                                        <p class="product-category">Category One</p>
+                                <div class="tab-pane fade" id="v-border-pills-experience" role="tabpanel" aria-labelledby="v-border-pills-experience-tab">
+                                    <div class="media">
+                                        <div class="profile-shadow w-100">
+                                            <h6 class="font-15 mb-3">Experience</h6>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="country">Country</label>
+                                                                <select class="form-control">
+                                                                    <option>All Countries</option>
+                                                                    <option selected>United States</option>
+                                                                    <option>Uruguay</option>
+                                                                    <option>Argentina</option>
+                                                                    <option>France</option>
+                                                                    <option>Italy</option>
+                                                                    <option>India</option>
+                                                                    <option>Japan</option>
+                                                                    <option>Turkey</option>
+                                                                    <option>Russia</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address">Address</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">Location</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phone">Phone</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here" value="+1 (000) 125-45854">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here" value="sara@gmail.com">
+                                                            </div>
+                                                        </div>                                    
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="website1">Website</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here" value="www.demowebsite.com">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="product-price">
-                                                    <p class="product-category-addr"><span>Price: </span>$1001</p>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <p class="product-rating-inner"><span>Rating: </span>
-                                                        <a class="d-flex align-center">
-                                                            5  <img src="{% static 'assets/img/star.png' %}" class="avatar-xxs ml-2" alt="star">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                                <div class="product-stock-status">
-                                                    <p class="product-stock-status-inner">
-                                                        <small class="badge badge-success">In Stock</small>
-                                                    </p>
-                                                </div>
-                                                <div class="action-btn">
-                                                    <i class="lar la-edit text-primary font-20 mr-2 btn-edit-contact"></i>
-                                                    <i class="lar la-trash-alt text-danger font-20 mr-2"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="items">
-                                            <div class="item-content">
-                                                <div class="product-info">
-                                                    <img src="{% static 'assets/img/product-1.jpg' %}" alt="avatar">
-                                                    <div class="user-meta-info">
-                                                        <p class="product-name">Product 2</p>
-                                                        <p class="product-category">Category two</p>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price">
-                                                    <p class="product-category-addr"><span>Price: </span>$1975</p>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <p class="product-rating-inner"><span>Rating: </span>
-                                                        <a class="d-flex align-center">
-                                                            3  <img src="{% static 'assets/img/star.png' %}" class="avatar-xxs ml-2" alt="star">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                                <div class="product-stock-status">
-                                                    <p class="product-stock-status-inner">
-                                                        <small class="badge badge-danger">No Stock</small>
-                                                    </p>
-                                                </div>
-                                                <div class="action-btn">
-                                                    <i class="lar la-edit text-primary font-20 mr-2 btn-edit-contact"></i>
-                                                    <i class="lar la-trash-alt text-danger font-20 mr-2"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="items">
-                                            <div class="item-content">
-                                                <div class="product-info">
-                                                    <img src="{% static 'assets/img/product-2.jpg' %}" alt="avatar">
-                                                    <div class="user-meta-info">
-                                                        <p class="product-name">Product 3</p>
-                                                        <p class="product-category">Category Three</p>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price">
-                                                    <p class="product-category-addr"><span>Price: </span>$2455</p>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <p class="product-rating-inner"><span>Rating: </span>
-                                                        <a class="d-flex align-center">
-                                                            4 <img src="{% static 'assets/img/star.png' %}" class="avatar-xxs ml-2" alt="star">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                                <div class="product-stock-status">
-                                                    <p class="product-stock-status-inner">
-                                                        <small class="badge badge-danger">No Stock</small>
-                                                    </p>
-                                                </div>
-                                                <div class="action-btn">
-                                                    <i class="lar la-edit text-primary font-20 mr-2 btn-edit-contact"></i>
-                                                    <i class="lar la-trash-alt text-danger font-20 mr-2"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="items">
-                                            <div class="item-content">
-                                                <div class="product-info">
-                                                    <img src="{% static 'assets/img/product-3.jpg' %}" alt="avatar">
-                                                    <div class="user-meta-info">
-                                                        <p class="product-name">Product 4</p>
-                                                        <p class="product-category">Category Four</p>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price">
-                                                    <p class="product-category-addr"><span>Price: </span>$1655</p>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <p class="product-rating-inner"><span>Rating: </span>
-                                                        <a class="d-flex align-center">
-                                                            2 <img src="{% static 'assets/img/star.png' %}" class="avatar-xxs ml-2" alt="star">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                                <div class="product-stock-status">
-                                                    <p class="product-stock-status-inner">
-                                                        <small class="badge badge-success">In Stock</small>
-                                                    </p>
-                                                </div>
-                                                <div class="action-btn">
-                                                    <i class="lar la-edit text-primary font-20 mr-2 btn-edit-contact"></i>
-                                                    <i class="lar la-trash-alt text-danger font-20 mr-2"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="v-border-pills-orders" role="tabpanel" aria-labelledby="v-border-pills-orders-tab">
+                                <div class="tab-pane fade" id="v-border-pills-genral-information" role="tabpanel" aria-labelledby="v-border-pills-genral-information-tab">
                                     <div class="media">
                                         <div class="profile-shadow w-100">
-                                            <h6 class="font-15 mb-3">Orders</h6>
+                                            <h6 class="font-15 mb-3">Genral Information</h6>
+                                            <div class="row">
+                                                
+                                                <div class="col-xl-12 col-lg-12 col-md-12 mt-md-0 mt-4">
+                                                    <div class="form">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Full Name</label>
+                                                                    <input type="text" class="form-control mb-4" placeholder="Full Name" value="Sara Williamson">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Mobile</label>
+                                                                    <input type="text" class="form-control mb-4" placeholder="Mobile" name="full_name" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Birth Date</label>
+                                                                    <input type="date" class="form-control mb-4" placeholder="" name="birth_date" value="1-1-2022">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Gender</label>
+                                                                    <input type="text" class="form-control mb-4" placeholder="Gender" name="gender" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="row">
+                                                            <div class="col-sm-6">
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="dob-input spl-left">Country</label>
+                                                                    <select class="form-control" >
+                                                                      <option>Country</option>
+                                                                      <option>1</option>
+                                                                      
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="dob-input spl-left">State</label>
+                                                                    <select class="form-control" >
+                                                                      <option>State</option>
+                                                                      <option>1</option>
+                                                                      
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="dob-input spl-left">City</label>
+                                                                    <select class="form-control" >
+                                                                      <option>City</option>
+                                                                      <option>1</option>
+                                                                      
+                                                                    </select>
+                                                                </div>
+                                                            
+
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="platform-description">Address</label>
+                                                                    <textarea class="form-control mb-4" placeholder="Address Lines.." rows="9" style="resize:none;"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-border-pills-education" role="tabpanel" aria-labelledby="v-border-pills-education-tab">
+                                    <div class="media">
+                                        <div class="profile-shadow w-100">
+                                            <h6 class="font-15 mb-3">Education</h6>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="country">Country</label>
+                                                                <select class="form-control">
+                                                                    <option>All Countries</option>
+                                                                    <option selected>United States</option>
+                                                                    <option>Uruguay</option>
+                                                                    <option>Argentina</option>
+                                                                    <option>France</option>
+                                                                    <option>Italy</option>
+                                                                    <option>India</option>
+                                                                    <option>Japan</option>
+                                                                    <option>Turkey</option>
+                                                                    <option>Russia</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address">Address</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">Location</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phone">Phone</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here" value="+1 (000) 125-45854">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here" value="sara@gmail.com">
+                                                            </div>
+                                                        </div>                                    
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="website1">Website</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here" value="www.demowebsite.com">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-border-pills-references" role="tabpanel"
+                                    aria-labelledby="v-border-pills-references-tab">
+                                    <div class="media">
+                                        <div class="profile-shadow w-100">
+                                            <h6 class="font-15 mb-3">References</h6>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="country">Country</label>
+                                                                <select class="form-control">
+                                                                    <option>All Countries</option>
+                                                                    <option selected>United States</option>
+                                                                    <option>Uruguay</option>
+                                                                    <option>Argentina</option>
+                                                                    <option>France</option>
+                                                                    <option>Italy</option>
+                                                                    <option>India</option>
+                                                                    <option>Japan</option>
+                                                                    <option>Turkey</option>
+                                                                    <option>Russia</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="address">Address</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">Location</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phone">Phone</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here"
+                                                                    value="+1 (000) 125-45854">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here"
+                                                                    value="sara@gmail.com">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="website1">Website</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here"
+                                                                    value="www.demowebsite.com">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th><div class="th-content">Order ID</div></th>
-                                                            <th><div class="th-content">Status</div></th>
-                                                            <th><div class="th-content">Details</div></th>
-                                                            <th><div class="th-content">Action</div></th>
+                                                            <th>
+                                                                <div class="th-content">Order ID</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="th-content">Status</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="th-content">Details</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="th-content">Action</div>
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -1437,8 +1700,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1454,8 +1719,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1471,8 +1738,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1488,8 +1757,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1505,8 +1776,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1522,8 +1795,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1539,8 +1814,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1556,8 +1833,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1573,8 +1852,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
+                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
+                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
