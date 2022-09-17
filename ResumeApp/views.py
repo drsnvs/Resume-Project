@@ -1,7 +1,16 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.db.utils import IntegrityError
-data= {}
+
+data= {
+    'gender_choices':list()
+}
+
+for gc in gender_choices:
+    data['gender_choices'].append({'short_text':gc[0],'text':gc[1]})
+
+
+
 # Create your views here.
 def login_page(request):
     data['current_page']='login_page'
@@ -15,6 +24,7 @@ def profile_page(request):
     if 'email' not in request.session:
         return redirect(login_page)
     data['current_page']='profile_page'
+    load_profile_data(request)
     return render(request,"profile_page.html",data)
 
 def forget_password_page(request):
@@ -63,22 +73,24 @@ def login(request):
 
     return redirect(login_page)
 
+# profile update view
 def profile_update(request):
     master = Master.objects.get(
         Email = request.session['email'],
     )
 
     profile = Profile.objects.get(Master=master)
-    profile.FullName = request.POST['fullname']
+    profile.FullName = request.POST['full_name']
     profile.Mobile = request.POST['mobile']
+    profile.BirthDate = request.POST['birth_date']
     profile.Gender = request.POST['gender']
     profile.Country = request.POST['country']
     profile.State = request.POST['state']
-    profile.City = request.POST['city']
+    profile.City =  request.POST['city']
     profile.Address = request.POST['address']
 
     profile.save()
-
+    return redirect(profile_page)
 
 
 def logout(request):

@@ -1475,18 +1475,19 @@
                                             <div class="row">
                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12 mt-md-0 mt-4">
-                                                    <div class="form">
+                                                    <form class="form" method="post" action="{% url 'profile_update' %}">
+                                                        {% csrf_token %}
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Full Name</label>
-                                                                    <input type="text" class="form-control mb-4" placeholder="Full Name" value="Sara Williamson">
+                                                                    <input type="text" class="form-control mb-4" name="full_name"  placeholder="Full Name" value="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Mobile</label>
-                                                                    <input type="text" class="form-control mb-4" placeholder="Mobile" name="full_name" value="">
+                                                                    <input type="text" class="form-control mb-4" name="mobile" placeholder="Mobile" name="full_name" value="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1494,20 +1495,20 @@
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Birth Date</label>
-                                                                    <input type="date" class="form-control mb-4" placeholder="" name="birth_date" value="1-1-2022">
+                                                                    <input type="date" class="form-control mb-4" name="birth_date" placeholder="" name="birth_date" value="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <div class="form-group mb-4">
                                                                     <label>Gender</label>
                                                                     <div class="radio-inline form-control">
+                                                                        
                                                                     <!-- <div class="radio-inline form-control p-2"> -->
+                                                                        {% for gc in gender_choices %}
                                                                         <label class="radio">
-                                                                        <input type="radio" name="radios2">
-                                                                        <span></span>Male</label>
-                                                                        <label class="radio">
-                                                                        <input type="radio" name="radios2">
-                                                                        <span></span>Female</label>
+                                                                        <input type="radio" name="gender" value="{{gc.short_text}}">
+                                                                        <span></span>{{ gc.text.title }}</label>
+                                                                        {% endfor %}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1517,9 +1518,9 @@
                                                         
                                                                 <div class="form-group">
                                                                     <label class="dob-input spl-left">Country</label>
-                                                                    <select class="form-control">
+                                                                    <select class="form-control" name="country">
                                                                         <option>Country</option>
-                                                                        <option>India</option>
+                                                                        <option value="india">India</option>
                                                                         <option>Brazil</option>
                                                                         <option>China</option>
                                                                         
@@ -1528,17 +1529,17 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="dob-input spl-left">State</label>
-                                                                    <select class="form-control">
+                                                                    <select class="form-control" name="state">
                                                                         <option>State</option>
-                                                                        <option>1</option>
+                                                                        <option value="gujarat">Gujarat</option>
                                                         
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="dob-input spl-left">City</label>
-                                                                    <select class="form-control">
+                                                                    <label class="dob-input spl-left" >City</label>
+                                                                    <select class="form-control" name="city">
                                                                         <option>City</option>
-                                                                        <option>1</option>
+                                                                        <option value="ahmedabad">Ahmedabad</option>
                                                         
                                                                     </select>
                                                                 </div>
@@ -1548,7 +1549,7 @@
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="platform-description">Address</label>
-                                                                    <textarea class="form-control mb-4" placeholder="Address Lines.." rows="9" style="resize:none;"></textarea>
+                                                                    <textarea class="form-control mb-4" name="address" placeholder="Address Lines.." rows="9" style="resize:none;"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1557,7 +1558,7 @@
                                                                 <input type="submit" class="btn btn-primary" />
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
