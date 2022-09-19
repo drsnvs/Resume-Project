@@ -3,7 +3,8 @@ from .models import *
 from django.db.utils import IntegrityError
 
 data= {
-    'gender_choices':list()
+    'gender_choices':list(),
+    'university_boards':UniversityBoard.objects.all(),
 }
 
 for gc in gender_choices:
@@ -25,6 +26,7 @@ def profile_page(request):
         return redirect(login_page)
     data['current_page']='profile_page'
     load_profile_data(request)
+    # load_education_data(request)
     return render(request,"profile_page.html",data)
 
 def forget_password_page(request):
@@ -91,6 +93,87 @@ def profile_update(request):
 
     profile.save()
     return redirect(profile_page)
+
+
+
+# Unversity board add education
+def add_education(request):
+    master = Master.objects.get(
+        Email = request.session['email'],
+    )
+    profile = Profile.objects.get(Master=master)
+
+    uni_board = UniversityBoard.objects.get(id=int(request.POST["university_board"]))
+    Education.objects.get(
+        Profile=profile,
+        UniversityBoard=uni_board,
+    )
+
+    return redirect(profile_page)
+# Load Education Data
+def load_education_data(request):
+    master = Master.objects.get(
+        Email = request.session['email'],
+    )
+    
+    profile = Profile.objects.get(Master = master)
+    education = Education.objects.get(Master = master)
+
+    data['education_data'] = education
+
+
+
+# Add Course Stream
+def add_course_stream(request):
+    master = Master.objects.get(
+        Email = request.session['email'],
+    )
+    profile = Profile.objects.get(Master=master)
+    education = Education.objects.get(Master = master)
+    coursestream = CourseStream.objects.get(id=int(request.POST["course_stream"]))
+    CourseStream.objects.get(
+        Profile=profile,
+        Education = education,
+        CourseStream = coursestream,
+    )
+    return redirect(profile_page)
+# load course stream
+def load_course_stream(request):
+    master = Master.objects.get(
+        Email = request.session['email']
+    )
+    profile = Profile.objects.get(Master = master)
+    education = Education.objects.get(Master = master)
+    coursestream = CourseStream.objects.get(Master=master)
+    data['course_stream'] = coursestream
+
+
+def add_course_type(request):
+    master = Master.objects.get(
+        Email = request.session['email'],
+    )
+    profile = Profile.objects.get(Master=master)
+    education = Education.objects.get(Master = master)
+    coursestream = CourseStream.objects.get(Master = master)
+    coursetype = CourseType.objects.get(id=int(request.POST["course_type"]))
+    CourseType.objects.get(
+        Profile=profile,
+        Education = education,
+        CourseType = coursetype,
+        CourseStream = coursestream,
+    )
+    return redirect(profile_page)
+# load course stream
+def load_course_type(request):
+    master = Master.objects.get(
+        Email = request.session['email']
+    )
+    profile = Profile.objects.get(Master = master)
+    education = Education.objects.get(Master = master)
+    coursetype = CourseType.objects.get(Master = master)
+    coursestream = CourseStream.objects.get(Master = master)
+    data['course_type'] = coursetype
+
 
 
 def logout(request):

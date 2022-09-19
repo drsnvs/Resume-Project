@@ -1481,13 +1481,13 @@
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Full Name</label>
-                                                                    <input type="text" class="form-control mb-4" name="full_name"  placeholder="Full Name" value="">
+                                                                    <input type="text" class="form-control mb-4" name="full_name"  placeholder="Full Name" value="{{profile_data.FullName}}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Mobile</label>
-                                                                    <input type="text" class="form-control mb-4" name="mobile" placeholder="Mobile" name="full_name" value="">
+                                                                    <input type="text" class="form-control mb-4" name="mobile" placeholder="Mobile" name="full_name" value="{{profile_data.Mobile}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1495,7 +1495,7 @@
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Birth Date</label>
-                                                                    <input type="date" class="form-control mb-4" name="birth_date" placeholder="" name="birth_date" value="">
+                                                                    <input type="date" class="form-control mb-4" name="birth_date" placeholder="" name="birth_date" value="profile_data.birth_date">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6">
@@ -1506,7 +1506,7 @@
                                                                     <!-- <div class="radio-inline form-control p-2"> -->
                                                                         {% for gc in gender_choices %}
                                                                         <label class="radio">
-                                                                        <input type="radio" name="gender" value="{{gc.short_text}}">
+                                                                        <input type="radio" name="gender" value="{{gc.short_text}}" {% if profile_data.Gender == gc.short_text %}checked{%endif%}>
                                                                         <span></span>{{ gc.text.title }}</label>
                                                                         {% endfor %}
                                                                     </div>
@@ -1520,7 +1520,7 @@
                                                                     <label class="dob-input spl-left">Country</label>
                                                                     <select class="form-control" name="country">
                                                                         <option>Country</option>
-                                                                        <option value="india">India</option>
+                                                                        <option value="{{profile_page.Country}">India</option>
                                                                         <option>Brazil</option>
                                                                         <option>China</option>
                                                                         
@@ -1549,7 +1549,7 @@
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
                                                                     <label for="platform-description">Address</label>
-                                                                    <textarea class="form-control mb-4" name="address" placeholder="Address Lines.." rows="9" style="resize:none;"></textarea>
+                                                                    <textarea class="form-control mb-4" name="address" placeholder="Address Lines.." rows="9" style="resize:none;">{{profile_data.Address}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1573,25 +1573,24 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="country">Country</label>
-                                                                <select class="form-control">
-                                                                    <option>All Countries</option>
-                                                                    <option selected>United States</option>
-                                                                    <option>Uruguay</option>
-                                                                    <option>Argentina</option>
-                                                                    <option>France</option>
-                                                                    <option>Italy</option>
-                                                                    <option>India</option>
-                                                                    <option>Japan</option>
-                                                                    <option>Turkey</option>
-                                                                    <option>Russia</option>
+                                                                <label for="country">University/Board Name</label>
+                                                                <select class="form-control" name="university_board">
+                                                                    <option>Choose</option>
+                                                                    {% for ub in university_boards %}
+                                                                        <option value="{{ub.id}}">{{ub.UniversityBoardName}}</option>
+                                                                    {% endfor %}
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="" >
+                                                                <label for="country">Course Type</label>
+                                                                <select class="form-control" name="course_type">
+                                                                    <option>Choose</option>
+                                                                    {% for ct in course_type %}
+                                                                        <option value="{{ct.id}}">{{ct.Course}}</option>
+                                                                    {% endfor %}
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
