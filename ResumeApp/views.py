@@ -145,14 +145,14 @@ def load_education_data(request):
 #     )
 #     return redirect(profile_page)
 # load course stream
-def load_course_stream(request):
-    master = Master.objects.get(
-        Email = request.session['email']
-    )
-    profile = Profile.objects.get(Master = master)
-    education = Education.objects.get(Master = master)
-    coursestream = CourseStream.objects.get(Master=master)
-    data['course_stream'] = coursestream
+# def load_course_stream(request):
+#     master = Master.objects.get(
+#         Email = request.session['email']
+#     )
+#     profile = Profile.objects.get(Master = master)
+#     education = Education.objects.get(Master = master)
+#     coursestream = CourseStream.objects.get(Master=master)
+#     data['course_stream'] = coursestream
 
 
 # def add_course_type(request):
@@ -171,15 +171,15 @@ def load_course_stream(request):
 #     )
 #     return redirect(profile_page)
 # load course stream
-def load_course_type(request):
-    master = Master.objects.get(
-        Email = request.session['email']
-    )
-    profile = Profile.objects.get(Master = master)
-    education = Education.objects.get(Master = master)
-    coursetype = CourseType.objects.get(Master = master)
-    coursestream = CourseStream.objects.get(Master = master)
-    data['course_type'] = coursetype
+# def load_course_type(request):
+#     master = Master.objects.get(
+#         Email = request.session['email']
+#     )
+#     profile = Profile.objects.get(Master = master)
+#     education = Education.objects.get(Master = master)
+#     coursetype = CourseType.objects.get(Master = master)
+#     coursestream = CourseStream.objects.get(Master = master)
+#     data['course_type'] = coursetype
 
 
 
