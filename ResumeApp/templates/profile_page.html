@@ -1569,7 +1569,7 @@
                                         <div class="profile-shadow w-100">
                                             <h6 class="font-15 mb-3">Education</h6>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <form class="col-md-12" action="#" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -1587,22 +1587,27 @@
                                                                 <label for="country">Course Type</label>
                                                                 <select class="form-control" name="course_type">
                                                                     <option>Choose</option>
-                                                                    {% for ct in course_type %}
-                                                                        <option value="{{ct.id}}">{{ct.Course}}</option>
+                                                                    {% for ct in course_types %}
+                                                                        <option value="{{ct.id}}">{{ct}}</option>
                                                                     {% endfor %}
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                                <label for="country">Course Stream</label>
+                                                                <select class="form-control" name="course_stream">
+                                                                    <option>Choose</option>
+                                                                    {% for cs in course_streams %}
+                                                                        <option value="{{cs.id}}">{{cs}}</option>
+                                                                    {% endfor %}
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="phone">Phone</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here" value="+1 (000) 125-45854">
+                                                                <label for="start_date">Start Date</label>
+                                                                <input type="date" class="form-control mb-4" name="start_date" placeholder="" value="01-01-2022">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -1618,7 +1623,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

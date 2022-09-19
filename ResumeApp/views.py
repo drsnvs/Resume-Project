@@ -5,6 +5,8 @@ from django.db.utils import IntegrityError
 data= {
     'gender_choices':list(),
     'university_boards':UniversityBoard.objects.all(),
+    'course_streams':CourseStream.objects.all(),
+    'course_types':CourseType.objects.all(),
 }
 
 for gc in gender_choices:
@@ -102,11 +104,15 @@ def add_education(request):
         Email = request.session['email'],
     )
     profile = Profile.objects.get(Master=master)
-
     uni_board = UniversityBoard.objects.get(id=int(request.POST["university_board"]))
+    cou_stream = CourseStream.objects.get(id=int(request.POST["course_stream"]))
+    cou_type = CourseType.objects.get(id=int(request.POST["course_type"]))
+
     Education.objects.get(
         Profile=profile,
         UniversityBoard=uni_board,
+        CourseStream=cou_stream,
+        CourseType=cou_type,
     )
 
     return redirect(profile_page)
@@ -118,25 +124,26 @@ def load_education_data(request):
     
     profile = Profile.objects.get(Master = master)
     education = Education.objects.get(Master = master)
-
+    coursestream = CourseStream.objects.get(Master = master)
+    CourseType = CourseType.objects.get(Master = master)
     data['education_data'] = education
 
 
 
 # Add Course Stream
-def add_course_stream(request):
-    master = Master.objects.get(
-        Email = request.session['email'],
-    )
-    profile = Profile.objects.get(Master=master)
-    education = Education.objects.get(Master = master)
-    coursestream = CourseStream.objects.get(id=int(request.POST["course_stream"]))
-    CourseStream.objects.get(
-        Profile=profile,
-        Education = education,
-        CourseStream = coursestream,
-    )
-    return redirect(profile_page)
+# def add_course_stream(request):
+#     master = Master.objects.get(
+#         Email = request.session['email'],
+#     )
+#     profile = Profile.objects.get(Master=master)
+#     education = Education.objects.get(Master = master)
+#     coursestream = CourseStream.objects.get(id=int(request.POST["course_stream"]))
+#     CourseStream.objects.get(
+#         Profile=profile,
+#         Education = education,
+#         CourseStream = coursestream,
+#     )
+#     return redirect(profile_page)
 # load course stream
 def load_course_stream(request):
     master = Master.objects.get(
@@ -148,21 +155,21 @@ def load_course_stream(request):
     data['course_stream'] = coursestream
 
 
-def add_course_type(request):
-    master = Master.objects.get(
-        Email = request.session['email'],
-    )
-    profile = Profile.objects.get(Master=master)
-    education = Education.objects.get(Master = master)
-    coursestream = CourseStream.objects.get(Master = master)
-    coursetype = CourseType.objects.get(id=int(request.POST["course_type"]))
-    CourseType.objects.get(
-        Profile=profile,
-        Education = education,
-        CourseType = coursetype,
-        CourseStream = coursestream,
-    )
-    return redirect(profile_page)
+# def add_course_type(request):
+#     master = Master.objects.get(
+#         Email = request.session['email'],
+#     )
+#     profile = Profile.objects.get(Master=master)
+#     education = Education.objects.get(Master = master)
+#     coursestream = CourseStream.objects.get(Master = master)
+#     coursetype = CourseType.objects.get(id=int(request.POST["course_type"]))
+#     CourseType.objects.get(
+#         Profile=profile,
+#         Education = education,
+#         CourseType = coursetype,
+#         CourseStream = coursestream,
+#     )
+#     return redirect(profile_page)
 # load course stream
 def load_course_type(request):
     master = Master.objects.get(
