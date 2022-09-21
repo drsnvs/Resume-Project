@@ -10,4 +10,5 @@ urlpatterns = [
     path("forget_password_page/",forget_password_page,name='forget_password_page'),
     path("logout/",logout,name='logout'),
     path("profile_update/",profile_update,name='profile_update'),
+    path("otp_page/",verify_otp,name='otp_page'),
 ]

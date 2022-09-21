@@ -1,6 +1,10 @@
+from email import message
 from django.shortcuts import render,redirect
 from .models import *
 from django.db.utils import IntegrityError
+from django.core.mail import send_mail
+from random import randint
+from django.conf import settings
 
 data= {
     'gender_choices':list(),
@@ -48,18 +52,23 @@ def load_profile_data(request):
 
 # Regiter View
 def register(request):
-    try: 
-        master = Master.objects.create(
-            Email = request.POST['email'],
-            Password = request.POST['password'],
-        )
-        Profile.objects.create(
-            Master = master,
-        )
-    except IntegrityError as err:
-        print("err")
-        print("Email Already Exists")
-    return redirect(login_page)
+    # try: 
+        # master = Master.objects.create(
+        #     Email = request.POST['email'],
+        #     Password = request.POST['password'],
+        # )
+        # Profile.objects.create(
+        #     Master = master,
+        # )
+    request.session['reg_data'] = {
+        'email' : request.POST['email'],
+        'password' : request.POST['password'],
+    }
+    return redirect(otp_page)
+    # except IntegrityError as err:
+    #     print("err")
+    #     print("Email Already Exists")
+    # return redirect(login_page)
 
 def login(request):
     try:
@@ -188,3 +197,79 @@ def logout(request):
         del request.session['email']
 
     return redirect(login_page)
+
+# OTP Create
+def otp(request):
+    otp_number = randint(1000,9999)
+    print("Otp is: ",otp_number)
+    request.session['otp'] = otp_number 
+
+# Send Otp
+def send_otp(request,otp_for="register"):
+    print(otp_for)
+    otp(request)
+
+    email_to_list = [request.session['email'],]
+
+    if otp_for == 'activate':
+        request.session['otp_for'] = 'activate'
+        subject = f'OTP for Resume Account Activation'
+
+    elif otp_for == 'recover_pwd':
+        request.session['otp_for'] = 'recover_pwd'
+        subject = f'OTP for Resume Password Recovery'
+
+    else:
+        request.session['otp_for'] = 'register'
+        subject = f'OTP for Resume Registration'
+
+    email_from = settings.EMAIL_HOST_USER
+
+    message = f"Your One Time Password for verification is: {request.session['otp']}"
+
+    send_mail('success','An OTP has sent to your Email.')
+
+# Verify OTP
+
+def verify_otp(request,verify_for = 'register'):
+    if request.session['otp'] == int(Email = request.session['email']):
+        if verify_for == 'activate':
+            master = Master.objects.get(Email=request.session['email'])
+            master.IsActive = True
+            master.save()
+
+            return redirect(profile_page)
+
+        elif verify_for == 'recover_pwd':
+            master = Master.objects.get(Email=request.session['email'])
+            master.password = request.session['password']
+            master.save()
+
+        else:
+            master = Master.objects.create(
+            Email = request.POST['email'],
+            Password = request.POST['password'],
+            IsActive = True
+            )
+            Profile.objects.create(
+                Master = master,
+            )
+
+        print("Verified")
+        alert('success','An OTP verified.')
+
+    else:
+        print("Invalid Otp")
+        alert('danger','Invalid OTP')
+
+        return redirect(otp_page)
+
+    return redirect(login_page)
+
+# alert System
+def alert(type,text):
+    data['alert'] = {
+        'type':type,
+        'tetx':text
+    }
+    print('alert called.')
