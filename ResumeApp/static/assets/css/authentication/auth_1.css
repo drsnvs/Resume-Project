@@ -4,6 +4,7 @@
     background-image: url(../../img/auth_1_bg.jpg);
     background-size: cover;
 }
+
 .login-one-container{
     height: 100%;
 }
@@ -246,7 +247,7 @@ a.google-btn {
     }
 }
 /* Signup css starts */
-.signup_page{
+.signup_page,.otp_page{
     color: #888ea8;
     height: 100vh;
     background-image: url(../../img/auth_1_bg_2.jpg);

@@ -27,6 +27,10 @@ def signup_page(request):
     data['current_page']='signup_page'
     return render(request,"signup_page.html",data)
 
+def otp_page(request):
+    data['current_page']='otp_page'
+    return render(request,"otp_page.html",data)
+
 def profile_page(request):
     if 'email' not in request.session:
         return redirect(login_page)
@@ -64,6 +68,9 @@ def register(request):
         'email' : request.POST['email'],
         'password' : request.POST['password'],
     }
+
+    send_otp(request,otp_for="register")
+
     return redirect(otp_page)
     # except IntegrityError as err:
     #     print("err")
