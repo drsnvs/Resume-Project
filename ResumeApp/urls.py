@@ -11,5 +11,5 @@ urlpatterns = [
     path("logout/",logout,name='logout'),
     path("profile_update/",profile_update,name='profile_update'),
     path("otp_page/",otp_page,name='otp_page'),
-    path("verify_otp/",verify_otp,name='verify_otp'),
+    path("verify_otp/<str:verify_for>",verify_otp,name='verify_otp'),
 ]

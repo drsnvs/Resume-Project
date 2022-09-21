@@ -91,7 +91,9 @@ def login(request):
     except Master.DoesNotExist as err:
         print(err)
 
-    return redirect(login_page)
+    # return redirect(login_page)
+    return redirect(verify_otp)
+
 
 # profile update view
 def profile_update(request):
