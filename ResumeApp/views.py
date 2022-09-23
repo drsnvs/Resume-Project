@@ -85,7 +85,7 @@ def login(request):
         if master.IsActive:
             if master.Password == request.POST['password']:
                 request.session['email']=request.POST['email']
-                load_profile_data(request)
+                # load_profile_data(request)
                 return redirect(profile_page)
             else :
                 print("Incorrect Password")
@@ -230,7 +230,7 @@ def send_otp(request,otp_for="register"):
     print(otp_for)
     otp(request)
 
-    email_to_list = [request.session['email'],]
+    email_to_list = [request.session['reg_data']['email'],]
 
     if otp_for == 'activate':
         request.session['otp_for'] = 'activate'
@@ -248,14 +248,17 @@ def send_otp(request,otp_for="register"):
 
     message = f"Your One Time Password for verification is: {request.session['otp']}"
 
-    send_mail('success','An OTP has sent to your Email.')
+    send_mail('success','An OTP has sent to your Email.',email_to_list)
+
+    alert('success', 'An OTP has sent to your email.')
 
 # Verify OTP
 
-def verify_otp(request,verify_for="register"):
-    if request.session['otp'] == int(Email = request.session['email']):
+def verify_otp(request, verify_for="register"):
+    if request.session['otp'] == int(request.POST['otp']):
         if verify_for == 'activate':
-            master = Master.objects.get(Email=request.session['email'])
+            master = Master.objects.get(Email=request.session['reg_data']['email'])
+            master.Password = request.session['reg_data']['password']
             master.IsActive = True
             master.save()
 
@@ -268,9 +271,9 @@ def verify_otp(request,verify_for="register"):
 
         else:
             master = Master.objects.create(
-            Email = request.POST['email'],
-            Password = request.POST['password'],
-            IsActive = True
+                Email = request.POST['reg_data']['email'],
+                Password = request.POST['reg_data']['password'],
+                IsActive = True
             )
             Profile.objects.create(
                 Master = master,
@@ -284,7 +287,7 @@ def verify_otp(request,verify_for="register"):
         alert('danger','Invalid OTP')
 
         return redirect(otp_page)
-
+    del request.session['reg_data']
     return redirect(login_page)
 
 # alert System
