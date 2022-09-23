@@ -69,7 +69,7 @@ def register(request):
         'password' : request.POST['password'],
     }
 
-    send_otp(request,otp_for="register")
+    send_otp(request)
 
     return redirect(otp_page)
     # except IntegrityError as err:
@@ -82,17 +82,29 @@ def login(request):
         master = Master.objects.get(
             Email = request.POST['email'],
         )
-        if master.Password == request.POST['password']:
-            request.session['email']=request.POST['email']
-            load_profile_data(request)
-            return redirect(profile_page)
-        else :
-            print("Incorrect Password")
+        if master.IsActive:
+            if master.Password == request.POST['password']:
+                request.session['email']=request.POST['email']
+                load_profile_data(request)
+                return redirect(profile_page)
+            else :
+                print("Incorrect Password")
+        else:
+            print("Sorry,Your account is deactivated.Active First")
+            request.session['reg_data'] = {
+                'email': request.POST['email'],
+                'password': request.POST['password'],
+            }
+
+            send_otp(request, otp_for="activate")
+
+            return redirect(otp_page)
+
     except Master.DoesNotExist as err:
         print(err)
 
     # return redirect(login_page)
-    return redirect(verify_otp)
+    return redirect(login_page)
 
 
 # profile update view
@@ -240,7 +252,7 @@ def send_otp(request,otp_for="register"):
 
 # Verify OTP
 
-def verify_otp(request,verify_for = 'register'):
+def verify_otp(request,verify_for="register"):
     if request.session['otp'] == int(Email = request.session['email']):
         if verify_for == 'activate':
             master = Master.objects.get(Email=request.session['email'])

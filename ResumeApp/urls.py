@@ -7,9 +7,9 @@ urlpatterns = [
     path("profile_page/",profile_page,name='profile_page'),
     path("register/",register,name='register'),
     path("login/",login,name='login'),
+    path('verify_otp/<str:verify_for>/', verify_otp, name='verify_otp'),
     path("forget_password_page/",forget_password_page,name='forget_password_page'),
     path("logout/",logout,name='logout'),
     path("profile_update/",profile_update,name='profile_update'),
     path("otp_page/",otp_page,name='otp_page'),
-    path("verify_otp/<str:verify_for>",verify_otp,name='verify_otp'),
 ]
