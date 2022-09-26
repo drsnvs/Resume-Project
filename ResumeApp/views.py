@@ -227,7 +227,7 @@ def otp(request):
 
 # Send Otp
 def send_otp(request,otp_for="register"):
-    print(otp_for)
+    print("otp for",otp_for)
     otp(request)
 
     email_to_list = [request.session['reg_data']['email'],]
@@ -248,7 +248,7 @@ def send_otp(request,otp_for="register"):
 
     message = f"Your One Time Password for verification is: {request.session['otp']}"
 
-    send_mail('success','An OTP has sent to your Email.',email_to_list)
+    send_mail(subject, message, email_from, email_to_list)
 
     alert('success', 'An OTP has sent to your email.')
 
