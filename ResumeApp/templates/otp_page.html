@@ -6,7 +6,7 @@
         <div class="p-30 h-100">
             <div class="row main-login-one h-100">
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 p-0">
-                    <form class="login-one-start needs-validation" method="post" action="{% url 'verify_otp' verify_for=request.session.otp_for %}" novalidate>
+                    <form class="login-one-start needs-validation" method="post" action="{% url 'verify_otp' 'verify_for=request.session.otp_for' %}" novalidate>
                         {% csrf_token %}
                         <h6 class="mt-2 text-primary text-center font-20">OTP Verificationp</h6>
                         <p class="text-center text-muted mt-3 mb-3 font-14">Fill up to verify OTP.</p>
@@ -15,7 +15,7 @@
                             
                             <div class="d-flex align-items-center justify-content-center mt-3">
                                 <div class="login-one-inputs">
-                                    <input type="password" id="txtInputCaptcha" placeholder="Enter Captcha"/>  
+                                    <input type="password" id="txtInputCaptcha" name="otp" placeholder="Enter Captcha"/>  
                                     <i class="las la-robot"></i>
                                 </div>  
                                 

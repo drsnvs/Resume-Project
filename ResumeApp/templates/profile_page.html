@@ -4,6 +4,7 @@
 
 {% block css %}
 <link href="{% static 'assets/css/pages/profile.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/forms/switch-theme.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block main_containt %}
@@ -1569,11 +1570,12 @@
                                         <div class="profile-shadow w-100">
                                             <h6 class="font-15 mb-3">Education</h6>
                                             <div class="row">
-                                                <form class="col-md-12" action="#" method="post">
+                                                <form class="col-md-12" action="{% url 'add_education' %}" method="post">
+                                                    {% csrf_token %}
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="country">University/Board Name</label>
+                                                                <label for="country">University/Board</label>
                                                                 <select class="form-control" name="university_board">
                                                                     <option>Choose</option>
                                                                     {% for ub in university_boards %}
@@ -1584,19 +1586,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="country">Course Type</label>
-                                                                <select class="form-control" name="course_type">
-                                                                    <option>Choose</option>
-                                                                    {% for ct in course_types %}
-                                                                        <option value="{{ct.id}}">{{ct}}</option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
                                                                 <label for="country">Course Stream</label>
-                                                                <select class="form-control" name="course_stream">
+                                                                <select class="form-control" name="course_type">
                                                                     <option>Choose</option>
                                                                     {% for cs in course_streams %}
                                                                         <option value="{{cs.id}}">{{cs}}</option>
@@ -1604,23 +1595,59 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="start_date">Start Date</label>
-                                                                <input type="date" class="form-control mb-4" name="start_date" placeholder="" value="01-01-2022">
+                                                                <input type="date" class="form-control mb-4" id="start_date" placeholder="" value="01-01-2022">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="end_date">End Date</label>
-                                                                <input type="date" class="form-control mb-4" name="end_date" placeholder="" value="01-01-2022">
+                                                                <input type="date" id="end_date" name="end_date" class="form-control ">
+                                                                <span class="form-text text-muted">Turn off if pursues.</span>
+                                                                <div class="custom-switch-1 row">
+                                                                    <div class="d-flex align-items-center col-12">
+                                                                        <label class="col-form-label mr-2" for="is_continue">Is Continue?</label>
+                                                                        <label class="switch">
+                                                                            <input type="checkbox" id="is_continue" name="is_continue">
+                                                                            <div>
+                                                                                <span></span>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                            
                                                         </div>                                    
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="website1">Website</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here" value="www.demowebsite.com">
+                                                                <label for="score">Score</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" id="score" class="form-control" name="score" min="1" max="10" placeholder="1-100 or 1-10">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">%</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span class="form-text text-muted">Turn off if CGPA.</span>
+                                                                
+                                                                <div class="custom-switch-1 row">
+                                                                    <div class="d-flex align-items-center col-12">
+                                                                        <label class="col-form-label mr-2" for="is_cgpa">Is CGPA?</label>
+                                                                        <label class="switch">
+                                                                            <input type="checkbox" id="is_cgpa" name="is_cgpa">
+                                                                            <div>
+                                                                                <span></span>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 text-center">
+                                                            <input type="submit" class="btn btn-primary" value="Add" />
                                                         </div>
                                                     </div>
                                                 </form>

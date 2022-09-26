@@ -1,3 +1,4 @@
+from datetime import datetime
 from email import message
 from django.shortcuts import render,redirect
 from .models import *
@@ -129,20 +130,45 @@ def profile_update(request):
 
 
 # Unversity board add education
+# def add_education(request):
+#     master = Master.objects.get(
+#         Email = request.session['email'],
+#     )
+#     profile = Profile.objects.get(Master=master)
+#     uni_board = UniversityBoard.objects.get(id=int(request.POST["university_board"]))
+#     cou_stream = CourseStream.objects.get(id=int(request.POST["course_stream"]))
+#     cou_type = CourseType.objects.get(id=int(request.POST["course_type"]))
+
+#     Education.objects.get(
+#         Profile=profile,
+#         UniversityBoard=uni_board,
+#         CourseStream=cou_stream,
+#         CourseType=cou_type,
+#     )
+
+#     return redirect(profile_page)
+
+# Add Education
 def add_education(request):
+    print(request.POST)
     master = Master.objects.get(
         Email = request.session['email'],
     )
-    profile = Profile.objects.get(Master=master)
-    uni_board = UniversityBoard.objects.get(id=int(request.POST["university_board"]))
-    cou_stream = CourseStream.objects.get(id=int(request.POST["course_stream"]))
-    cou_type = CourseType.objects.get(id=int(request.POST["course_type"]))
 
-    Education.objects.get(
-        Profile=profile,
-        UniversityBoard=uni_board,
-        CourseStream=cou_stream,
-        CourseType=cou_type,
+    profile = Profile.objects.get(Master = master)
+
+    uni_board = UniversityBoard.objects.get(id=int(request.POST['university_board']))
+    crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
+
+    Education.objects.create(
+        Profile = profile,
+        UniversityBoard = uni_board,
+        CourseStream = crs_stream,
+        StartDate = request.POST['start_date'],
+        EndDate = datetime.now() if 'is_continue' in request.POST else request.POST['end_date'],
+        IsContinue = True if 'is_continue' in request.POST else False,
+        Score = int(request.POST['score']),
+        IsCGPA = True if 'is_cgpa' in request.POST else False,
     )
 
     return redirect(profile_page)
@@ -227,7 +253,7 @@ def otp(request):
 
 # Send Otp
 def send_otp(request,otp_for="register"):
-    print("otp for",otp_for)
+    print("otp for:",otp_for)
     otp(request)
 
     email_to_list = [request.session['reg_data']['email'],]
