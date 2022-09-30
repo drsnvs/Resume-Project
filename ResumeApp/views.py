@@ -283,7 +283,7 @@ def send_otp(request,otp_for="register"):
 def verify_otp(request, verify_for="register"):
     if request.session['otp'] == int(request.POST['otp']):
         if verify_for == 'activate':
-            master = Master.objects.get(Email=request.session['reg_data']['email'])
+            master = Master.objects.get(Email=request.session['email'])
             master.Password = request.session['reg_data']['password']
             master.IsActive = True
             master.save()
@@ -291,14 +291,14 @@ def verify_otp(request, verify_for="register"):
             return redirect(profile_page)
 
         elif verify_for == 'recover_pwd':
-            master = Master.objects.get(Email=request.session['email'])
+            master = Master.objects.get(Email=request.session['reg_data']['email'])
             master.password = request.session['password']
             master.save()
 
         else:
             master = Master.objects.create(
-                Email = request.POST['reg_data']['email'],
-                Password = request.POST['reg_data']['password'],
+                Email = request.session['reg_data']['email'],
+                Password = request.session['reg_data']['password'],
                 IsActive = True
             )
             Profile.objects.create(
