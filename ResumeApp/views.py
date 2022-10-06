@@ -161,7 +161,7 @@ def add_education(request):
     crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
 
     Education.objects.create(
-        Profile = profile,
+        Profile = profile, 
         UniversityBoard = uni_board,
         CourseStream = crs_stream,
         StartDate = request.POST['start_date'],
