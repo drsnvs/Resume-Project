@@ -172,6 +172,13 @@ def add_education(request):
     )
 
     return redirect(profile_page)
+
+# delete education
+def delete_education(request, pk):
+    Education.objects.get(pk=pk)
+    return redirect(profile_page)
+
+    
 # Load Education Data
 def load_education_data(request):
     master = Master.objects.get(
