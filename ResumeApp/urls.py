@@ -14,4 +14,5 @@ urlpatterns = [
     path("otp_page/",otp_page,name='otp_page'),
     path("add_education/",add_education,name='add_education'),
     path("delete_education/<int:pk>/",delete_education,name='delete_education'),
+    path("add_experience/",add_experience,name='add_experience'),
 ]

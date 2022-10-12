@@ -11,6 +11,7 @@ data= {
     'university_boards':UniversityBoard.objects.all(),
     'course_streams':CourseStream.objects.all(),
     'course_types':CourseType.objects.all(),
+    # 'education_lists':Education.objects.all(),
 }
 
 for gc in gender_choices:
@@ -36,7 +37,8 @@ def profile_page(request):
         return redirect(login_page)
     data['current_page']='profile_page'
     load_profile_data(request)
-    # load_education_data(request)
+    load_education_data(request)
+    load_experience_data(request)
     return render(request,"profile_page.html",data)
 
 def forget_password_page(request):
@@ -156,7 +158,7 @@ def add_education(request):
 
     profile = Profile.objects.get(Master = master)
 
-    uni_board = UniversityBoard.objects.get(id=int(request.POST['university_board']))
+    uni_board = UniversityBoard.objects.get(id=int(request.POST['uni_board']))
     crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
 
     Education.objects.create(
@@ -184,13 +186,40 @@ def load_education_data(request):
         Email = request.session['email'],
     )
     
+    # profile = Profile.objects.get(Master = master)
+    # education = Education.objects.get(Master = master)
+    # coursestream = CourseStream.objects.get(Master = master)
+    # CourseType = CourseType.objects.get(Master = master)
+    # data['education_data'] = education
     profile = Profile.objects.get(Master = master)
-    education = Education.objects.get(Master = master)
-    coursestream = CourseStream.objects.get(Master = master)
-    CourseType = CourseType.objects.get(Master = master)
-    data['education_data'] = education
+    education = Education.objects.filter(Profile = profile)
 
+    data['education_list'] = education
 
+def add_experience(request):
+    master=Master.objects.get(
+        Email=request.session['email'],
+    )
+
+    profile = Profile.objects.get(Master = master)
+
+    Experience.objects.create(
+        Profile=profile,
+        CompanyName = request.POST['company_name'],
+        Designation = request.POST['designation'],
+        StartDate = request.POST['ex_start_date'],
+        EndDate = datetime.now() if 'ex_is_continue' in request.POST else request.POST['ex_end_date'],
+    )
+    return redirect(profile_page)
+
+def load_experience_data(request):
+    master=Master.objects.get(
+        Email=request.session['email']
+    )
+
+    profile = Profile.objects.get(Master = master)
+    experience = Experience.objects.filter(Profile = profile)
+    data['experience_list'] = experience
 
 # Add Course Stream
 # def add_course_stream(request):

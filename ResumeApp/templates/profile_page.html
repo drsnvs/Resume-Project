@@ -5,6 +5,7 @@
 {% block css %}
 <link href="{% static 'assets/css/pages/profile.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/forms/switch-theme.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block main_containt %}
@@ -1114,8 +1115,8 @@
                     <div class="cover-image-area">
                         <img src="{% static 'assets/img/1.jpg' %}" class="cover-img"/>
                     </div>
-                    <div class="row tab-area-content">
-                        <div class="col-xl-7 col-lg-12 col-md-12 mb-4">
+                    <div class="tab-area-content">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
                             <div class="tab-content" id="v-border-pills-tabContent">
                                 <div class="tab-pane fade show active" id="v-border-pills-home" role="tabpanel" aria-labelledby="v-border-pills-home-tab">
                                     <div class="profile-shadow">
@@ -1415,8 +1416,9 @@
                                             <h6 class="font-15 mb-3">Experience</h6>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
+                                                    <form class="row" method="post" action="{% url 'add_experience' %}">
+                                                        {% csrf_token %}
+                                                        <!-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="country">Country</label>
                                                                 <select class="form-control">
@@ -1432,39 +1434,88 @@
                                                                     <option>Russia</option>
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
+                                                        </div> -->
+                                                        <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="" >
+                                                                <label for="">Company Name</label>
+                                                                <input type="text"  name="company_name" class="form-control mb-4" placeholder="Like Infoysy,TCS" value="" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="">Designation</label>
+                                                                <input type="text" name ="designation" class="form-control mb-4" placeholder="Address" value="" >
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                                <label for="ex_start_date">Start Date</label>
+                                                                <input type="date" class="form-control mb-4" id="ex_start_date" name="ex_start_date">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="phone">Phone</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here" value="+1 (000) 125-45854">
+                                                                <label for="ex_end_date">End Date</label>
+                                                                <input type="date" id="ex_end_date" name="ex_end_date" class="form-control ">
+                                                                <span class="form-text text-muted">Turn off if pursues.</span>
+                                                                <div class="custom-switch-1 row">
+                                                                    <div class="d-flex align-items-center col-12">
+                                                                        <label class="col-form-label mr-2" for="ex_is_continue">Is Continue?</label>
+                                                                        <label class="switch">
+                                                                            <input type="checkbox" id="ex_is_continue" name="ex_is_continue">
+                                                                            <div>
+                                                                                <span></span>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="col-sm-12 text-center">
+                                                                <input type="submit" class="btn btn-primary" value="Add" />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here" value="sara@gmail.com">
-                                                            </div>
-                                                        </div>                                    
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="website1">Website</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here" value="www.demowebsite.com">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <h5>Recent Experiences</h5>
+                                            <!-- <div class="widget widget-six bg-light-danger p-4 mb-4 mt-4">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="col-md-9 p-0">
+                                                       <p class="text-danger">{% for education in education_lists %}</p>
+                                                       <h2 class="text-danger"> ${{education.UniversityBoard}}</h2> 
+                                                       <h6 class="text-danger mb-0"> {% endfor %}</h6> 
+                                                       <p class="text-danger mb-0"> Payment for next week </p>
+                                                    </div> 
+                                                    <div class="col-md-3 chart-icon text-right p-0">
+                                                        <i class="las la-coins font-45 text-danger"></i>
+                                                    </div>
+                                                 </div>
+                                            </div> -->
+                                            <div class="experience-list scroller p-2 pt-0 pb-0 mt-0">
+                                                {% for experience in experience_list %}
+                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="col-md-9 p-0">
+                                                           <p class="text-danger text-uppercase">{{experience.CompanyName}}</p>
+                                                           
+                                                           <p class="text-danger mb-0">{{experience.StartDate}}-{% if not experience.IsContinue %}{{experience.EndDate}}{% else %}Present{% endif %}</p>
+                                                        </div> 
+                                                        <div class="col-md-3 chart-icon text-right p-0 education-control">
+                                                            <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
+                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
+                                                                    title="" data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2 mr-2"
+                                                                    title="" data-original-title="Delete"><i class="las la-trash"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
@@ -1565,96 +1616,189 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="v-border-pills-education" role="tabpanel" aria-labelledby="v-border-pills-education-tab">
-                                    <div class="media">
-                                        <div class="profile-shadow w-100">
-                                            <h6 class="font-15 mb-3">Education</h6>
-                                            <div class="row">
-                                                <form class="col-md-12" action="{% url 'add_education' %}" method="post">
-                                                    {% csrf_token %}
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="country">University/Board</label>
-                                                                <select class="form-control" name="university_board">
-                                                                    <option>Choose</option>
-                                                                    {% for ub in university_boards %}
+                                <div class="tab-pane fade show active" id="v-border-pills-education" role="tabpanel" aria-labelledby="v-border-pills-education-tab">
+                                    <div class="row">
+                                        <div class="media col-7">
+                                            <div class="profile-shadow w-100">
+                                                <h6 class="font-15 mb-3">Education</h6>
+                                                <div class="row">
+                                                    <form class="col-md-12" action="{% url 'add_education' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="country">University/Board</label>
+                                                                    <select class="form-control" name="uni_board">
+                                                                        <option>Choose</option>
+                                                                        {% for ub in university_boards %}
                                                                         <option value="{{ub.id}}">{{ub.UniversityBoardName}}</option>
-                                                                    {% endfor %}
-                                                                </select>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="country">Course/Stream</label>
-                                                                <select class="form-control" name="course_stream">
-                                                                    <option>Choose</option>
-                                                                    {% for cs in course_streams %}
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="country">Course/Stream</label>
+                                                                    <select class="form-control" name="course_stream">
+                                                                        <option>Choose</option>
+                                                                        {% for cs in course_streams %}
                                                                         <option value="{{cs.id}}">{{cs}}</option>
-                                                                    {% endfor %}
-                                                                </select>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="start_date">Start Date</label>
-                                                                <input type="date" class="form-control mb-4" id="start_date" name="start_date" >
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="start_date">Start Date</label>
+                                                                    <input type="date" class="form-control mb-4" id="start_date" name="start_date">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="end_date">End Date</label>
-                                                                <input type="date" id="end_date" name="end_date" class="form-control ">
-                                                                <span class="form-text text-muted">Turn off if pursues.</span>
-                                                                <div class="custom-switch-1 row">
-                                                                    <div class="d-flex align-items-center col-12">
-                                                                        <label class="col-form-label mr-2" for="is_continue">Is Continue?</label>
-                                                                        <label class="switch">
-                                                                            <input type="checkbox" id="is_continue" name="is_continue">
-                                                                            <div>
-                                                                                <span></span>
-                                                                            </div>
-                                                                        </label>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="end_date">End Date</label>
+                                                                    <input type="date" id="end_date" name="end_date" class="form-control ">
+                                                                    <span class="form-text text-muted">Turn off if pursues.</span>
+                                                                    <div class="custom-switch-1 row">
+                                                                        <div class="d-flex align-items-center col-12">
+                                                                            <label class="col-form-label mr-2" for="is_continue">Is Continue?</label>
+                                                                            <label class="switch">
+                                                                                <input type="checkbox" id="is_continue" name="is_continue">
+                                                                                <div>
+                                                                                    <span></span>
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                    
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="score">Score</label>
+                                                                    <div class="input-group">
+                                                                        <input type="number" id="score" class="form-control" name="score" min="1" max="10"
+                                                                            placeholder="1-100 or 1-10">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text">%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="form-text text-muted">Turn off if CGPA.</span>
+                                    
+                                                                    <div class="custom-switch-1 row">
+                                                                        <div class="d-flex align-items-center col-12">
+                                                                            <label class="col-form-label mr-2" for="is_cgpa">Is CGPA?</label>
+                                                                            <label class="switch">
+                                                                                <input type="checkbox" id="is_cgpa" name="is_cgpa">
+                                                                                <div>
+                                                                                    <span></span>
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
-                                                        </div>                                    
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="score">Score</label>
-                                                                <div class="input-group">
-                                                                    <input type="number" id="score" class="form-control" name="score" min="1" max="10" placeholder="1-100 or 1-10">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">%</span>
-                                                                    </div>
-                                                                </div>
-                                                                <span class="form-text text-muted">Turn off if CGPA.</span>
-                                                                
-                                                                <div class="custom-switch-1 row">
-                                                                    <div class="d-flex align-items-center col-12">
-                                                                        <label class="col-form-label mr-2" for="is_cgpa">Is CGPA?</label>
-                                                                        <label class="switch">
-                                                                            <input type="checkbox" id="is_cgpa" name="is_cgpa">
-                                                                            <div>
-                                                                                <span></span>
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 text-center">
+                                                                <input type="submit" class="btn btn-primary" value="Add" />
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 text-center">
-                                                            <input type="submit" class="btn btn-primary" value="Add" />
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
+                                        <style>
+                                            .scroller {
+                                                height: calc(100vh - 380px);
+                                                overflow: hidden;
+                                                overflow-y: auto;
+                                                scrollbar-color: #4d3b86 rgba(0, 128, 0, 0);
+                                                scrollbar-width: thin;
+                                            }
+                                            .education-control {
+                                                transform: scale(0);
+                                                transition: all ease-in-out 0.2s;
+                                            }
+                                            .education-list .education-block:hover .education-control {
+                                                transform: scale(1);
+                                            }
+                                        </style>
+                                        <div class="col-5">
+                                            <h5>Recent Education</h5>
+                                            <!-- <div class="widget widget-six bg-light-danger p-4 mb-4 mt-4">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="col-md-9 p-0">
+                                                       <p class="text-danger">{% for education in education_lists %}</p>
+                                                       <h2 class="text-danger"> ${{education.UniversityBoard}}</h2> 
+                                                       <h6 class="text-danger mb-0"> {% endfor %}</h6> 
+                                                       <p class="text-danger mb-0"> Payment for next week </p>
+                                                    </div> 
+                                                    <div class="col-md-3 chart-icon text-right p-0">
+                                                        <i class="las la-coins font-45 text-danger"></i>
+                                                    </div>
+                                                 </div>
+                                            </div> -->
+                                            <div class="education-list scroller p-2 pt-0 pb-0 mt-0">
+                                                {% for education in education_list %}
+                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="col-md-9 p-0">
+                                                           <p class="text-danger text-uppercase">{{education.CourseStream}}</p>
+                                                           {% if not education.IsContinue %}
+                                                           <h2 class="text-danger">{{education.Score}}{% if education.IsCGPA %} CGPA{% else %}%{% endif %}</h2> 
+                                                           {% else %}
+                                                           <h2 class="text-danger">Running</h2>
+                                                           {% endif %}
+                                                           <h6 class="text-danger mb-0 text-uppercase">{{education.UniversityBoard}}</h6> 
+                                                           <p class="text-danger mb-0">{{education.StartDate}}-{% if not education.IsContinue %}{{education.EndDate}}{% else %}Present{% endif %}</p>
+                                                        </div> 
+                                                        <div class="col-md-3 chart-icon text-right p-0 education-control">
+                                                            <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
+                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
+                                                                    title="" data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
+                                                                    title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-1">
+                                            <h5>Recent Education</h5>
+                                            <div class="education-list scroller p-2 pt-0 pb-0 mt-0">
+                                                <p>{{education_list}}</p>
+                                                {% for education in education_list %}
+                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="col-md-9 p-0">
+                                                           <p class="text-danger text-uppercase">{{education.CourseStream}}</p>
+                                                           {% if not education.IsContinue %}
+                                                           <h2 class="text-danger">{{education.Score}}{% if education.IsCGPA %} CGPA{% else %}%{% endif %}</h2> 
+                                                           {% else %}
+                                                           <h2 class="text-danger">Running</h2>
+                                                           {% endif %}
+                                                           <h6 class="text-danger mb-0 text-uppercase">{{education.UniversityBoard}}</h6> 
+                                                           <p class="text-danger mb-0">{{education.StartDate}}-{% if not education.IsContinue %}{{education.EndDate}}{% else %}Present{% endif %}</p>
+                                                        </div> 
+                                                        <div class="col-md-3 chart-icon text-right p-0 education-control">
+                                                            <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
+                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
+                                                                    title="" data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
+                                                                    title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                     </div>
+                                                     
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
+                                
                                 <div class="tab-pane fade" id="v-border-pills-references" role="tabpanel"
                                     aria-labelledby="v-border-pills-references-tab">
                                     <div class="media">
@@ -2002,7 +2146,7 @@
                                 </div>
                               </div>
                         </div>
-                        <div class="col-xl-5 col-lg-12 col-md-12">
+                        <!-- <div class="col-xl-5 col-lg-12 col-md-12">
                             <div class="profile-info">
                                 <h5>General Information</h5>
                                 <div class="single-profile-info">
@@ -2037,7 +2181,7 @@
                                     <a href="https://www.github.com/" target="_blank"><i class="lab la-github text-black"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
