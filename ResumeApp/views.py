@@ -196,6 +196,19 @@ def load_education_data(request):
 
     data['education_list'] = education
 
+# edit pages
+def edit_education(request):
+    master = Master.objects.get(
+        Email = request.session['email']
+    )
+    profile = Profile.objects.get(Master=master)
+    education = Education.objects.get(Profile=profile)
+    education.UniversityBoard = request.POST['uni_board']
+    education.CourseStream = request.POST['course_stream']
+    education.StartDate = request.POST['start_date']
+    education.EndDate = request.POST['end_date']
+    return redirect(profile_page)
+
 def add_experience(request):
     master=Master.objects.get(
         Email=request.session['email'],
@@ -221,6 +234,7 @@ def load_experience_data(request):
     profile = Profile.objects.get(Master = master)
     experience = Experience.objects.filter(Profile = profile)
     data['experience_list'] = experience
+
 
 # Add Course Stream
 # def add_course_stream(request):

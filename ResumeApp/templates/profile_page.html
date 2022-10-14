@@ -1481,6 +1481,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <style>
+                                        .scroller {
+                                            height: calc(100vh - 380px);
+                                            overflow: hidden;
+                                            overflow-y: auto;
+                                            scrollbar-color: #4d3b86 rgba(0, 128, 0, 0);
+                                            scrollbar-width: thin;
+                                        }
+                                        .experience-control {
+                                            transform: scale(0);
+                                            transition: all ease-in-out 0.2s;
+                                        }
+                                        .experience-list .experience-block:hover .experience-control {
+                                            transform: scale(1);
+                                        }
+                                        </style>
                                         <div class="col-5">
                                             <h5>Recent Experiences</h5>
                                             {% csrf_token %}
@@ -1756,7 +1772,7 @@
                                                         </div> 
                                                         <div class="col-md-3 chart-icon text-right p-0 education-control">
                                                             <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
+                                                                <a href="{% url 'edit_education' %}" class="bs-tooltip font-20 text-primary"
                                                                     title="" data-original-title="Edit"><i class="las la-pen"></i></a>
                                                                 <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
                                                                     title="" data-original-title="Delete"><i class="las la-trash"></i></a>
