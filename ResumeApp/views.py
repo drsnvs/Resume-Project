@@ -202,12 +202,13 @@ def edit_education(request):
         Email = request.session['email']
     )
     profile = Profile.objects.get(Master=master)
+
     education = Education.objects.get(Profile=profile)
-    uni_board = UniversityBoard.objects.get(id=int(request.POST['uni_board']))
     crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
-    education.UniversityBoard = uni_board
+    uni_board = UniversityBoard.objects.get(id=int(request.POST['uni_board']))
+    education.UniversityBoard = request.POST['uni_board']
     education.CourseStream = crs_stream
-    education.StartDate = request.POST['start_date']
+    education.StartDate = uni_board
     education.EndDate = request.POST['end_date']
     return redirect(profile_page)
 
