@@ -197,19 +197,31 @@ def load_education_data(request):
     data['education_list'] = education
 
 # edit pages
-def edit_education(request):
+def edit_education(request, pk):
     master = Master.objects.get(
         Email = request.session['email']
     )
-    profile = Profile.objects.get(Master=master)
+    profile = Profile.objects.get(Master = master)
+    education = Education.objects.get(Profile = profile, pk=pk)
+    if request.POST:
+        
+        uni_board = UniversityBoard.objects.get(id=int(request.POST['uni_board']))
+        crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
+        education.UniversityBoard = uni_board
+        education.CourseStream = crs_stream
+        education.StartDate = request.POST['start_date']
+        education.EndDate = datetime.now() if 'is_continue' in request.POST else request.POST['end_date']
+        education.IsContinue = True if 'is_continue' in request.POST else False
+        education.Score = int(request.POST['score'])
+        education.IsCGPA = True if 'is_cgpa' in request.POST else False
+        education.save()
+    else:
+        education.StartDate = education.StartDate.strftime("%Y-%m-%d")
+        education.EndDate = education.EndDate.strftime("%Y-%m-%d")
+        education.edit_url = "edit_education"
 
-    education = Education.objects.get(Profile=profile)
-    crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
-    uni_board = UniversityBoard.objects.get(id=int(request.POST['uni_board']))
-    education.UniversityBoard = request.POST['uni_board']
-    education.CourseStream = crs_stream
-    education.StartDate = uni_board
-    education.EndDate = request.POST['end_date']
+        data['edit_education'] = education
+        
     return redirect(profile_page)
 
 def add_experience(request):
@@ -237,7 +249,17 @@ def load_experience_data(request):
     profile = Profile.objects.get(Master = master)
     experience = Experience.objects.filter(Profile = profile)
     data['experience_list'] = experience
+    
+def edit_experience(request):
+    master=Master.objects.get(
+        Email=request.session['email']
+    )
 
+    profile = Profile.objects.get(Master = master)
+    experience = Experience.objects.filter(Profile = profile)
+    data['experience_list'] = experience
+    experience.CompanyName = request.POST['company_name']
+    return redirect(profile_page)
 
 # Add Course Stream
 # def add_course_stream(request):

@@ -1525,7 +1525,7 @@
                                                         </div> 
                                                         <div class="col-md-3 chart-icon text-right p-0 experience-control">
                                                             <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="#" class="bs-tooltip font-20 text-primary"
+                                                                <a href="{% url 'edit_experience' %}" class="bs-tooltip font-20 text-primary"
                                                                     title="" data-original-title="Edit"><i class="las la-pen"></i></a>
                                                                 <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2 mr-2"
                                                                     title="" data-original-title="Delete"><i class="las la-trash"></i></a>
@@ -1640,7 +1640,7 @@
                                             <div class="profile-shadow w-100">
                                                 <h6 class="font-15 mb-3">Education</h6>
                                                 <div class="row">
-                                                    <form class="col-md-12" action="{% url 'add_education' %}" method="post">
+                                                    <form class="col-md-12" action="{% if edit_education %}{% url edit_education.edit_url pk=edit_education.id %}{% else %}{% url 'add_education' %}{% endif %}" method="post">
                                                         {% csrf_token %}
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -1649,7 +1649,7 @@
                                                                     <select class="form-control" name="uni_board">
                                                                         <option>Choose</option>
                                                                         {% for ub in university_boards %}
-                                                                        <option value="{{ub.id}}">{{ub.UniversityBoardName}}</option>
+                                                                        <option value="{{ub.id}}" {% if ub.id == edit_education.UniversityBoard.id %}selected{% endif %}>{{ub.UniversityBoardName}}</option>
                                                                         {% endfor %}
                                                                     </select>
                                                                 </div>
@@ -1660,7 +1660,7 @@
                                                                     <select class="form-control" name="course_stream">
                                                                         <option>Choose</option>
                                                                         {% for cs in course_streams %}
-                                                                        <option value="{{cs.id}}">{{cs}}</option>
+                                                                        <option value="{{cs.id}}" {% if cs.id == edit_education.CourseStream.id %}selected{% endif %}>{{cs}}</option>
                                                                         {% endfor %}
                                                                     </select>
                                                                 </div>
@@ -1668,7 +1668,7 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="start_date">Start Date</label>
-                                                                    <input type="date" class="form-control mb-4" id="start_date" name="start_date">
+                                                                    <input type="date" class="form-control mb-4" id="start_date" value="{% if edit_education %}{{edit_education.StartDate}}{% endif %}" name="start_date">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -1680,7 +1680,7 @@
                                                                         <div class="d-flex align-items-center col-12">
                                                                             <label class="col-form-label mr-2" for="is_continue">Is Continue?</label>
                                                                             <label class="switch">
-                                                                                <input type="checkbox" id="is_continue" name="is_continue">
+                                                                                <input type="checkbox" id="is_continue" name="is_continue" {% if edit_education.IsContinue %}checked{% endif %}>
                                                                                 <div>
                                                                                     <span></span>
                                                                                 </div>
@@ -1772,7 +1772,7 @@
                                                         </div> 
                                                         <div class="col-md-3 chart-icon text-right p-0 education-control">
                                                             <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="{% url 'edit_education' %}" class="bs-tooltip font-20 text-primary"
+                                                                <a href="{% url 'edit_education' pk=education.pk %}" class="bs-tooltip font-20 text-primary"
                                                                     title="" data-original-title="Edit"><i class="las la-pen"></i></a>
                                                                 <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
                                                                     title="" data-original-title="Delete"><i class="las la-trash"></i></a>
