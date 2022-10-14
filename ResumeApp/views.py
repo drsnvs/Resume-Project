@@ -11,7 +11,7 @@ data= {
     'university_boards':UniversityBoard.objects.all(),
     'course_streams':CourseStream.objects.all(),
     'course_types':CourseType.objects.all(),
-    # 'education_lists':Education.objects.all(),
+    'education_lists':Education.objects.all(),
 }
 
 for gc in gender_choices:
@@ -203,8 +203,10 @@ def edit_education(request):
     )
     profile = Profile.objects.get(Master=master)
     education = Education.objects.get(Profile=profile)
-    education.UniversityBoard = request.POST['uni_board']
-    education.CourseStream = request.POST['course_stream']
+    uni_board = UniversityBoard.objects.get(id=int(request.POST['uni_board']))
+    crs_stream = CourseStream.objects.get(id=int(request.POST['course_stream']))
+    education.UniversityBoard = uni_board
+    education.CourseStream = crs_stream
     education.StartDate = request.POST['start_date']
     education.EndDate = request.POST['end_date']
     return redirect(profile_page)
