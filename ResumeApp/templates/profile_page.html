@@ -1483,6 +1483,7 @@
                                         </div>
                                         <div class="col-5">
                                             <h5>Recent Experiences</h5>
+                                            {% csrf_token %}
                                             <!-- <div class="widget widget-six bg-light-danger p-4 mb-4 mt-4">
                                                 <div class="d-flex align-items-center">
                                                     <div class="col-md-9 p-0">
@@ -1498,16 +1499,16 @@
                                             </div> -->
                                             <div class="experience-list scroller p-2 pt-0 pb-0 mt-0">
                                                 {% for experience in experience_list %}
-                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
+                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 experience-block">
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-md-9 p-0">
                                                            <p class="text-danger text-uppercase">{{experience.CompanyName}}</p>
                                                            
                                                            <p class="text-danger mb-0">{{experience.StartDate}}-{% if not experience.IsContinue %}{{experience.EndDate}}{% else %}Present{% endif %}</p>
                                                         </div> 
-                                                        <div class="col-md-3 chart-icon text-right p-0 education-control">
+                                                        <div class="col-md-3 chart-icon text-right p-0 experience-control">
                                                             <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
+                                                                <a href="#" class="bs-tooltip font-20 text-primary"
                                                                     title="" data-original-title="Edit"><i class="las la-pen"></i></a>
                                                                 <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2 mr-2"
                                                                     title="" data-original-title="Delete"><i class="las la-trash"></i></a>

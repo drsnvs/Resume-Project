@@ -209,6 +209,7 @@ def add_experience(request):
         Designation = request.POST['designation'],
         StartDate = request.POST['ex_start_date'],
         EndDate = datetime.now() if 'ex_is_continue' in request.POST else request.POST['ex_end_date'],
+        IsContinue = True if 'ex_is_continue' in request.POST else False,
     )
     return redirect(profile_page)
 
