@@ -1,5 +1,5 @@
-from datetime import datetime
 from django.shortcuts import render,redirect
+from datetime import datetime
 from .models import *
 from django.db.utils import IntegrityError
 from django.core.mail import send_mail
@@ -176,7 +176,7 @@ def add_education(request):
 
 # delete education
 def delete_education(request, pk):
-    Education.objects.get(pk=pk)
+    Education.objects.get(pk=pk).delete()
     return redirect(profile_page)
 
 
@@ -230,7 +230,6 @@ def add_experience(request):
     )
 
     profile = Profile.objects.get(Master = master)
-
     Experience.objects.create(
         Profile=profile,
         CompanyName = request.POST['company_name'],
@@ -250,16 +249,30 @@ def load_experience_data(request):
     experience = Experience.objects.filter(Profile = profile)
     data['experience_list'] = experience
     
-def edit_experience(request):
+def edit_experience(request,pk):
     master=Master.objects.get(
-        Email=request.session['email']
+        Email=request.session['email'],
     )
 
     profile = Profile.objects.get(Master = master)
-    experience = Experience.objects.filter(Profile = profile)
-    data['experience_list'] = experience
-    experience.CompanyName = request.POST['company_name']
+    experience = Experience.objects.get(Profile = profile, pk=pk)
+    if request.POST:
+        experience.CompanyName = request.POST['company_name']
+        experience.Designation = request.POST['designation']
+        experience.StartDate = request.POST['ex_start_date']
+        experience.EndDate = datetime.now() if 'ex_is_continue' in request.POST else request.POST['ex_end_date']
+        experience.IsContinue = True if 'ex_is_continue' in request.POST else False
+        
+        experience.save()
+    else:
+        experience.StartDate = experience.StartDate.strftime("%Y-%m-%d")
+        experience.EndDate = experience.EndDate.strftime("%Y-%m-%d")
+        experience.edit_url = "edit_experience"
+
+        data['edit_experience'] = experience
     return redirect(profile_page)
+
+
 
 # Add Course Stream
 # def add_course_stream(request):

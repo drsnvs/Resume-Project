@@ -1416,7 +1416,7 @@
                                             <h6 class="font-15 mb-3">Experience</h6>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <form class="row" method="post" action="{% url 'add_experience' %}">
+                                                    <form class="row" method="post" action="{% if edit_experience %}{% url edit_experience.edit_url pk=edit_experience.id %}{% else %}{% url 'add_experience' %}{% endif %}">
                                                         {% csrf_token %}
                                                         <!-- <div class="col-md-6">
                                                             <div class="form-group">
@@ -1438,31 +1438,31 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="">Company Name</label>
-                                                                <input type="text"  name="company_name" class="form-control mb-4" placeholder="Like Infoysy,TCS" value="" >
+                                                                <input type="text"  name="company_name" class="form-control mb-4" placeholder="Like Infoysy,TCS" {% if edit_experience %} value="{{edit_experience.CompanyName}}"{% endif %} >
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="">Designation</label>
-                                                                <input type="text" name ="designation" class="form-control mb-4" placeholder="Address" value="" >
+                                                                <input type="text" name ="designation" class="form-control mb-4" placeholder="Address" {% if edit_experience %} value="{{edit_experience.Designation}}" {% endif %}>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="ex_start_date">Start Date</label>
-                                                                <input type="date" class="form-control mb-4" id="ex_start_date" name="ex_start_date">
+                                                                <input type="date" class="form-control mb-4" id="ex_start_date" name="ex_start_date" {% if edit_experience %} value="{{edit_experience.StartDate}}" {% endif %}>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="ex_end_date">End Date</label>
-                                                                <input type="date" id="ex_end_date" name="ex_end_date" class="form-control ">
+                                                                <input type="date" id="ex_end_date" name="ex_end_date" class="form-control " {% if edit_experience %} value="{{edit_experience.EndDate}}" {% endif %}>
                                                                 <span class="form-text text-muted">Turn off if pursues.</span>
                                                                 <div class="custom-switch-1 row">
                                                                     <div class="d-flex align-items-center col-12">
                                                                         <label class="col-form-label mr-2" for="ex_is_continue">Is Continue?</label>
                                                                         <label class="switch">
-                                                                            <input type="checkbox" id="ex_is_continue" name="ex_is_continue">
+                                                                            <input type="checkbox" id="ex_is_continue" name="ex_is_continue" {% if edit_experience.IsContinue %} checked {% endif %}>
                                                                             <div>
                                                                                 <span></span>
                                                                             </div>
@@ -1525,7 +1525,7 @@
                                                         </div> 
                                                         <div class="col-md-3 chart-icon text-right p-0 experience-control">
                                                             <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="{% url 'edit_experience' %}" class="bs-tooltip font-20 text-primary"
+                                                                <a href="{% url 'edit_experience' pk=experience.pk%}" class="bs-tooltip font-20 text-primary"
                                                                     title="" data-original-title="Edit"><i class="las la-pen"></i></a>
                                                                 <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2 mr-2"
                                                                     title="" data-original-title="Delete"><i class="las la-trash"></i></a>
@@ -1674,7 +1674,7 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="end_date">End Date</label>
-                                                                    <input type="date" id="end_date" name="end_date" class="form-control ">
+                                                                    <input type="date" id="end_date" name="end_date" class="form-control " {% if edit_education %}value="{{edit_education.EndDate}}" {% endif %}>
                                                                     <span class="form-text text-muted">Turn off if pursues.</span>
                                                                     <div class="custom-switch-1 row">
                                                                         <div class="d-flex align-items-center col-12">
@@ -1695,7 +1695,7 @@
                                                                     <label for="score">Score</label>
                                                                     <div class="input-group">
                                                                         <input type="number" id="score" class="form-control" name="score" min="1" max="10"
-                                                                            placeholder="1-100 or 1-10">
+                                                                            placeholder="1-100 or 1-10" {% if edit_education %} value="{{edit_education.Score}}" {% endif %}>
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">%</span>
                                                                         </div>
