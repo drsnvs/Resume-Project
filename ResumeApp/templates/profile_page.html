@@ -1287,12 +1287,13 @@
                                 </div>
                                 <div class="tab-pane fade" id="v-border-pills-skills" role="tabpanel" aria-labelledby="v-border-pills-skills-tab">
                                     <div class="media">
-                                        <div class="profile-shadow w-100">
+                                        <form class="profile-shadow w-100" method="post" action="{% url 'add_skill' %}">
+                                            {% csrf_token %}
                                             <h6 class="font-15 mb-3">Skills</h6>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <!-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="country">Country</label>
                                                                 <select class="form-control">
@@ -1308,14 +1309,31 @@
                                                                     <option>Russia</option>
                                                                 </select>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="">
+                                                                <label for="skill">Skill</label>
+                                                                <input type="text" name="skill" class="form-control mb-4" placeholder="Skill Name" value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="level">Skill Level{{skill_levels}}</label>
+                                                                <select class="form-control" name="level">
+                                                                    <option>Choose</option>
+                                                                    {% for sl in skill_level_choices %}
+                                                                    <option value="{{sl.first}}">{{sl.second}}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="known">Knowledge</label>
+                                                                <input type="text" name="known" class="form-control mb-4" placeholder="Between 1 to 100" value="">
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location">Location</label>
                                                                 <input type="text" class="form-control mb-4" placeholder="Location">
@@ -1341,27 +1359,31 @@
                                                                 <input type="text" class="form-control mb-4" placeholder="Write your website here"
                                                                     value="www.demowebsite.com">
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="progress-list">
+                                                {% for pb in skill_levels %}
                                                 <div class="single-progress">
                                                     <div class="progress-details">
                                                         <div class="d-flex align-items-center justify-content-between">
-                                                            <h6 class="mb-2 font-12 text-success-teal">Resolved</h6>
-                                                            <p class="mb-2 font-12 text-success-teal strong">69000</p>
+                                                            <h6 class="mb-2 font-12 text-success-teal">{{skill_list.Skill}}</h6>
+                                                            <p class="mb-2 font-12 text-success-teal strong">{{add_skill.Level}}</p>
                                                         </div>
                                                         <div class="progress-stats">
                                                             <div class="progress">
+                                                                
                                                                 <div class="progress-bar bg-gradient-success position-relative" role="progressbar"
-                                                                    style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"><span
-                                                                        class="success-teal"></span></div>
+                                                                    style="width: 20%" aria-valuenow="{{add_skill.Known}}" aria-valuemin="0" aria-valuemax="100">
+                                                                    <span class="success-teal"></span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="single-progress">
+                                                {% endfor %}
+                                                <!-- <div class="single-progress">
                                                     <div class="progress-details">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <h6 class="mb-2 font-12 text-secondary">In Progress</h6>
@@ -1405,9 +1427,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div> -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center" >
+                                                    <input type="submit" class="btn btn-primary" />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="v-border-pills-experience" role="tabpanel" aria-labelledby="v-border-pills-experience-tab">
@@ -1816,7 +1843,6 @@
                                         </div> -->
                                     </div>
                                 </div>
-                                
                                 <div class="tab-pane fade" id="v-border-pills-references" role="tabpanel"
                                     aria-labelledby="v-border-pills-references-tab">
                                     <div class="media">

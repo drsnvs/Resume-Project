@@ -106,16 +106,16 @@ class Education(models.Model):
         db_table = 'education'
 
 skill_level_choices = (
-    (35, 'beginner'),
-    (70, 'intermediate'),
-    (100, 'advance'),
+    (1, 'beginner'),
+    (2, 'intermediate'),
+    (3, 'advance'),
 )
 
 class Skill(models.Model):
     Profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     Skill = models.CharField(max_length=25)
     Level = models.CharField(max_length=10, choices=skill_level_choices)
-
+    Known = models.CharField(max_length=25)
     class Meta:
         db_table = 'skill'
 

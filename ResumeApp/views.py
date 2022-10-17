@@ -12,12 +12,15 @@ data= {
     'course_streams':CourseStream.objects.all(),
     'course_types':CourseType.objects.all(),
     'education_lists':Education.objects.all(),
+    'skill_levels':Skill.objects.all(),
+    'skill_level_choices':list(),
 }
 
 for gc in gender_choices:
     data['gender_choices'].append({'short_text':gc[0],'text':gc[1]})
 
-
+for slc in skill_level_choices:
+    data['skill_level_choices'].append({'first':slc[0],'second':slc[1]})
 
 # Create your views here.
 def login_page(request):
@@ -39,6 +42,7 @@ def profile_page(request):
     load_profile_data(request)
     load_education_data(request)
     load_experience_data(request)
+    load_skill_data(request)
     return render(request,"profile_page.html",data)
 
 def forget_password_page(request):
@@ -275,6 +279,30 @@ def edit_experience(request,pk):
 def delete_experience(request,pk):
     Experience.objects.get(pk=pk).delete()
     return redirect(profile_page)
+
+
+def add_skill(request):
+    master = Master.objects.get(
+        Email = request.session['email']
+    )
+    profile = Profile.objects.get(Master=master)
+    Skill.objects.create(
+        Profile=profile,
+        Skill = request.POST['skill'],
+        Level = request.POST['level'],
+        Known = request.POST['known'],
+    )
+    return redirect(profile_page)
+
+def load_skill_data(request):
+    master=Master.objects.get(
+        Email=request.session['email']
+    )
+
+    profile = Profile.objects.get(Master = master)
+    skill = Skill.objects.filter(Profile = profile)
+    data['skill_list'] = skill
+
 
 # Add Course Stream
 # def add_course_stream(request):
