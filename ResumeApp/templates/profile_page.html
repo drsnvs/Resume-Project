@@ -1318,7 +1318,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="level">Skill Level{{skill_levels}}</label>
+                                                                <label for="level">Skill Level</label>
                                                                 <select class="form-control" name="level">
                                                                     <option>Choose</option>
                                                                     {% for sl in skill_level_choices %}
@@ -1368,14 +1368,14 @@
                                                 <div class="single-progress">
                                                     <div class="progress-details">
                                                         <div class="d-flex align-items-center justify-content-between">
-                                                            <h6 class="mb-2 font-12 text-success-teal">{{skill_list.Skill}}</h6>
-                                                            <p class="mb-2 font-12 text-success-teal strong">{{add_skill.Level}}</p>
+                                                            <h6 class="mb-2 font-12 text-success-teal">{{pb.Skill}}</h6>
+                                                            <p class="mb-2 font-12 text-success-teal strong">{{pb.Known}}</p>
                                                         </div>
                                                         <div class="progress-stats">
                                                             <div class="progress">
                                                                 
                                                                 <div class="progress-bar bg-gradient-success position-relative" role="progressbar"
-                                                                    style="width: 20%" aria-valuenow="{{add_skill.Known}}" aria-valuemin="0" aria-valuemax="100">
+                                                                    style="width:{{pb.known}}%" aria-valuenow="{{pb.Known}}" aria-valuemin="0" aria-valuemax="100">
                                                                     <span class="success-teal"></span>
                                                                 </div>
                                                             </div>
@@ -1661,13 +1661,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade show active" id="v-border-pills-education" role="tabpanel" aria-labelledby="v-border-pills-education-tab">
+                                <div class="tab-pane fade show active" id="v-border-pills-education" role="tabpanel"
+                                    aria-labelledby="v-border-pills-education-tab">
                                     <div class="row">
                                         <div class="media col-7">
                                             <div class="profile-shadow w-100">
                                                 <h6 class="font-15 mb-3">Education</h6>
                                                 <div class="row">
-                                                    <form class="col-md-12" action="{% if edit_education %}{% url edit_education.edit_url pk=edit_education.id %}{% else %}{% url 'add_education' %}{% endif %}" method="post">
+                                                    <form class="col-md-12"
+                                                        action="{% if edit_education %}{% url edit_education.edit_url pk=edit_education.id %}{% else %}{% url 'add_education' %}{% endif %}"
+                                                        method="post">
                                                         {% csrf_token %}
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -1676,7 +1679,7 @@
                                                                     <select class="form-control" name="uni_board">
                                                                         <option>Choose</option>
                                                                         {% for ub in university_boards %}
-                                                                        <option value="{{ub.id}}" {% if ub.id == edit_education.UniversityBoard.id %}selected{% endif %}>{{ub.UniversityBoardName}}</option>
+                                                                        <option value="{{ub.id}}" {% if ub.id == edit_education.UniversityBoard.id %} selected {% endif %}>{{ub.UniversityBoardName}}</option>
                                                                         {% endfor %}
                                                                     </select>
                                                                 </div>
@@ -1695,7 +1698,9 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="start_date">Start Date</label>
-                                                                    <input type="date" class="form-control mb-4" id="start_date" value="{% if edit_education %}{{edit_education.StartDate}}{% endif %}" name="start_date">
+                                                                    <input type="date" class="form-control mb-4" id="start_date"
+                                                                        value="{% if edit_education %}{{edit_education.StartDate}}{% endif %}"
+                                                                        name="start_date">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -1715,20 +1720,21 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                    
+                                
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="score">Score</label>
                                                                     <div class="input-group">
-                                                                        <input type="number" id="score" class="form-control" name="score" min="1" max="10"
-                                                                            placeholder="1-100 or 1-10" {% if edit_education %} value="{{edit_education.Score}}" {% endif %}>
+                                                                        <input type="number" id="score" class="form-control" name="score" min="1"
+                                                                            max="10" placeholder="1-100 or 1-10" {% if edit_education %}
+                                                                            value="{{edit_education.Score}}" {% endif %}>
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">%</span>
                                                                         </div>
                                                                     </div>
                                                                     <span class="form-text text-muted">Turn off if CGPA.</span>
-                                    
+                                
                                                                     <div class="custom-switch-1 row">
                                                                         <div class="d-flex align-items-center col-12">
                                                                             <label class="col-form-label mr-2" for="is_cgpa">Is CGPA?</label>
@@ -1760,10 +1766,12 @@
                                                 scrollbar-color: #4d3b86 rgba(0, 128, 0, 0);
                                                 scrollbar-width: thin;
                                             }
+                                
                                             .education-control {
                                                 transform: scale(0);
                                                 transition: all ease-in-out 0.2s;
                                             }
+                                
                                             .education-list .education-block:hover .education-control {
                                                 transform: scale(1);
                                             }
@@ -1771,38 +1779,41 @@
                                         <div class="col-5">
                                             <h5>Recent Education</h5>
                                             <!-- <div class="widget widget-six bg-light-danger p-4 mb-4 mt-4">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="col-md-9 p-0">
-                                                       <p class="text-danger">{% for education in education_lists %}</p>
-                                                       <h2 class="text-danger"> ${{education.UniversityBoard}}</h2> 
-                                                       <h6 class="text-danger mb-0"> {% endfor %}</h6> 
-                                                       <p class="text-danger mb-0"> Payment for next week </p>
-                                                    </div> 
-                                                    <div class="col-md-3 chart-icon text-right p-0">
-                                                        <i class="las la-coins font-45 text-danger"></i>
-                                                    </div>
-                                                 </div>
-                                            </div> -->
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="col-md-9 p-0">
+                                                                                       <p class="text-danger">{% for education in education_lists %}</p>
+                                                                                       <h2 class="text-danger"> ${{education.UniversityBoard}}</h2> 
+                                                                                       <h6 class="text-danger mb-0"> {% endfor %}</h6> 
+                                                                                       <p class="text-danger mb-0"> Payment for next week </p>
+                                                                                    </div> 
+                                                                                    <div class="col-md-3 chart-icon text-right p-0">
+                                                                                        <i class="las la-coins font-45 text-danger"></i>
+                                                                                    </div>
+                                                                                 </div>
+                                                                            </div> -->
                                             <div class="education-list scroller p-2 pt-0 pb-0 mt-0">
                                                 {% for education in education_list %}
                                                 <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-md-9 p-0">
-                                                           <p class="text-danger text-uppercase">{{education.CourseStream}}</p>
-                                                           {% if not education.IsContinue %}
-                                                           <h2 class="text-danger">{{education.Score}}{% if education.IsCGPA %} CGPA{% else %}%{% endif %}</h2> 
-                                                           {% else %}
-                                                           <h2 class="text-danger">Running</h2>
-                                                           {% endif %}
-                                                           <h6 class="text-danger mb-0 text-uppercase">{{education.UniversityBoard}}</h6> 
-                                                           <p class="text-danger mb-0">{{education.StartDate}}-{% if not education.IsContinue %}{{education.EndDate}}{% else %}Present{% endif %}</p>
-                                                        </div> 
+                                                            <p class="text-danger text-uppercase">{{education.CourseStream}}</p>
+                                                            {% if not education.IsContinue %}
+                                                            <h2 class="text-danger">{{education.Score}}{% if education.IsCGPA %} CGPA{% else %}%{% endif %}</h2>
+                                                            {% else %}
+                                                            <h2 class="text-danger">Running</h2>
+                                                            {% endif %}
+                                                            <h6 class="text-danger mb-0 text-uppercase">{{education.UniversityBoard}}</h6>
+                                                            <p class="text-danger mb-0">{{education.StartDate}}-{% if not education.IsContinue %}{{education.EndDate}}{% else %}Present{% endif %}</p>
+                                                        </div>
                                                         <div class="col-md-3 chart-icon text-right p-0 education-control">
-                                                            <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="{% url 'edit_education' pk=education.pk %}" class="bs-tooltip font-20 text-primary"
-                                                                    title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
-                                                                    title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                            <div class="mb-0 pb-0"
+                                                                style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
+                                                                <a href="{% url 'edit_education' pk=education.pk %}"
+                                                                    class="bs-tooltip font-20 text-primary" title="" data-original-title="Edit"><i
+                                                                        class="las la-pen"></i></a>
+                                                                <a href="{% url 'delete_education' pk=education.pk %}"
+                                                                    class="bs-tooltip font-20 text-danger ml-2 mr-2" title=""
+                                                                    data-original-title="Delete"><i class="las la-trash"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1811,36 +1822,36 @@
                                             </div>
                                         </div>
                                         <!-- <div class="col-1">
-                                            <h5>Recent Education</h5>
-                                            <div class="education-list scroller p-2 pt-0 pb-0 mt-0">
-                                                <p>{{education_list}}</p>
-                                                {% for education in education_list %}
-                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="col-md-9 p-0">
-                                                           <p class="text-danger text-uppercase">{{education.CourseStream}}</p>
-                                                           {% if not education.IsContinue %}
-                                                           <h2 class="text-danger">{{education.Score}}{% if education.IsCGPA %} CGPA{% else %}%{% endif %}</h2> 
-                                                           {% else %}
-                                                           <h2 class="text-danger">Running</h2>
-                                                           {% endif %}
-                                                           <h6 class="text-danger mb-0 text-uppercase">{{education.UniversityBoard}}</h6> 
-                                                           <p class="text-danger mb-0">{{education.StartDate}}-{% if not education.IsContinue %}{{education.EndDate}}{% else %}Present{% endif %}</p>
-                                                        </div> 
-                                                        <div class="col-md-3 chart-icon text-right p-0 education-control">
-                                                            <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
-                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
-                                                                    title="" data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
-                                                                    title="" data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                            </div>
-                                                        </div>
-                                                     </div>
-                                                     
-                                                </div>
-                                                {% endfor %}
-                                            </div>
-                                        </div> -->
+                                                                            <h5>Recent Education</h5>
+                                                                            <div class="education-list scroller p-2 pt-0 pb-0 mt-0">
+                                                                                <p>{{education_list}}</p>
+                                                                                {% for education in education_list %}
+                                                                                <div class="widget widget-six bg-light-danger p-4 mb-4 mt-0 education-block">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="col-md-9 p-0">
+                                                                                           <p class="text-danger text-uppercase">{{education.CourseStream}}</p>
+                                                                                           {% if not education.IsContinue %}
+                                                                                           <h2 class="text-danger">{{education.Score}}{% if education.IsCGPA %} CGPA{% else %}%{% endif %}</h2> 
+                                                                                           {% else %}
+                                                                                           <h2 class="text-danger">Running</h2>
+                                                                                           {% endif %}
+                                                                                           <h6 class="text-danger mb-0 text-uppercase">{{education.UniversityBoard}}</h6> 
+                                                                                           <p class="text-danger mb-0">{{education.StartDate}}-{% if not education.IsContinue %}{{education.EndDate}}{% else %}Present{% endif %}</p>
+                                                                                        </div> 
+                                                                                        <div class="col-md-3 chart-icon text-right p-0 education-control">
+                                                                                            <div class="mb-0 pb-0" style="background-color: #f0edf9; border-radius: 50px; box-shadow: 1px 1px 20px rgb(0 0 0 / 17%);">
+                                                                                                <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary"
+                                                                                                    title="" data-original-title="Edit"><i class="las la-pen"></i></a>
+                                                                                                <a href="{% url 'delete_education' pk=education.pk %}" class="bs-tooltip font-20 text-danger ml-2 mr-2"
+                                                                                                    title="" data-original-title="Delete"><i class="las la-trash"></i></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                     </div>
+                                                                                     
+                                                                                </div>
+                                                                                {% endfor %}
+                                                                            </div>
+                                                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="v-border-pills-references" role="tabpanel"
