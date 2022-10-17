@@ -272,7 +272,9 @@ def edit_experience(request,pk):
         data['edit_experience'] = experience
     return redirect(profile_page)
 
-
+def delete_experience(request,pk):
+    Experience.objects.get(pk=pk).delete()
+    return redirect(profile_page)
 
 # Add Course Stream
 # def add_course_stream(request):
