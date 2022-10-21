@@ -1177,111 +1177,80 @@
                                             <h6 class="font-15 mb-3">Projects</h6>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="row">
+                                                    <form class="row" method="post" action="{% url 'add_project' %}">
+                                                        {% csrf_token %}
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="country">Country</label>
-                                                                <select class="form-control">
-                                                                    <option>All Countries</option>
-                                                                    <option selected>United States</option>
-                                                                    <option>Uruguay</option>
-                                                                    <option>Argentina</option>
-                                                                    <option>France</option>
-                                                                    <option>Italy</option>
-                                                                    <option>India</option>
-                                                                    <option>Japan</option>
-                                                                    <option>Turkey</option>
-                                                                    <option>Russia</option>
-                                                                </select>
+                                                                <label for="project_name">Project Name</label>
+                                                                <input type="text" class="form-control mb-4" name="project_name" placeholder="Name of Project" value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="">
+                                                                <label for="project_url">Project Upload URL</label>
+                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here" name="project_url" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="platform-description">Description</label>
+                                                                <textarea class="form-control mb-4" name="description" placeholder="About Project" rows="9" style="resize:none;"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="project_image">Project Image</label>
+                                                            <div class="upload text-center img-thumbnail">
+                                                                <input type="file" id="input-file-max-fs" name="project_image" data-default-file="assets/img/profile-16.jpg" data-max-file-size="2M" />
+                                                            </div>
                                                             <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                                <label for="project_date">Project Date</label>
+                                                                <input type="date" class="form-control mb-4" id="project_date" name="project_date" >
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <span class="form-text text-muted">Turn off if not continue.</span>
+                                                                    <div class="custom-switch-1 row">
+                                                                        <div class="d-flex align-items-center col-12">
+                                                                            <label class="col-form-label mr-2" for="is_continue">Is Continue?</label>
+                                                                            <label class="switch">
+                                                                                <input type="checkbox" id="pro_is_continue" name="pro_is_continue">
+                                                                                <div>
+                                                                                    <span></span>
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="phone">Phone</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here"
-                                                                    value="+1 (000) 125-45854">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-12 text-center" >
+                                                                    <input type="submit" class="btn btn-primary" />
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here"
-                                                                    value="sara@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="website1">Website</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here"
-                                                                    value="www.demowebsite.com">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
+                                            {% for pro in project_list %}
                                             <div class="single-team">
                                                 <div class="d-flex">
                                                     <div class="team-left">
                                                         <img src="{% static 'assets/img/lightbox-9.jpg' %}" />
-                                                        <p>23 Members</p>
+                                                        <!-- <p>23 Members</p> -->
                                                     </div>
                                                     <div class="team-right">
-                                                        <h6>Team UI Alpha</h6>
-                                                        <p>FORMED IN 20th Apr'20</p>
-                                                        <button class="primary">Connect</button>
+                                                        <h6>{{pro.ProjectName}}</h6>
+                                                        <p>{{pro.ProjectDate}}</p>
+                                                        <button class="primary">Edit</button>
                                                         <ul>
-                                                            <li class="text-success-teal"><strong>Completed</strong> : 9 Projects</li>
-                                                            <li class="text-info"><strong>Working On</strong> : 2 Projects</li>
+                                                            <li class="text-success-teal">Upload On: <strong>{{pro.ProjectURL}}</strong></li>
+                                                            <li class="text-info">Completed? : <strong>{% if pro.IsContinue %}Yes{% else %}No{% endif %}</strong></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="single-team">
-                                                <div class="d-flex">
-                                                    <div class="team-left">
-                                                        <img src="{% static 'assets/img/lightbox-3.jpg' %}" />
-                                                        <p>25 Members</p>
-                                                    </div>
-                                                    <div class="team-right">
-                                                        <h6>Development Team (America)</h6>
-                                                        <p>FORMED IN 20th Apr'20</p>
-                                                        <button class="primary">Connect</button>
-                                                        <ul>
-                                                            <li class="text-success-teal"><strong>Completed</strong> : 4 Projects</li>
-                                                            <li class="text-warning"><strong>Pipeline</strong> : 3 Projects</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="single-team">
-                                                <div class="d-flex">
-                                                    <div class="team-left">
-                                                        <img src="{% static 'assets/img/lightbox-1.jpg' %}" />
-                                                        <p>7 Members</p>
-                                                    </div>
-                                                    <div class="team-right">
-                                                        <h6>Sales Team</h6>
-                                                        <p>FORMED IN 18th Jun'20</p>
-                                                        <button class="primary">Connect</button>
-                                                        <ul>
-                                                            <li class="text-success-teal"><strong>Completed</strong> : 4 Projects</li>
-                                                            <li class="text-warning"><strong>Pipeline</strong> : 3 Projects</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>

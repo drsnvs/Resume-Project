@@ -43,6 +43,7 @@ def profile_page(request):
     load_education_data(request)
     load_experience_data(request)
     load_skill_data(request)
+    load_project(request)
     return render(request,"profile_page.html",data)
 
 def forget_password_page(request):
@@ -303,9 +304,34 @@ def load_skill_data(request):
     skill = Skill.objects.filter(Profile = profile)
     data['skill_list'] = skill
 
-def  add_project(request):
-    
+def add_project(request):
+    master = Master.objects.get(
+        Email=request.session['email']
+    )
+
+    profile = Profile.objects.get(Master=master)
+    ProjectPortfolio.objects.create(
+        Profile=profile,
+        ProjectName = request.POST['project_name'],
+        Description = request.POST['description'],
+        ProjectDate = request.POST['project_date'],
+        IsContinue = True if 'pro_is_continue' in request.POST else False ,
+        ProjectURL = request.POST['project_url'],
+        ProjectImage = request.POST['project_image'],
+    )
     return redirect(profile_page)
+
+def load_project(request):
+    master=Master.objects.get(
+        Email=request.session['email']
+    )
+
+    profile = Profile.objects.get(Master = master)
+    project = ProjectPortfolio.objects.filter(Profile = profile)
+    data['project_list'] = project
+
+def profile(request):
+    return render(request,'profile.html',data)
 # Add Course Stream
 # def add_course_stream(request):
 #     master = Master.objects.get(

@@ -19,4 +19,6 @@ urlpatterns = [
     path("edit_experience/<int:pk>/",edit_experience,name='edit_experience'),
     path("delete_experience/<int:pk>/",delete_experience,name='delete_experience'),
     path("add_skill/",add_skill,name='add_skill'),
+    path("add_project/",add_project,name='add_project'),
+    path("profile/",profile,name='profile'),
 ]

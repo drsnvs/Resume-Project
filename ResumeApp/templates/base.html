@@ -31,6 +31,7 @@
     <!-- Page Level Plugin/Style Starts -->
     <link href="{% static 'assets/css/forms/radio-theme.css'%} " rel="stylesheet" type="text/css">
     <!-- Page Level Plugin/Style Ends -->
+    <link href="{% static 'assets/css/pages/profile_edit.css' %}" rel="stylesheet" type="text/css" />
 
     {% block css %}
     {% endblock %}
@@ -61,15 +62,23 @@
     <!-- Page Level Plugin/Script Starts -->
     <script src="{% static 'assets/js/loader.js' %}"></script>
     <script src="{% static 'assets/js/libs/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
     <script src="{% static 'plugins/owl-carousel/owl.carousel.min.js' %}"></script>
     <script src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/authentication/auth_1.js' %}"></script>
     <!-- Page Level Plugin/Script Ends -->
-
+    
     <!-- Page Level Plugin/Script Starts -->
     <script src="{% static 'assets/js/forms/forms-validation.js' %}"></script>
     <!-- Page Level Plugin/Script Starts -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- Common Script Ends -->
+    <!--  Custom Script Starts  -->
+    <script src="{% static 'assets/js/loader.js' %}"></script>
+    <script src="{% static 'plugins/dropify/dropify.min.js' %}"></script>
+    <script src="{% static 'assets/js/pages/profile_edit.js' %}"></script>
+    <!--  Custom Script Ends  -->
     {% block js_script %}
     {% endblock %}
 </body>
