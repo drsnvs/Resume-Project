@@ -303,7 +303,9 @@ def load_skill_data(request):
     skill = Skill.objects.filter(Profile = profile)
     data['skill_list'] = skill
 
-
+def  add_project(request):
+    
+    return redirect(profile_page)
 # Add Course Stream
 # def add_course_stream(request):
 #     master = Master.objects.get(
