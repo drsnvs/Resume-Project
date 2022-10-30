@@ -21,4 +21,5 @@ urlpatterns = [
     path("add_skill/",add_skill,name='add_skill'),
     path("add_project/",add_project,name='add_project'),
     path("profile/",profile,name='profile'),
+    path("add_references/",add_references,name='add_references'),
 ]

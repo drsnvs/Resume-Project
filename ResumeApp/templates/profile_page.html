@@ -1827,253 +1827,85 @@
                                     <div class="media">
                                         <div class="profile-shadow w-100">
                                             <h6 class="font-15 mb-3">References</h6>
-                                            <div class="row">
+                                            <form class="row" action="{% url 'add_references' %}" method="post" >
+                                                {% csrf_token %}
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="country">Country</label>
-                                                                <select class="form-control">
-                                                                    <option>All Countries</option>
-                                                                    <option selected>United States</option>
-                                                                    <option>Uruguay</option>
-                                                                    <option>Argentina</option>
-                                                                    <option>France</option>
-                                                                    <option>Italy</option>
-                                                                    <option>India</option>
-                                                                    <option>Japan</option>
-                                                                    <option>Turkey</option>
-                                                                    <option>Russia</option>
-                                                                </select>
+                                                                <label for="person_name">Name</label>
+                                                                <input type="text" name="person_name" class="form-control mb-4" placeholder="Name" value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Address" value="">
+                                                                <label for="job_profile">Job Profile</label>
+                                                                <input type="text" name="job_profile" class="form-control mb-4" placeholder="Address" value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Location">
+                                                                <label for="contact">Contact</label>
+                                                                <input type="email" name="contact" class="form-control mb-4" placeholder="Write your email id here"
+                                                                    value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="phone">Phone</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your phone number here"
-                                                                    value="+1 (000) 125-45854">
+                                                                <label for="url">URL</label>
+                                                                <input type="text" name="url" class="form-control mb-4" placeholder="Enter LinkedIn URL here.."
+                                                                    value="">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your email here"
-                                                                    value="sara@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="website1">Website</label>
-                                                                <input type="text" class="form-control mb-4" placeholder="Write your website here"
-                                                                    value="www.demowebsite.com">
-                                                            </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 text-center" >
+                                                            <input type="submit" class="btn btn-primary" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                <div class="th-content">Order ID</div>
+                                                                <div class="th-content">Name</div>
                                                             </th>
                                                             <th>
-                                                                <div class="th-content">Status</div>
+                                                                <div class="th-content">Job Profile</div>
                                                             </th>
                                                             <th>
-                                                                <div class="th-content">Details</div>
+                                                                <div class="th-content">Contact</div>
                                                             </th>
                                                             <th>
-                                                                <div class="th-content">Action</div>
+                                                                <div class="th-content">URL</div>
                                                             </th>
                                                         </tr>
                                                     </thead>
+                                                    {% for ref in references %}
                                                     <tbody>
+                                                        
                                                         <tr>
                                                             <td>
-                                                                #SK898789
+                                                                <span class="badge badge-success-teal light">{{ref.PersonName}}</span>
                                                             </td>
                                                             <td>
-                                                                <span class="badge badge-success-teal light">Paid</span>
+                                                                <span class="badge badge-success-teal light">{{ref.JobProfile}}</span>
                                                             </td>
                                                             <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
+                                                                <span class="badge badge-success-teal light">{{ref.Contact}}</span>
                                                             </td>
                                                             <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
+                                                                <span class="badge badge-success-teal light">{{ref.LinkedIn}}</span>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK451245
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-warning light">Pending</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK123475
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-danger light">Failed</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK747101
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-success-teal light">Success</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK747101
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-success-teal light">Success</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK147854
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-warning light">Pending</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK123630
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-danger light">Failed</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK124574
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-success-teal light">Success</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                #SK963258
-                                                            </td>
-                                                            <td>
-                                                                <span class="badge badge-success-teal light">Success</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="apps_ecommerce_order_details.html" class="btn btn-sm btn-info">Details</a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-primary" title=""
-                                                                        data-original-title="Edit"><i class="las la-pen"></i></a>
-                                                                    <a href="javascript:void(0);" class="bs-tooltip font-20 text-danger ml-2" title=""
-                                                                        data-original-title="Delete"><i class="las la-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                        
                                                     </tbody>
+                                                    {% endfor %}
                                                 </table>
                                                 <p class="font-13 text-center mt-4 mb-1 text-muted">
                                                     <a class="text-primary" href="javascript:void(0);">Click here</a> to see the full product list

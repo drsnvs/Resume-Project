@@ -14,6 +14,7 @@ data= {
     'education_lists':Education.objects.all(),
     'skill_levels':Skill.objects.all(),
     'skill_level_choices':list(),
+    # 'references':Reference.objects.all(),
 }
 
 for gc in gender_choices:
@@ -44,6 +45,7 @@ def profile_page(request):
     load_experience_data(request)
     load_skill_data(request)
     load_project(request)
+    load_references(request)
     return render(request,"profile_page.html",data)
 
 def forget_password_page(request):
@@ -332,6 +334,29 @@ def load_project(request):
 
 def profile(request):
     return render(request,'profile.html',data)
+
+def add_references(request):
+    master = Master.objects.get(
+        Email = request.session['email']
+    )
+    profile = Profile.objects.get(Master=master)
+    Reference.objects.create(
+        Profile=profile,
+        PersonName = request.POST['person_name'],
+        JobProfile = request.POST['job_profile'],
+        Contact = request.POST['contact'],
+        LinkedIn = request.POST['url'],
+    )
+    return redirect(profile_page)
+
+def load_references(request):
+    master = Master.objects.get(
+        Email = request.session['email'],
+    )
+    profile = Profile.objects.get(Master = master)
+    reference = Reference.objects.filter(Profile=profile)
+    data['references'] = reference
+
 # Add Course Stream
 # def add_course_stream(request):
 #     master = Master.objects.get(
